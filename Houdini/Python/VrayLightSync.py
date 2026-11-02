@@ -1,4 +1,6 @@
-
+"""
+選択したVrayLightをVisible[ON/OFF] で Enable[ON/OFF] をリンクさせる。
+"""
 import hou
 
 def main():
