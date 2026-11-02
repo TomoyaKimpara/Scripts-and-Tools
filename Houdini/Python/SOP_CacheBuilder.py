@@ -11,12 +11,9 @@ def get_cache_ropnet(parent):
     marker = "sop_cache_ropnet"
 
     def apply_style(ropnet):
-        # 黄色
+        # 黄色・丸型
         ropnet.setColor(hou.Color((1.0, 1.0, 0.0)))
-
-        # 丸型
         ropnet.setUserData("nodeshape", "circle")
-
         return ropnet
 
     # このスクリプトで作成したROP Networkを再利用
@@ -34,7 +31,6 @@ def get_cache_ropnet(parent):
         existing.setUserData(marker, "1")
         return apply_style(existing)
 
-    # ROP Networkを新規作成
     # 同名の別種ノードがある場合は、自動で番号を付ける
     ropnet = parent.createNode("ropnet")
     ropnet.setName(base_name, unique_name=True)
@@ -55,26 +51,60 @@ def create_nodes():
         hou.ui.displayMessage("SOPノードを選択してください。")
         return
 
+    # 書き出し対象のフレームを選択
+    choice = hou.ui.displayMessage(
+        "キャッシュのフレーム設定を選択してください。",
+        buttons=("再生範囲", "現在フレームのみ", "キャンセル"),
+        default_choice=0,
+        close_choice=2,
+        title="SOP Cache Builder"
+    )
+
+    if choice == 2:
+        return
+
+    if choice == 0:
+        start_frame, end_frame = hou.playbar.playbackRange()
+    else:
+        start_frame = end_frame = hou.frame()
+
     created = []
 
-    with hou.undos.group("Create SOP Cache"):
+    with hou.undos.group("SOP Cache Builder"):
         for node in selected:
             parent = node.parent()
 
             # 親ネットワーク内にROP Networkを作成・再利用
-            # 例: /obj/geo → /obj/geo/geo_cache
             ropnet = get_cache_ropnet(parent)
 
             # Geometry ROPを作成
             rop = ropnet.createNode("geometry", node.name())
             rop.moveToGoodPosition()
 
-            # File SOP作成前に既存の接続と表示状態を保存
+            # フレーム範囲を有効化
+            # 現在フレームのみの場合も開始・終了を同じ値に設定
+            rop.parm("trange").set(1)
+
+            # 既定の式を削除して、実行時のフレームを設定
+            for parm_name, value in (
+                ("f1", start_frame),
+                ("f2", end_frame),
+                ("f3", 1),
+            ):
+                parm = rop.parm(parm_name)
+                parm.deleteAllKeyframes()
+                parm.set(value)
+
+            # 既存の接続と表示状態を保存
             connections = list(node.outputConnections())
             display_flag = node.isDisplayFlagSet()
 
-            # File SOPを作成
+            # File SOPを作成し、元ノード名_cacheに変更
             file_node = parent.createNode("file")
+            file_node.setName(
+                node.name() + "_cache",
+                unique_name=True
+            )
             file_node.setPosition(
                 node.position() + hou.Vector2(0, -1.5)
             )
@@ -86,7 +116,6 @@ def create_nodes():
             for conn in connections:
                 downstream = conn.outputNode()
                 input_index = conn.inputIndex()
-
                 downstream.setInput(input_index, file_node)
 
             # Geometry ROPの出力元
