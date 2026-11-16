@@ -1,0 +1,4934 @@
+{
+	Tools = ordered() {
+		SplitIt = MacroOperator {
+			CtrlWZoom = false,
+			NameSet = true,
+			Inputs = ordered() {
+				HideInputs = Input { Expression = "HideIncommingConnections", },
+				InputA = InstanceInput {
+					SourceOp = "Sp_SDA",
+					Source = "Input",
+					Name = "Input A",
+				},
+				InputB = InstanceInput {
+					SourceOp = "Sp_SDB",
+					Source = "Input",
+					Name = "Input B",
+				},
+				Layout = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Layout",
+					Page = "Controls",
+				},
+				ShowLabels = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "ShowLabels",
+					Name = "Labels",
+					Width = 0.3,
+					Page = "Controls",
+				},
+				ShowDivider = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "ShowDivider",
+					Name = "Divider",
+					Width = 0.32,
+					Page = "Controls",
+				},
+				ShowBG = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "ShowBG",
+					Name = "BG",
+					Width = 0.25,
+					Page = "Controls",
+				},
+				ShowInput = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "ShowInput",
+					Page = "Controls",
+				},
+				Flip = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Flip",
+					Name = "Flip A/B",
+					Width = 0.36,
+					Page = "Controls",
+				},
+				ViewControls = InstanceInput {
+					SourceOp = "Sp_Widget",
+					Source = "ShowViewControls",
+					Width = 0.64,
+					Page = "Controls",
+				},
+				LabelsNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelsNestNest",
+					Expression = "ShowLabels",
+					Page = "Controls",
+				},
+				LabelASeparator = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Separator",
+					Page = "Controls",
+				},
+				LabelA = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelA",
+					Page = "Controls",
+				},
+				LabelB = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelB",
+					Page = "Controls",
+				},
+				ShowLabel = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "ShowLabel",
+					Name = "",
+					Page = "Controls",
+				},
+				SplitNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SplitNestNest",
+					Expression = "(Sp_ctrl.Layout~=2 or (Sp_ctrl.Layout==2 and Sp_ctrl.ShowInput~=0)) and 0 or 1",
+					Page = "Controls",
+				},
+				SplitAngleSeparator = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Separator",
+					Page = "Controls",
+				},
+				SplitAngle = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SplitAngle",
+					Page = "Controls",
+					Default = 5,
+				},
+				Offset = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Offset",
+					Name = "Offset (A/B)",
+					Page = "Controls",
+					Default = 0.5,
+				},
+				LabelSettingsNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelSettingsNestNest",
+					Expression = "ShowLabels",
+					Page = "Controls",
+				},
+				LabelSettingsNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelSettingsNest",
+					Name = "<font color=#999999>Labels</font>",
+					Width = 0.25,
+					Page = "Controls",
+				},
+				AlignmentInfoNestNestA = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "AlignmentInfoNestNestA",
+					Expression = "Layout<2 and 0 or 1",
+					Page = "Controls",
+				},
+				AlignmentInfo = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Info",
+					Name = "<p align=right><font color=#666666>Diagonal Split Angles limits Alignment</font></p>",
+					Width = 0.75,
+					Page = "Controls",
+				},
+				AlignmentInfoNestNestB = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "AlignmentInfoNestNestB",
+					Expression = "Layout<2 and 1 or 0",
+					Page = "Controls",
+				},
+				AlignmentInfoPlacebo = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Info",
+					Name = "",
+					Width = 0.75,
+					Page = "Controls",
+				},
+				AlignV = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "AlignV",
+					Name = "Alignment",
+					Width = 0.5,
+					Page = "Controls",
+					Default = 0,
+				},
+				AlignH = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "AlignH",
+					Width = 0.5,
+					Page = "Controls",
+					Default = 0,
+				},
+				InvertAlignment = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "InvertAlignment",
+					Name = "Invert",
+					Page = "Controls",
+					Default = 0,
+				},
+				LabelPadding = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelPadding",
+					Page = "Controls",
+					Default = 12,
+				},
+				LabelVerticalOffset = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelVerticalOffset",
+					Page = "Controls",
+					Default = 0,
+				},
+				FontSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				Font = InstanceInput {
+					SourceOp = "Sp_TxtStackA",
+					Source = "Font",
+					ControlGroup = 71,
+					Page = "Controls",
+				},
+				Style = InstanceInput {
+					SourceOp = "Sp_TxtStackA",
+					Source = "Style",
+					ControlGroup = 71,
+					Page = "Controls",
+				},
+				FontSize = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "FontSize",
+					Name = "Size (px)",
+					Page = "Controls",
+					Default = 16,
+				},
+				FontColor = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "FontColor",
+					Name = "Color",
+					Page = "Controls",
+				},
+				FontBGSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				FontBG = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "FontBG",
+					Name = "Background Color",
+					Page = "Controls",
+				},
+				FontBGOpacity = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "FontBGOpacity",
+					Page = "Controls",
+					Default = 0.5,
+				},
+				FontBGSize = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "FontBGSize",
+					Name = "Size",
+					Page = "Controls",
+					Default = 0,
+				},
+				FontBGExtend = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "FontBGExtend",
+					Page = "Controls",
+					Default = 10,
+				},
+				FontBGRounding = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Rounding",
+					Page = "Controls",
+					Default = 0.25,
+				},
+				LabelBGVertOffset = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LabelBGVertOffset",
+					Page = "Controls",
+					Default = 0,
+				},
+				LabelNestEndSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				DivNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "DivNestNest",
+					Expression = "ShowDivider",
+					Page = "Controls",
+				},
+				DivNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "DivNest",
+					Page = "Controls",
+				},
+				DivType = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "DivType",
+					Name = "Type",
+					Page = "Controls",
+				},
+				DivOpacity = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "DivOpacity",
+					Name = "Opacity",
+					Page = "Controls",
+					Default = 0.5,
+				},
+				DashNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "DashNestNest",
+					Expression = "DivType==0 and 1 or 0",
+					Page = "Controls",
+				},
+				DivContrastSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				DivContrast = InstanceInput {
+					SourceOp = "Sp_DivCC",
+					Source = "Saturation",
+					Name = "Contrast",
+					MaxAllowed = 1,
+					MaxScale = 1,
+					Center = 0.5,
+					Page = "Controls",
+					Default = 0.5,
+				},
+				DivBrightness = InstanceInput {
+					SourceOp = "Sp_DivCC",
+					Source = "Brightness",
+					Page = "Controls",
+				},
+				DivNestEndSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				XfBNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "XfBNest",
+					Page = "Controls",
+				},
+				PivotB = InstanceInput {
+					SourceOp = "Sp_Widget",
+					Source = "Center",
+					Page = "Controls",
+				},
+				MagnifyB = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Magnify",
+					Page = "Controls",
+					Default = 10,
+				},
+				Snap = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Snap",
+					Width = 0.1,
+					Page = "Controls",
+					Default = 1,
+				},
+				SnapLabel = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SnapLabel",
+					Width = 0.8,
+					Page = "Controls",
+				},
+				AngleBSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				AngleB = InstanceInput {
+					SourceOp = "Sp_Widget",
+					Source = "Angle",
+					Page = "Controls",
+				},
+				OffsetB = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "OffsetB",
+					Name = "Offset",
+					Page = "Controls",
+					DefaultX = 0,
+					DefaultY = 0,
+				},
+				InputBNestEndSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				TransformA = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "TransformA",
+					Width = 0.31,
+					Page = "Controls",
+				},
+				Disable = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Disable",
+					Width = 0.55,
+					Page = "Controls",
+				},
+				BGTypeSpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				BGNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BGNestNest",
+					Expression = "ShowBG",
+					Page = "Controls",
+				},
+				BGNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BGNest",
+					Page = "Controls",
+				},
+				BGType = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BGType",
+					Name = "Type",
+					Page = "Controls",
+				},
+				BGOpacity = InstanceInput {
+					SourceOp = "Sp_BGOStack",
+					Source = "Gain",
+					Name = "Opacity",
+					MaxScale = 1,
+					Page = "Controls",
+					Default = 0.5,
+				},
+				BGOpacitySpacer = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Spacer",
+					Page = "Controls",
+				},
+				ChessNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "ChessNestNest",
+					Expression = "BGType==0 and 1 or 0",
+					Page = "Controls",
+				},
+				ChessContrast = InstanceInput {
+					SourceOp = "Sp_BGCC",
+					Source = "Saturation",
+					Name = "Contrast",
+					MaxAllowed = 1,
+					MaxScale = 1,
+					Center = 0.5,
+					Page = "Controls",
+					Default = 0.5,
+				},
+				ChessBrightness = InstanceInput {
+					SourceOp = "Sp_BGCC",
+					Source = "Brightness",
+					Page = "Controls",
+				},
+				UserOverlay = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Overlay",
+					Page = "Controls",
+				},
+				UserNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserNestNest",
+					Expression = "BGType==3 and 1 or 0",
+					Page = "Controls",
+				},
+				ChessOverlay = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Overlay",
+					Name = "Overlay Chess Pattern",
+					Page = "Controls",
+				},
+				SillyNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SillyNestNest",
+					Expression = "BGNest",
+					Page = "Controls",
+				},
+				SillySeparator = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Separator",
+					Page = "Controls",
+				},
+				SizeSource = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SizeSource",
+					Page = "Controls",
+					Default = 0,
+				},
+				CustomNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "CustomNestNest",
+					Expression = "Sp_ctrl.SizeSource<2 and 0 or 1",
+					Page = "Controls",
+				},
+				CustomWidth = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "CustomWidth",
+					Name = "Width",
+					Page = "Controls",
+					Default = 1080,
+				},
+				CustomHeight = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "CustomHeight",
+					Name = "Height",
+					Page = "Controls",
+					Default = 1080,
+				},
+				OutputScale = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "OutputScale",
+					Page = "Controls",
+					Default = 2,
+				},
+				LookSharpNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LookSharpNestNest",
+					Expression = "Sp_ctrl.OutputScale==0 and 0 or 1",
+					Page = "Controls",
+				},
+				LookSharp = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "LookSharp",
+					Page = "Controls",
+					Default = 0.5,
+				},
+				ColorInfoNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "ColorInfoNestNest",
+					Expression = "(FontColor~=3 and FontBG~=3 and DivType~=3 and BGType~=3) and 1 or 0",
+					Page = "Colors",
+				},
+				ColorInfo = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Label",
+					Name = "<p align=center><font color=#666666>To use, enable <font color=#787878>'User'</font> in relevant settings → Controls tab.</font></p>",
+					Page = "Colors",
+				},
+				UserLabelNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserLabelNestNest",
+					Expression = "(ShowLabels==1 and (FontColor==3 or FontBG==3)) and 1 or 0",
+					Page = "Colors",
+				},
+				SingleColor = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SingleColor",
+					Width = 0.52,
+					Page = "Colors",
+				},
+				FlipColors = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "FlipC",
+					Width = 0.38,
+					Page = "Colors",
+				},
+				SingleColorNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SingleColorNestNest",
+					Expression = "SingleColor",
+					Page = "Colors",
+				},
+				SingleColorNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SingleColorNest",
+					Page = "Colors",
+				},
+				SingleColorANest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SingleColorANest",
+					Expression = "1-FlipC",
+					Page = "Colors",
+				},
+				Red = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedA",
+					ControlGroup = 808,
+					Page = "Colors",
+					Default = 0.5,
+				},
+				Green = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenA",
+					ControlGroup = 808,
+					Default = 0.5,
+				},
+				Blue = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueA",
+					ControlGroup = 808,
+					Default = 0.5,
+				},
+				SingleColorFNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SingleColorFNest",
+					Expression = "FlipC",
+					Page = "Colors",
+				},
+				RedF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedB",
+					ControlGroup = 809,
+					Page = "Colors",
+					Default = 0.5,
+				},
+				GreenF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenB",
+					ControlGroup = 809,
+					Default = 0.5,
+				},
+				BlueF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueB",
+					ControlGroup = 809,
+					Default = 0.5,
+				},
+				DoubleColorNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "DoubleColorNestNest",
+					Expression = "1-SingleColor",
+					Page = "Colors",
+				},
+				UserANest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserANest",
+					Page = "Colors",
+				},
+				UserANestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserANestNest",
+					Expression = "1-FlipC",
+					Page = "Colors",
+				},
+				RedA = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedA",
+					ControlGroup = 242,
+					Page = "Colors",
+					Default = 0.5,
+				},
+				GreenA = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenA",
+					ControlGroup = 242,
+					Default = 0.5,
+				},
+				BlueA = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueA",
+					ControlGroup = 242,
+					Default = 0.5,
+				},
+				UserAFNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserAFNestNest",
+					Expression = "FlipC",
+					Page = "Colors",
+				},
+				RedAF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedB",
+					ControlGroup = 243,
+					Page = "Colors",
+					Default = 0.5,
+				},
+				GreenAF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenB",
+					ControlGroup = 243,
+					Default = 0.5,
+				},
+				BlueAF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueB",
+					ControlGroup = 243,
+					Default = 0.5,
+				},
+				UserBNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserBNest",
+					Page = "Colors",
+				},
+				UserBNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserBNestNest",
+					Expression = "1-FlipC",
+					Page = "Colors",
+				},
+				RedB = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedB",
+					ControlGroup = 303,
+					Default = 0.5,
+				},
+				GreenB = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenB",
+					ControlGroup = 303,
+					Default = 0.5,
+				},
+				BlueB = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueB",
+					ControlGroup = 303,
+					Default = 0.5,
+				},
+				UserBFNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserBFNestNest",
+					Expression = "FlipC",
+					Page = "Colors",
+				},
+				RedBF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedA",
+					ControlGroup = 304,
+					Default = 0.5,
+				},
+				GreenBF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenA",
+					ControlGroup = 304,
+					Default = 0.5,
+				},
+				BlueBF = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueA",
+					ControlGroup = 304,
+					Default = 0.5,
+				},
+				UserDivNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserDivNestNest",
+					Expression = "(ShowDivider==1 and DivType==3) and 1 or 0",
+					Page = "Colors",
+				},
+				UserDivNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserDivNest",
+					Page = "Colors",
+				},
+				RedD = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedD",
+					ControlGroup = 714,
+					Default = 0.5,
+				},
+				GreenD = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenD",
+					ControlGroup = 714,
+					Default = 0.5,
+				},
+				BlueD = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueD",
+					ControlGroup = 714,
+					Default = 0.5,
+				},
+				UserBGNestNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserBGNestNest",
+					Expression = "((BGType==0 and Sp_ctrl.Overlay==1) or BGType==3) and 1 or 0",
+					Page = "Colors",
+				},
+				UserBGNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "UserBGNest",
+					Page = "Colors",
+				},
+				RedBG = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "RedBG",
+					ControlGroup = 909,
+					Default = 0.5,
+				},
+				GreenBG = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "GreenBG",
+					ControlGroup = 909,
+					Default = 0.5,
+				},
+				BlueBG = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "BlueBG",
+					ControlGroup = 909,
+					Default = 0.5,
+				},
+				SettingsNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "SettingsNest",
+					Name = "<p style='color:#999999; text-align: left;'>Settings</p>",
+					Page = "Settings",
+				},
+				MotionBlur = InstanceInput {
+					SourceOp = "Sp_SplitOffset",
+					Source = "MotionBlur",
+					Page = "Settings",
+				},
+				Quality = InstanceInput {
+					SourceOp = "Sp_SplitOffset",
+					Source = "Quality",
+					Page = "Settings",
+					Default = 5,
+				},
+				ShutterAngle = InstanceInput {
+					SourceOp = "Sp_SplitOffset",
+					Source = "ShutterAngle",
+					Page = "Settings",
+					Default = 180,
+				},
+				CenterBias = InstanceInput {
+					SourceOp = "Sp_SplitOffset",
+					Source = "CenterBias",
+					Page = "Settings",
+					Default = 0,
+				},
+				SampleSpread = InstanceInput {
+					SourceOp = "Sp_SplitOffset",
+					Source = "SampleSpread",
+					Page = "Settings",
+					Default = 1,
+				},
+				MotionBlurInfo = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Label",
+					Name = "<center><font color=#666666>Motion Blur is only used for the (Split Layout) Offset setting</font></center>",
+					Page = "Settings",
+				},
+				DepthSeparator = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Separator",
+					Page = "Settings",
+				},
+				Depth = InstanceInput {
+					SourceOp = "Sp_BGStack",
+					Source = "Depth",
+					Page = "Settings",
+					Default = 0,
+				},
+				HideIncommingConnectionsSeparator = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Separator",
+					Page = "Settings",
+				},
+				HideIncommingConnections = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "HideIncommingConnections",
+					Page = "Settings",
+				},
+				CommentNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "CommentNest",
+					Name = "<p style='color:#999999; text-align: left;'>Comments</p>",
+					Page = "Settings",
+				},
+				Comment = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Comments",
+				},
+				URLNest = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "URLNest",
+					Page = "Settings",
+				},
+				URL = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "URL",
+					Width = 1,
+					Page = "Settings",
+				},
+				Version = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Version",
+					Page = "Controls",
+				},
+				VersionColors = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Version",
+					Page = "Colors",
+				},
+				VersionSettings = InstanceInput {
+					SourceOp = "Sp_ctrl",
+					Source = "Version",
+					Page = "Settings",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "Sp_RenderCacheTimelineVisualFix",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { -1155, 2359.5 },
+				Flags = {
+					Expanded = true,
+					AllowPan = false,
+					GridSnap = true,
+					ShowGrid = false,
+					AutoSnap = true,
+					Thumbnails = false
+				},
+				Size = { 578.316, 602.146, 290.292, 23.7464 },
+				Direction = "Vertical",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				Sp_ResizeXB = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							Value = 360,
+							Expression = ":\nx = Sp_ctrl.OutputScale\nsFactor = (x == 2 and 0.5) or (x == 0 and 1) or (x == 4 and 0.25) or (x == 1 and 0.667) or 0.333\n\n-- Direct trust: Use the input assigned to this node. \n-- If it's nil, the node naturally shouldn't be processing.\nbaseW = self.Input.OriginalWidth\nraw = baseW * sFactor\n\nreturn (Sp_ctrl.OutputScale == 0) and baseW or math.floor(raw + 0.5)",
+						},
+						Height = Input {
+							Value = 640,
+							Expression = ":\nx = Sp_ctrl.OutputScale\nsFactor = (x == 2 and 0.5) or (x == 0 and 1) or (x == 4 and 0.25) or (x == 1 and 0.667) or 0.333\n\n-- Direct trust: Use the input assigned to this node. \n-- If it's nil, the node naturally shouldn't be processing.\nbaseH = self.Input.OriginalHeight\nraw = baseH * sFactor\n\nreturn (Sp_ctrl.OutputScale == 0) and baseH or math.floor(raw + 0.5)",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Expression = "(Sp_ctrl.Magnify<=1 or Sp_ctrl.Disable==1) and 2 or 0", },
+						Input = Input {
+							SourceOp = "Sp_MagXB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 82.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_SharpXA = Sharpen {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ApplyMaskInverted = Input { Value = 1, },
+						MultiplyByMask = Input { Value = 1, },
+						XAmount = Input {
+							Value = 0.5,
+							Expression = "Sp_ctrl.OutputScale==0 and 0 or Sp_ctrl.LookSharp",
+						},
+						ClippingMode = Input { Value = FuID { "Domain" }, },
+						Input = Input {
+							SourceOp = "Sp_ResizeXA",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 115.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_MagXA = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SizeB = Input {
+							Value = Number {
+								Value = 4.538
+							},
+						},
+						ViewControls = Input {
+							Value = Number {
+								Value = 1
+							},
+						},
+						Blend = Input { Expression = "Sp_ctrl.TransformA * (1-Sp_ctrl.Disable)", },
+						ApplyMaskInverted = Input { Value = 1, },
+						MultiplyByMask = Input { Value = 1, },
+						Quality = Input { Value = 5, },
+						LayersNest = Input { Value = 0, },
+						Pivot = Input {
+							Value = { 0.146003711895194, 0.233617396566517 },
+							Expression = "Sp_MagXB.Pivot",
+						},
+						Size = Input { Expression = "Sp_MagXB.Size", },
+						XSize = Input { Value = 2.25, },
+						YSize = Input { Value = 2.25, },
+						FilterMethod = Input {
+							Value = 0,
+							Expression = "Sp_MagXB.FilterMethod",
+						},
+						Input = Input {
+							SourceOp = "Sp_SDA",
+							Source = "Output",
+						},
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 49.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_ResizeXA = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							Value = 360,
+							Expression = ":\nx = Sp_ctrl.OutputScale\nsFactor = (x == 2 and 0.5) or (x == 0 and 1) or (x == 4 and 0.25) or (x == 1 and 0.667) or 0.333\n\nraw = self.Input.OriginalWidth * sFactor\n\n-- If we are at 100%, return the raw source size exactly.\n-- Otherwise, floor it to the nearest integer for stability.\nreturn (Sp_ctrl.OutputScale == 0) and self.Input.OriginalWidth or floor(raw + 0.5)",
+						},
+						Height = Input {
+							Value = 640,
+							Expression = ":\nx = Sp_ctrl.OutputScale\nsFactor = (x == 2 and 0.5) or (x == 0 and 1) or (x == 4 and 0.25) or (x == 1 and 0.667) or 0.333\n\nraw = self.Input.OriginalHeight * sFactor\n\n-- If we are at 100%, return the raw source size exactly.\n-- Otherwise, floor it to the nearest integer for stability.\nreturn (Sp_ctrl.OutputScale == 0) and self.Input.OriginalHeight or floor(raw + 0.5)",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Expression = "(Sp_ctrl.Magnify==1 or Sp_ctrl.Disable==1) and 2 or 0", },
+						Input = Input {
+							SourceOp = "Sp_MagXA",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 82.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_SplitMskGrp = GroupOperator {
+					CtrlWShown = false,
+					NameSet = true,
+					Outputs = {
+						Output1 = InstanceOutput {
+							SourceOp = "Sp_HoldThatThought",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo {
+						Pos = { 220, 313.5 },
+						Flags = {
+							AllowPan = false,
+							GridSnap = true,
+							AutoSnap = true,
+							ShowInstance = false,
+							Thumbnails = false
+						},
+						Size = { 132.836, 98.8952, 68.0203, 30.9393 },
+						Direction = "Vertical",
+						PipeStyle = "Direct",
+						Scale = 1,
+						Offset = { -550, -405.341 }
+					},
+					Tools = ordered() {
+						Sp_HoldThatThought = TimeStretcher {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								SourceTime = Input {
+									Value = 0,
+									Expression = "comp.RenderStart",
+								},
+								InterpolateBetweenFrames = Input { Value = 0, },
+								SampleSpread = Input { Disabled = true, },
+								Input = Input {
+									SourceOp = "Sp_SplitAngleMsk",
+									Source = "Mask",
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 412.5 } },
+							Colors = { TileColor = { R = 0.0823529411764706, G = 0.384313725490196, B = 0.517647058823529 }, }
+						},
+						Sp_SplitAngleMsk = MultiPoly {
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								OutputSize = Input { Value = FuID { "Custom" }, },
+								MaskWidth = Input {
+									Value = 720,
+									Expression = "Sp_TheVoid.Width",
+								},
+								MaskHeight = Input {
+									Value = 640,
+									Expression = "Sp_TheVoid.Height",
+								},
+								PixelAspect = Input { Value = { 1, 1 }, },
+								ClippingMode = Input { Value = FuID { "None" }, },
+								PolyOrder = Input { Value = ScriptVal { {
+											[0] = 1,
+											5,
+											6,
+											7,
+											8
+										} }, },
+								PolyMaskName7 = Input { Value = "PolyTriB", },
+								["PolyMask7.Level"] = Input {
+									Value = 0,
+									Expression = "Sp_ctrl.SplitAngle%4==0 and 1 or 0",
+								},
+								["PolyMask7.Filter"] = Input { Value = FuID { "Fast Gaussian" }, },
+								["PolyMask7.PaintMode"] = Input { Value = FuID { "Add" }, },
+								["PolyMask7.Invert"] = Input { Value = 1, },
+								["PolyMask7.Angle"] = Input {
+									Value = -45,
+									Expression = "-45*(Sp_ctrl.SplitAngle+0)",
+								},
+								["PolyMask7.Polyline"] = Input {
+									Value = Polyline {
+										Closed = true,
+										Points = {
+											{ Linear = true, X = 0.5, Y = -0.5, LX = -0.333333333333333, LY = 0.333333333333333, RX = -0.333333333333333, RY = 3.70074341541719e-17 },
+											{ Linear = true, X = -0.5, Y = -0.5, LX = 0.333333333333333, LY = -3.70074341541719e-17, RX = 1.85037170770859e-17, RY = 0.333333333333333 },
+											{ Linear = true, X = -0.5, Y = 0.5, LX = -1.85037170770859e-17, LY = -0.333333333333333, RX = 0.333333333333333, RY = -0.333333333333333 }
+										}
+									},
+								},
+								["PolyMask7.Polyline2"] = Input {
+									Value = Polyline {
+									},
+									Disabled = true,
+								},
+								PolyMaskName6 = Input { Value = "PolyRecH", },
+								["PolyMask6.Level"] = Input {
+									Value = 0,
+									Expression = "Sp_ctrl.SplitAngle%4==3 and 1 or 0",
+								},
+								["PolyMask6.Filter"] = Input { Value = FuID { "Fast Gaussian" }, },
+								["PolyMask6.PaintMode"] = Input { Value = FuID { "Add" }, },
+								["PolyMask6.Angle"] = Input {
+									Value = 90,
+									Expression = "-45*(Sp_ctrl.SplitAngle-3)",
+								},
+								["PolyMask6.Polyline"] = Input {
+									Value = Polyline {
+										Closed = true,
+										Points = {
+											{ Linear = true, X = -0.5, Y = 0, LX = 1.85037170770859e-17, LY = -0.166666666666667, RX = 0.333333333333333, RY = 0 },
+											{ Linear = true, X = 0.5, Y = 0, LX = -0.333333333333333, LY = 0, RX = 3.70074341541719e-17, RY = -0.166666666666667 },
+											{ Linear = true, X = 0.5, Y = -0.5, LX = -3.70074341541719e-17, LY = 0.166666666666667, RX = -0.333333333333333, RY = 0 },
+											{ Linear = true, X = -0.5, Y = -0.5, LX = 0.333333333333333, LY = 0, RX = -1.85037170770859e-17, RY = 0.166666666666667 }
+										}
+									},
+								},
+								["PolyMask6.Polyline2"] = Input {
+									Value = Polyline {
+									},
+									Disabled = true,
+								},
+								PolyMaskName8 = Input { Value = "RectNone", },
+								["PolyMask8.Level"] = Input {
+									Value = 0,
+									Expression = "(Sp_ctrl.ShowInput~=0) and 1 or 0",
+								},
+								["PolyMask8.Filter"] = Input { Value = FuID { "Fast Gaussian" }, },
+								["PolyMask8.PaintMode"] = Input { Value = FuID { "Subtract" }, },
+								["PolyMask8.Polyline"] = Input {
+									Value = Polyline {
+										Closed = true,
+										Points = {
+											{ Linear = true, X = -0.5, Y = 0.5, LX = 0, LY = -0.333333333333333, RX = 0.333333333333333, RY = -1.85037170770859e-17 },
+											{ Linear = true, X = 0.5, Y = 0.5, LX = -0.333333333333333, LY = 1.85037170770859e-17, RX = 3.70074341541719e-17, RY = -0.333333333333333 },
+											{ Linear = true, X = 0.5, Y = -0.5, LX = -3.70074341541719e-17, LY = 0.333333333333333, RX = -0.333333333333333, RY = 0 },
+											{ Linear = true, X = -0.5, Y = -0.5, LX = 0.333333333333333, LY = 0, RX = 0, RY = 0.333333333333333 }
+										}
+									},
+								},
+								["PolyMask8.Polyline2"] = Input {
+									Value = Polyline {
+									},
+									Disabled = true,
+								},
+								PolyMaskName5 = Input { Value = "PolyTriA", },
+								["PolyMask5.Level"] = Input {
+									Value = 0,
+									Expression = "Sp_ctrl.SplitAngle%4==2 and 1 or 0",
+								},
+								["PolyMask5.Filter"] = Input { Value = FuID { "Fast Gaussian" }, },
+								["PolyMask5.PaintMode"] = Input { Value = FuID { "Add" }, },
+								["PolyMask5.Angle"] = Input {
+									Value = 45,
+									Expression = "-45*(Sp_ctrl.SplitAngle-2)",
+								},
+								["PolyMask5.Polyline"] = Input {
+									Value = Polyline {
+										Closed = true,
+										Points = {
+											{ Linear = true, X = -0.5, Y = -0.5, LX = 0.333333333333333, LY = -1.85037170770859e-17, RX = 0.333333333333333, RY = 0.333333333333333 },
+											{ Linear = true, X = 0.5, Y = 0.5, LX = -0.333333333333333, LY = -0.333333333333333, RX = 0, RY = -0.333333333333333 },
+											{ Linear = true, X = 0.5, Y = -0.5, LX = 0, LY = 0.333333333333333, RX = -0.333333333333333, RY = 1.85037170770859e-17 }
+										}
+									},
+								},
+								["PolyMask5.Polyline2"] = Input {
+									Value = Polyline {
+									},
+									Disabled = true,
+								},
+								PolyMaskName1 = Input { Value = "Sp_PolyRecV", },
+								["PolyMask1.Level"] = Input { Expression = " Sp_ctrl.SplitAngle%4==1 and 1 or 0", },
+								["PolyMask1.Filter"] = Input { Value = FuID { "Fast Gaussian" }, },
+								["PolyMask1.Angle"] = Input { Expression = "-45*(Sp_ctrl.SplitAngle-1)", },
+								["PolyMask1.Polyline"] = Input {
+									Value = Polyline {
+										Closed = true,
+										Points = {
+											{ Linear = true, X = 0, Y = 0.5, LX = 0.166666666666667, LY = 0, RX = 0, RY = -0.333333333333333 },
+											{ Linear = true, X = 0, Y = -0.5, LX = 0, LY = 0.333333333333333, RX = 0.166666666666667, RY = 0 },
+											{ Linear = true, X = 0.5, Y = -0.5, LX = -0.166666666666667, LY = 0, RX = 0, RY = 0.333333333333333 },
+											{ Linear = true, X = 0.5, Y = 0.5, LX = 0, LY = -0.333333333333333, RX = -0.166666666666667, RY = 0 }
+										}
+									},
+								},
+								["PolyMask1.Polyline2"] = Input {
+									Value = Polyline {
+									},
+									Disabled = true,
+								}
+							},
+							ViewInfo = OperatorInfo { Pos = { 550, 445.5 } },
+							PolyMask1 = PolyMaskInputs {
+								DrawMode = "ModifyOnly",
+								DrawMode2 = "InsertAndModify"
+							},
+							PolyMask5 = PolyMaskInputs {
+								DrawMode = "ModifyOnly",
+								DrawMode2 = "InsertAndModify"
+							},
+							PolyMask6 = PolyMaskInputs {
+								DrawMode = "ModifyOnly",
+								DrawMode2 = "InsertAndModify"
+							},
+							PolyMask7 = PolyMaskInputs {
+								DrawMode = "ModifyOnly",
+								DrawMode2 = "InsertAndModify"
+							},
+							PolyMask8 = PolyMaskInputs {
+								DrawMode = "ModifyOnly",
+								DrawMode2 = "InsertAndModify"
+							}
+						}
+					},
+					Colors = { TileColor = { R = 0.474509803921569, G = 0.658823529411765, B = 0.815686274509804 }, }
+				},
+				Sp_SplitDivMsk = RectangleMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input {
+							Value = 720,
+							Expression = "Sp_TheVoid.Width",
+						},
+						MaskHeight = Input {
+							Value = 640,
+							Expression = "Sp_TheVoid.Height",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Expression = ":\nv = Sp_TheVoid\nx = v.Width%2==1 and 0.5/v.Width or 0\ny = v.Height%2==1 and 0.5/v.Height or 0\ns = Sp_ctrl.SplitAngle\n\nreturn Point(s==1 and 0.5-x or 0.5+x, s==3 and 0.5+y or 0.5-y)", },
+						Width = Input {
+							Value = 0.00277777777777778,
+							Expression = "2/Sp_TheVoid.Width",
+						},
+						Height = Input {
+							Value = 1.50519932234904,
+							Expression = ":\nlocal w = Sp_TheVoid.Width\nlocal h = Sp_TheVoid.Height\n-- Guard against division by zero if Sp_TheVoid isn't loaded\nif h == 0 then return 1 end \n\nlocal diag = math.sqrt(w*w + h*h)\nreturn diag / h",
+						},
+						Angle = Input { Expression = ":\nw = Sp_TheVoid.Width\nh = Sp_TheVoid.Height\nd = math.deg(math.atan(w/h))\n\na = Sp_ctrl.SplitAngle\n\nreturn (a==1 and 0)\n    or (a==2 and 360-d)\n    or (a==3 and 270)\n    or (a==4 and 180+d)\n    or (a==5 and 180)\n    or (a==6 and 180-d)\n    or (a==7 and 90)\n    or (a==8 and d)\n", },
+						CommentsNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 379.5 } },
+					Colors = { TileColor = { R = 0.266666666666667, G = 0.56078431372549, B = 0.396078431372549 }, }
+				},
+				Sp_SharpXB = Sharpen {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ApplyMaskInverted = Input { Value = 1, },
+						MultiplyByMask = Input { Value = 1, },
+						XAmount = Input {
+							Value = 0.5,
+							Expression = "Sp_ctrl.OutputScale==0 and 0 or Sp_ctrl.LookSharp",
+						},
+						ClippingMode = Input { Value = FuID { "Domain" }, },
+						Input = Input {
+							SourceOp = "Sp_ResizeXB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 115.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_Widget = RectangleMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						UseGPU = Input { Value = 0, },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Invert = Input { Value = 1, },
+						Solid = Input { Value = 0, },
+						MaskWidth = Input { Value = 606, },
+						MaskHeight = Input { Value = 540, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Width = Input { Value = 0, },
+						Height = Input { Value = 0, },
+						ShowViewControls = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 247.5 } },
+					Colors = { TileColor = { R = 0.549019607843137, G = 0.352941176470588, B = 0.247058823529412 }, },
+					UserControls = ordered() {
+						ShowViewControls = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							CBC_TriState = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_Passive = true,
+							INP_SplineType = "Default",
+							LINKS_Name = "Show View Controls"
+						},
+						Center = {
+							INPID_PreviewControl = "CrosshairControl",
+							LINKID_DataType = "Point",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "OffsetControl",
+							CHC_Style = "NormalCross",
+							LINKS_Name = "Pivot",
+						}
+					}
+				},
+				Sp_BGOStack = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Sp_ChessMrgStack",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 280.5 } },
+					Colors = { TileColor = { R = 0.623529411764706, G = 0.776470588235294, B = 0.0823529411764706 }, },
+					UserControls = ordered() {
+						Gain = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 101,
+							INP_MaxScale = 5,
+							INP_Default = 1,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_SplineType = "Default",
+							ICD_Center = 1,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Gain"
+						}
+					}
+				},
+				Sp_JackTheStriper = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 78, },
+						Width = Input { Value = 2, },
+						Height = Input { Value = 2, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Vertical" }, },
+						TopLeftRed = Input { Value = 1, },
+						TopLeftGreen = Input { Value = 1, },
+						TopLeftBlue = Input { Value = 1, },
+						BottomRightRed = Input { Value = 1, },
+						BottomRightGreen = Input { Value = 1, },
+						BottomRightBlue = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 478.5 } },
+					Colors = { TileColor = { R = 0.913725490196078, G = 0.549019607843137, B = 0.709803921568627 }, }
+				},
+				Sp_SplitEminem = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 1,
+									2,
+									3,
+									6
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_SplitMskFix",
+							Source = "Output",
+						},
+						["Layer1.Blend"] = Input { Expression = "(Sp_SDA.Output == nil and Sp_SDB.Output == nil ) and 0 or 1", },
+						["Layer1.FilterMethod"] = Input { Value = 0, },
+						LayerName1 = Input { Value = "Sp_SplitMskFix Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_SplitMixanoid",
+							Source = "Output",
+						},
+						["Layer2.Operator"] = Input {
+							Value = FuID { "In" },
+							Expression = ":\nlocal c = Sp_ctrl\nlocal hasA = (Sp_SDA.Output ~= nil) and 1 or 0\nlocal hasB = (Sp_SDB.Output ~= nil) and 1 or 0\n\n-- 1. DUAL MODE (A and B both present)\nif hasA == 1 and hasB == 1 then\n    return \"In\"\nend\n\n-- 2. SOLO A MODE (B is missing)\nif hasA == 1 and hasB == 0 then\n    -- SWAPPED: Flip 0 now shows A, Flip 1 masks out A\n    return (c.Flip == 1) and \"Held Out\" or \"In\"\nend\n\n-- 3. SOLO B MODE (A is missing)\nif hasB == 1 and hasA == 0 then\n    -- Keeping this as is since you said B was giving expected results\n    return (c.Flip == 1) and \"Held Out\" or \"In\"\nend\n\nreturn \"In\"",
+						},
+						["Layer2.FilterMethod"] = Input { Value = 0, },
+						LayerName2 = Input { Value = "Sp_SplitMixanoid Layer", },
+						["Layer3.Foreground"] = Input {
+							SourceOp = "Sp_HammerTimeBGA",
+							Source = "Output",
+						},
+						["Layer3.Size"] = Input { Value = 20, },
+						["Layer3.Operator"] = Input { Value = FuID { "Under" }, },
+						["Layer3.Blend"] = Input { Expression = "Sp_ctrl.ShowBG", },
+						["Layer3.Edges"] = Input { Value = 1, },
+						["Layer3.FilterMethod"] = Input { Value = 0, },
+						LayerName3 = Input { Value = "Sp_HammerTimeB Layer", },
+						LayerEnabled4 = Input { Value = 0, },
+						LayerEnabled5 = Input { Value = 0, },
+						["Layer6.Foreground"] = Input {
+							SourceOp = "Sp_FreezeSucka",
+							Source = "Output",
+						},
+						LayerName6 = Input { Value = "Sp_FreezeSucka Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 478.5 } },
+					Colors = { TileColor = { R = 0.474509803921569, G = 0.658823529411765, B = 0.815686274509804 }, }
+				},
+				Sp_XfB = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "1-Sp_ctrl.Disable", },
+						MultiplyByMask = Input { Value = 1, },
+						Quality = Input { Value = 5, },
+						Center = Input { Expression = "Point(0.5,  0.5) + Sp_ctrl.OffsetB", },
+						Pivot = Input {
+							Value = { 0, 0.5 },
+							Expression = "Sp_MagXB.Pivot",
+						},
+						Angle = Input {
+							Value = 49.6,
+							Expression = "Sp_Widget.Angle",
+						},
+						FilterMethod = Input { Expression = "Sp_Widget.Angle==0 and 0 or 2", },
+						Input = Input {
+							SourceOp = "Sp_SharpXB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 148.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_MagXB = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						OffsetB = Input {
+							Value = Point {
+								X = 0.025,
+								Y = 0
+							},
+						},
+						SizeB = Input {
+							Value = Number {
+								Value = 9
+							},
+						},
+						AngleB = Input {
+							Value = Number {
+								Value = 18.3
+							},
+						},
+						PivotB = Input {
+							Value = Point {
+								X = 0.709,
+								Y = 0.553
+							},
+						},
+						ViewControls = Input {
+							Value = Number {
+								Value = 1
+							},
+						},
+						Blend = Input { Expression = "1-Sp_ctrl.Disable", },
+						Quality = Input { Value = 5, },
+						Pivot = Input {
+							Value = { 1, 0.5 },
+							Expression = ":\nlocal s = self.Input\nlocal c = Sp_ctrl\n\n-- 1. Grab Raw Base (Container)\n-- 1. Grab Raw Base (Container) - Updated for Phase 3\nlocal bW = (c.SizeSource == 0) and Sp_SDA.Output.Width or (c.SizeSource == 1 and Sp_SDB.Output.Width or c.CustomWidth)\nlocal bH = (c.SizeSource == 0) and Sp_SDA.Output.Height or (c.SizeSource == 1 and Sp_SDB.Output.Height or c.CustomHeight)\n\n-- 2. Canvas-to-Source Ratios (This is the magic that fixes the drifting)\nlocal rX = (bW * ((c.Layout == 0) and 2 or 1)) / s.OriginalWidth\nlocal rY = (bH * ((c.Layout == 1) and 2 or 1)) / s.OriginalHeight\n\n-- 3. Split-Aware Anchors\n-- If Layout is 2 (Split), anchor is 0.5. Otherwise, use the Stack logic.\nlocal aX = (c.Layout == 2) and 0.5 or ((c.Layout == 0) and ((c.Flip == 0) and 0.75 or 0.25) or 0.5)\nlocal aY = (c.Layout == 2) and 0.5 or ((c.Layout == 1) and ((c.Flip == 0) and 0.25 or 0.75) or 0.5)\n\nreturn Point(0.5 + (Sp_Widget.Center.X - aX) * rX, 0.5 + (Sp_Widget.Center.Y - aY) * rY)",
+						},
+						Size = Input { Expression = ": \nlocal steps = {1, 3, 2, 3, 4}\nlocal s = steps[Sp_ctrl.OutputScale + 1]\n\nif Sp_ctrl.Snap == 0 then \n    return Sp_ctrl.Magnify \nend\n\n-- 1. The \"Sub-One\" Zone\nif Sp_ctrl.Magnify < 0.75 then\n    if Sp_ctrl.Magnify > 0.25 then \n        return 0.5\n    else \n        return 0.0\n    end\nend\n\n-- If Magnify is between 1.0 and 1.5, we force it to 1.0 \n-- to prevent the s=2 (50%) scale from snapping 1.0 up to 2.0.\nif Sp_ctrl.Magnify <= s * 0.75 then \n    return 1.0 \nend\n\nreturn math.max(1, math.floor(Sp_ctrl.Magnify / s + 0.5) * s)", },
+						XSize = Input { Value = 2.25, },
+						YSize = Input { Value = 2.25, },
+						FilterMethod = Input { Expression = "(Sp_ctrl.OutputScale==0 and Sp_ctrl.Magnify<1) and 2 or Sp_ctrl.Snap==1 and 0 or 2", },
+						Input = Input {
+							SourceOp = "Sp_SDB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 49.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_SplitMixanoid = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Sp_SplitOffset",
+							Source = "Output",
+						},
+						ApplyMaskInverted = Input { Expression = "Sp_ctrl.ShowInput==1 and Sp_ctrl.Flip or Sp_ctrl.ShowInput==2 and 1-Sp_ctrl.Flip or Sp_ctrl.Flip", },
+						HideInputs = Input { Value = 1, },
+						LayersNest = Input { Value = 0, },
+						ProcessLayers = Input { Value = FuID { ":All" }, },
+						Background = Input {
+							SourceOp = "Sp_CropXA",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sp_CropXB",
+							Source = "Output",
+						},
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 280.5 } },
+					Colors = { TileColor = { R = 0.474509803921569, G = 0.658823529411765, B = 0.815686274509804 }, }
+				},
+				Sp_SDB = SetDomain {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LayersNest = Input { Value = 0, },
+						Mode = Input { Value = FuID { "Set" }, },
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 16.5 } },
+					Colors = { TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 }, }
+				},
+				Sp_TheVoid = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 78, },
+						Width = Input {
+							Value = 720,
+							Expression = ":\nc = Sp_ctrl\nwA = self.widthA\nwB = self.widthB\n\n-- 1. Determine base width (Optimized logic path)\nbaseW = 0\nsrc = c.SizeSource\n\nif src == 0 then     -- Selection: A\n    baseW = (wA > 0 and wA) or (wB > 0 and wB) or c.CustomWidth\nelseif src == 1 then -- Selection: B\n    baseW = (wB > 0 and wB) or (wA > 0 and wA) or c.CustomWidth\nelse                 -- Selection: Custom\n    baseW = c.CustomWidth\nend\n\n-- 2. Scale & Layout (Prioritized: 2, 0, 4, 1, 3)\ns = c.OutputScale\nscale = (s == 2 and 0.5) or (s == 0 and 1) or (s == 4 and 0.25) or (s == 1 and 0.667) or 0.333\nmult = (c.Layout == 0) and 2 or 1\n\n-- Final result: Math.max keeps it from breaking Fusion's internal limit\nreturn max(2, floor(baseW * scale) * mult)",
+						},
+						Height = Input {
+							Value = 640,
+							Expression = ":\nc = Sp_ctrl\nhA = self.heightA\nhB = self.heightB\n\n-- 1. Determine base height (Optimized logic path)\nbaseH = 0\nsrc = c.SizeSource\n\nif src == 0 then     -- Selection: A\n    baseH = (hA > 0 and hA) or (hB > 0 and hB) or c.CustomHeight\nelseif src == 1 then -- Selection: B\n    baseH = (hB > 0 and hB) or (hA > 0 and hA) or c.CustomHeight\nelse                 -- Selection: Custom\n    baseH = c.CustomHeight\nend\n\n-- 2. Scale & Layout (Prioritized: 2, 0, 4, 1, 3)\ns = c.OutputScale\nscale = (s == 2 and 0.5) or (s == 0 and 1) or (s == 4 and 0.25) or (s == 1 and 0.667) or 0.333\nmult = (c.Layout == 1) and 2 or 1\n\n-- Final result: Math.max keeps it from breaking Fusion's internal limit\nreturn max(2, floor(baseH * scale) * mult)",
+						},
+						Depth = Input { Expression = "Sp_BGStack.Depth", },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, },
+						widthA = Input {
+							Value = 720,
+							Expression = "Sp_SDA.Output == nil and 0 or Sp_SDA.Output.OriginalWidth",
+						},
+						heightA = Input {
+							Value = 1280,
+							Expression = "Sp_SDA.Output == nil and 0 or Sp_SDA.Output.OriginalHeight",
+						},
+						widthB = Input {
+							Value = 720,
+							Expression = "Sp_SDB.Output == nil and 0 or Sp_SDB.Output.OriginalWidth",
+						},
+						heightB = Input {
+							Value = 1280,
+							Expression = "Sp_SDB.Output == nil and 0 or Sp_SDB.Output.OriginalHeight",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 280.5 } },
+					Colors = { TileColor = { R = 0.584313725490196, G = 0.294117647058824, B = 0.803921568627451 }, },
+					UserControls = ordered() {
+						widthA = {
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Color",
+							INPID_InputControl = "ScrewControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "widthA",
+						},
+						heightA = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ScrewControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Color",
+							INP_SplineType = "Default",
+							LINKS_Name = "heightA"
+						},
+						widthB = {
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Color",
+							INPID_InputControl = "ScrewControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "widthB",
+						},
+						heightB = {
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Color",
+							INPID_InputControl = "ScrewControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "heightB",
+						}
+					}
+				},
+				Sp_ChessMrgStack = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "(Sp_ctrl.BGType==1 or Sp_ctrl.BGType==2) and 0 or (Sp_ctrl.BGType==0 or Sp_ctrl.Overlay==1) and 1 or 0", },
+						Background = Input {
+							SourceOp = "Sp_BGStack",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sp_BGCC",
+							Source = "Output",
+						},
+						Size = Input { Value = 20, },
+						ApplyMode = Input { Value = FuID { "Overlay" }, },
+						Operator = Input { Value = FuID { "Atop" }, },
+						Edges = Input { Value = 1, },
+						FilterMethod = Input { Value = 0, },
+						FlattenTransform = Input { Value = 1, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 313.5 } },
+					Colors = { TileColor = { R = 0.623529411764706, G = 0.776470588235294, B = 0.0823529411764706 }, }
+				},
+				Sp_HammerTimeBGA = TimeStretcher {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SourceTime = Input {
+							Value = 0,
+							Expression = "comp.RenderStart",
+						},
+						InterpolateBetweenFrames = Input { Value = 0, },
+						SampleSpread = Input { Disabled = true, },
+						Input = Input {
+							SourceOp = "Sp_BGOStack",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 280.5 } },
+					Colors = { TileColor = { R = 0.623529411764706, G = 0.776470588235294, B = 0.0823529411764706 }, }
+				},
+				Sp_StackPadMsk = RectangleMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1080, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Width = Input { Value = 1, },
+						Height = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 478.5 } },
+					Colors = { TileColor = { R = 0.6, G = 0.450980392156863, B = 0.627450980392157 }, }
+				},
+				Sp_TxtStackA = TextPlus {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Softness3 = Input {
+							Value = Number {
+								Value = 1
+							},
+						},
+						EffectMask = Input {
+							SourceOp = "Sp_StackPadMsk",
+							Source = "Mask",
+						},
+						MultiplyByMask = Input { Value = 1, },
+						GlobalOut = Input { Value = 78, },
+						Width = Input {
+							Value = 360,
+							Expression = "(Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Width or Sp_ctrl.Layout==0 and Sp_TheVoid.Width/2 or Sp_TheVoid.Width",
+						},
+						Height = Input {
+							Value = 640,
+							Expression = "(Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Height or Sp_ctrl.Layout==0 and Sp_TheVoid.Height or Sp_TheVoid.Height/2",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						LayoutType = Input { Value = 1, },
+						Wrap = Input { Value = 1, },
+						Center = Input { Expression = ":\npx = 1/Sp_TheVoid.Height\noffset = Sp_ctrl.LabelVerticalOffset * px\nali = Sp_ctrl.AlignV==0 and 1 or -1\ninv = Sp_ctrl.AlignV==0 and (Sp_ctrl.InvertAlignment==1 and -1 or 1) or (Sp_ctrl.InvertAlignment==1 and 1 or -1)\n\nreturn Sp_ctrl.Layout==0 and Point(0.5, 0.5 + offset * ali) or Point(0.5, 0.5 + offset * 2 * inv)", },
+						LayoutWidth = Input {
+							Value = 0.9,
+							Expression = ":\nw = (Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Width or Sp_TheVoid.Width\nres = (Sp_ctrl.Layout==0 and 4 or 2)/w\npad = Sp_ctrl.LabelPadding*1.5\n\nreturn Sp_ctrl.Layout~=1 and (1 - res * pad) or (1 - res * pad)",
+						},
+						LayoutHeight = Input {
+							Value = 0.9625,
+							Expression = ":\nw = (Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Width or Sp_TheVoid.Width\nh = (Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Height or Sp_TheVoid.Height\nr = w/h/(Sp_ctrl.Layout==1 and 1 or 2)\nres = 4/w * r\npad = Sp_ctrl.LabelPadding\n\nreturn Sp_ctrl.Layout~=1 and (1 - res * pad) or (1 - res * pad)",
+						},
+						Background = Input { Value = 0, },
+						TransformRotation = Input { Value = 1, },
+						SelectElement = Input { Value = 1, },
+						Select = Input { Value = 1, },
+						Enabled2 = Input { Value = 1, },
+						Red1 = Input {
+							Value = 0.96,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.96 or 0.58) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA))",
+						},
+						Green1 = Input {
+							Value = 0.82,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.82 or 0.81) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA))",
+						},
+						Blue1 = Input {
+							Value = 0.11,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.11 or 0.01) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA))",
+						},
+						Softness1 = Input { Value = 1, },
+						StyledText = Input {
+							Value = "A",
+							Expression = "Sp_ctrl.Flip==0 and Sp_ctrl.LabelA or Sp_ctrl.LabelB",
+						},
+						Size = Input {
+							Value = 0.0888888888888889,
+							Expression = ":\nw = Sp_TheVoid.Width\nres = 2/w/(Sp_ctrl.Layout==0 and 1 or 2)\n\nreturn res * Sp_ctrl.FontSize * 2",
+						},
+						VerticalTopCenterBottom = Input {
+							Value = -1,
+							Expression = ":\ninv = Sp_ctrl.Layout==0 and 1 or (Sp_ctrl.InvertAlignment~=1 and 1 or -1)\n\nreturn Sp_ctrl.AlignV==0 and -1*inv or 1*inv",
+						},
+						VerticalJustificationNew = Input { Value = 3, },
+						HorizontalLeftCenterRight = Input {
+							Value = -1,
+							Expression = ":\ninv = Sp_ctrl.Layout==1 and 1 or (Sp_ctrl.InvertAlignment~=1 and 1 or -1)\n\nreturn Sp_ctrl.AlignH==0 and -1*inv or Sp_ctrl.AlignH==1 and 0 or 1*inv",
+						},
+						HorizontalJustificationNew = Input { Value = 3, },
+						Font = Input { Value = "Arial", },
+						Style = Input { Value = "Bold", },
+						Rounding = Input {
+							Value = 0.12,
+							Expression = "Sp_ctrl.Rounding",
+						},
+						Opacity2 = Input { Expression = "Sp_ctrl.FontBGOpacity", },
+						ElementShape2 = Input { Value = 2, },
+						Level2 = Input { Value = 0, },
+						ExtendHorizontal2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1) * (Sp_ctrl.FontBGExtend*10 + 1)",
+						},
+						ExtendVertical2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1)",
+						},
+						Round2 = Input {
+							Value = 0.12,
+							Expression = "Rounding",
+						},
+						Red2 = Input {
+							Value = 0,
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.96 or 0.58) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA))",
+						},
+						Green2 = Input { Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.82 or 0.81) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA))", },
+						Blue2 = Input { Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.11 or 0.01) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA))", },
+						Offset2 = Input { Expression = ":\nh = Sp_TheVoid.Height\nres = (Sp_ctrl.Layout==0 and 1 or 2)/h\npx = Sp_ctrl.LabelBGVertOffset\n\nreturn Point(0.0,  res * px)", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 445.5 } },
+					Colors = { TileColor = { R = 0.6, G = 0.450980392156863, B = 0.627450980392157 }, },
+					UserControls = ordered() {
+						Font = {
+							LINKS_Name = "Font",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKID_DataType = "Text",
+						},
+						Style = {
+							LINKS_Name = "Style",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKID_DataType = "Text",
+						},
+						Round2 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							INP_SplineType = "Default",
+							ICS_ControlPage = "Shading",
+							LINKS_Name = "Round 2"
+						},
+						Rounding = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Rounding",
+						}
+					}
+				},
+				Sp_StackDivMsk = RectangleMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input {
+							Value = 720,
+							Expression = "Sp_TheVoid.Width",
+						},
+						MaskHeight = Input {
+							Value = 640,
+							Expression = "Sp_TheVoid.Height",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Expression = ":\nv = Sp_TheVoid\nx = v.Width%2==1 and 0.5/v.Width or 0\ny = v.Height%2==1 and 0.5/v.Height or 0\ns = Sp_ctrl.SplitAngle\n\nreturn Point(s==1 and 0.5-x or 0.5+x, s==3 and 0.5+y or 0.5-y)", },
+						Width = Input {
+							Value = 0.00277777777777778,
+							Expression = "Sp_ctrl.Layout==0 and 2/Sp_TheVoid.Width or 1",
+						},
+						Height = Input {
+							Value = 1,
+							Expression = "Sp_ctrl.Layout==0 and 1 or  2/Sp_TheVoid.Height",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 379.5 } },
+					Colors = { TileColor = { R = 0.266666666666667, G = 0.56078431372549, B = 0.396078431372549 }, }
+				},
+				Sp_BGStack = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 78, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input {
+							Value = 0.5,
+							Expression = "Sp_ctrl.BGType==1 and 0 or Sp_ctrl.BGType==2 and 1 or Sp_ctrl.Overlay==1 and Sp_ctrl.RedBG or Sp_ctrl.BGType==0 and 0.5 or Sp_ctrl.RedBG",
+						},
+						TopLeftGreen = Input {
+							Value = 0.5,
+							Expression = "Sp_ctrl.BGType==1 and 0 or Sp_ctrl.BGType==2 and 1 or Sp_ctrl.Overlay==1 and Sp_ctrl.GreenBG or Sp_ctrl.BGType==0 and 0.5 or Sp_ctrl.GreenBG",
+						},
+						TopLeftBlue = Input {
+							Value = 0.5,
+							Expression = "Sp_ctrl.BGType==1 and 0 or Sp_ctrl.BGType==2 and 1 or Sp_ctrl.Overlay==1 and Sp_ctrl.BlueBG or Sp_ctrl.BGType==0 and 0.5 or Sp_ctrl.BlueBG",
+						},
+						Width = Input { Value = 2, },
+						Height = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 313.5 } },
+					Colors = { TileColor = { R = 0.623529411764706, G = 0.776470588235294, B = 0.0823529411764706 }, },
+					UserControls = ordered() {
+						ImageNest = {
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							ICS_ControlPage = "Color",
+							LBLC_NumInputs = 5,
+							INP_Passive = true,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Image",
+						},
+						Width = {
+							INP_MaxAllowed = 32767,
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 4097,
+							INP_MaxScale = 4096,
+							INP_Default = 1080,
+							INP_MinScale = 1,
+							INP_MinAllowed = 1,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Color",
+							INP_SplineType = "Default",
+							LINKS_Name = "Width"
+						},
+						Height = {
+							INP_MaxAllowed = 32767,
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 4097,
+							INP_MaxScale = 4096,
+							INP_Default = 1080,
+							INP_MinScale = 2,
+							INP_MinAllowed = 2,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Color",
+							INP_SplineType = "Default",
+							LINKS_Name = "Height"
+						},
+						PixelAspect = {
+							INP_DefaultX = 1,
+							INP_DefaultY = 1,
+							LINKID_DataType = "Point",
+							ICS_ControlPage = "Color",
+							INPID_InputControl = "OffsetControl",
+							LINKS_Name = "Pixel Aspect",
+						},
+						UseFrameFormatSettings = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_SplineType = "Default",
+							CBC_TriState = false,
+							ICS_ControlPage = "Color",
+							LINKS_Name = "Use Frame Format Settings"
+						},
+						Depth = {
+							{ MBTNCS_ToolTip = "Default", MBTNC_AddButton = "Deflt." },
+							{ MBTNC_AddButton = "int8" },
+							{ MBTNC_AddButton = "int16" },
+							{ MBTNC_AddButton = "float16" },
+							{ MBTNC_AddButton = "float32" },
+							INP_MaxAllowed = 4,
+							INPID_InputControl = "MultiButtonControl",
+							INP_MaxScale = 4,
+							INP_Default = 0,
+							INP_MinAllowed = 0,
+							INP_Integer = true,
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "Default",
+							LINKS_Name = "Depth",
+							LINKID_DataType = "Number",
+							INP_MinScale = 0,
+							INP_External = false,
+							IC_NoLabel = false,
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							IC_NoReset = true,
+						}
+					}
+				},
+				Sp_XfA = Transform {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "Sp_ctrl.TransformA * (1-Sp_ctrl.Disable)", },
+						MultiplyByMask = Input { Value = 1, },
+						Quality = Input { Value = 5, },
+						Center = Input { Expression = "Point(0.5,  0.5) + Sp_ctrl.OffsetB", },
+						Pivot = Input { Expression = "Sp_MagXA.Pivot", },
+						Angle = Input { Expression = "Sp_Widget.Angle", },
+						FilterMethod = Input { Expression = "Sp_Widget.Angle==0 and 0 or 2", },
+						Input = Input {
+							SourceOp = "Sp_SharpXA",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 148.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_ctrl = ChangeDepth {
+					PassThrough = true,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						TextA = Input {
+							Value = Text {
+								Value = "A"
+							},
+						},
+						TextB = Input {
+							Value = Text {
+								Value = "B"
+							},
+						},
+						YSize = Input {
+							Value = Number {
+								Value = 1080
+							},
+						},
+						XSize = Input {
+							Value = Number {
+								Value = 1080
+							},
+						},
+						Angle = Input {
+							Value = Number {
+								Value = 1
+							},
+						},
+						Magnify = Input { Value = 1, },
+						ShowLabels = Input { Value = 1, },
+						ShowDivider = Input { Value = 1, },
+						ShowBG = Input { Value = 1, },
+						BGOpacity = Input { Value = 1, },
+						SplitAngle = Input { Value = 1, },
+						CustomWidth = Input { Value = 800, },
+						CustomHeight = Input { Value = 800, },
+						OutputScale = Input { Value = 2, },
+						Rounding = Input { Value = 0.12, },
+						DivNestNest = Input {
+							Value = 1,
+							Expression = "ShowDivider",
+						},
+						DashNestNest = Input { Expression = "DivType==0 and 1 or 0", },
+						ChessNestNest = Input {
+							Value = 1,
+							Expression = "BGType==0 and 1 or 0",
+						},
+						UserNestNest = Input { Expression = "BGType==3 and 1 or 0", },
+						LabelA = Input { Value = "A", },
+						LabelB = Input { Value = "B", },
+						DivType = Input { Value = 1, },
+						FontBG = Input { Value = 1, },
+						FontBGOpacity = Input { Value = 1, },
+						FontBGExtend = Input { Value = 0, },
+						RedA = Input { Value = 0, },
+						GreenA = Input { Value = 0.6, },
+						RedB = Input { Value = 1, },
+						GreenB = Input { Value = 0, },
+						BlueB = Input { Value = 0.4, },
+						RedD = Input { Value = 0.55, },
+						GreenD = Input { Value = 0.7, },
+						BlueD = Input { Value = 0.8, },
+						RedBG = Input { Value = 0.6, },
+						GreenBG = Input { Value = 0.4, },
+						BlueBG = Input { Value = 0.6, },
+						CommentNest = Input { Value = 1, },
+						UserLabelNestNest = Input { Expression = "(ShowLabels==1 and (FontColor==3 or FontBG==3)) and 1 or 0", },
+						UserANest = Input { Value = 1, },
+						UserANestNest = Input {
+							Value = 1,
+							Expression = "1-FlipC",
+						},
+						UserAFNestNest = Input { Expression = "FlipC", },
+						UserBNest = Input { Value = 1, },
+						UserBNestNest = Input {
+							Value = 1,
+							Expression = "1-FlipC",
+						},
+						UserBFNestNest = Input { Expression = "FlipC", },
+						UserDivNestNest = Input { Expression = "(ShowDivider==1 and DivType==3) and 1 or 0", },
+						UserDivNest = Input { Value = 1, },
+						UserBGNestNest = Input { Expression = "((BGType==0 and Sp_ctrl.Overlay==1) or BGType==3) and 1 or 0", },
+						UserBGNest = Input { Value = 1, },
+						SingleColorNestNest = Input { Expression = "SingleColor", },
+						SingleColorNest = Input { Value = 1, },
+						SingleColorANest = Input {
+							Value = 1,
+							Expression = "1-FlipC",
+						},
+						SingleColorFNest = Input { Expression = "FlipC", },
+						DoubleColorNestNest = Input {
+							Value = 1,
+							Expression = "1-SingleColor",
+						},
+						AlignmentInfoNestNestA = Input { Expression = "Layout<2 and 0 or 1", },
+						AlignmentInfoNestNestB = Input {
+							Value = 1,
+							Expression = "Layout<2 and 1 or 0",
+						},
+						SplitNestNest = Input { Expression = "(Sp_ctrl.Layout~=2 or (Sp_ctrl.Layout==2 and Sp_ctrl.ShowInput~=0)) and 0 or 1", },
+						LabelsNestNest = Input {
+							Value = 1,
+							Expression = "ShowLabels",
+						},
+						BGNestNest = Input { Expression = "ShowBG", },
+						LabelSettingsNestNest = Input {
+							Value = 1,
+							Expression = "ShowLabels",
+						},
+						CustomNestNest = Input {
+							Value = 1,
+							Expression = "Sp_ctrl.SizeSource<2 and 0 or 1",
+						},
+						LookSharpNestNest = Input {
+							Value = 1,
+							Expression = "Sp_ctrl.OutputScale==0 and 0 or 1",
+						},
+						ColorInfoNestNest = Input {
+							Value = 1,
+							Expression = "(FontColor~=3 and FontBG~=3 and DivType~=3 and BGType~=3) and 1 or 0",
+						},
+						SillyNestNest = Input { Expression = "BGNest", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 115.5 } },
+					Colors = { TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 }, },
+					UserControls = ordered() {
+						Label = { LINKS_Name = "Label", INP_External = false, INPID_InputControl = "LabelControl", IC_NoLabel = 1, INP_Passive = true, IC_ControlPage = 0, IC_NoReset = true, },
+						Info = { LINKS_Name = "Info", INP_External = false, INPID_InputControl = "LabelControl", IC_NoLabel = 0, INP_Passive = true, IC_ControlPage = 0, IC_NoReset = false, },
+						Spacer = { ICS_ControlPage = "Controls", INPID_InputControl = "SpacerControl", },
+						Separator = { ICS_ControlPage = "Controls", INPID_InputControl = "SeparatorControl", },
+						HideIncommingConnections = {
+							INP_Integer = true,
+							LINKS_Name = "Hide Incoming Connections",
+							INPID_InputControl = "CheckboxControl",
+							IC_NoReset = 1,
+							LINKID_DataType = "Number",
+							INP_SplineType = "Default",
+							INP_Default = 0,
+						},
+						URLNest = {
+							LINKS_Name = "<center><font color=#5f5f5f>Clickety-click for details and the latest version.</font></center>",
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							INP_Passive = true,
+							LBLC_DropDownButton = false,
+							INP_Default = 1,
+						},
+						URL = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ButtonControl",
+							BTNCS_Execute = "if bmd.openurl then\n    url = 'https://www.steakunderwater.com/wesuckless/viewtopic.php?t=7636'\n    bmd.openurl(url)\nend",
+							INP_MaxScale = 1,
+							ICD_Width = 1,
+							INP_SplineType = "Default",
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Settings",
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Original WSL post"
+						},
+						Version = {
+							INP_External = false,
+							LBLC_DropDownButton = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 0,
+							INP_Passive = true,
+							INPID_InputControl = "NestControl",
+							LINKS_Name = "<p align=center><font color=#666666>Split It 2.02</font><font color=#555555> &nbsp; © 2026 JustCropIt &nbsp; v19.1+ req.</font></p>",
+						},
+						Layout = {
+							{ MBTNC_AddButton = "Horizontal" },
+							{ MBTNC_AddButton = "Vertical" },
+							{ MBTNC_AddButton = "Split" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							ICS_ControlPage = "Controls",
+							MBTNC_ShowBasicButton = true,
+							INP_MaxScale = 1,
+							INP_SplineType = "StepIn",
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Layout"
+						},
+						ShowInput = {
+							{ MBTNC_AddButton = "A & B" },
+							{ MBTNC_AddButton = "A" },
+							{ MBTNC_AddButton = "B" },
+							INP_MaxAllowed = 2,
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							ICS_ControlPage = "Controls",
+							MBTNC_ShowBasicButton = true,
+							INP_MaxScale = 2,
+							INP_SplineType = "StepIn",
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Show"
+						},
+						ShowLabel = {
+							{ MBTNC_AddButton = "A & B" },
+							{ MBTNC_AddButton = "A" },
+							{ MBTNC_AddButton = "B" },
+							INP_MaxAllowed = 2,
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							ICS_ControlPage = "Controls",
+							MBTNC_ShowBasicButton = true,
+							INP_MaxScale = 2,
+							INP_SplineType = "StepIn",
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Show Label"
+						},
+						Flip = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Flip",
+						},
+						FlipC = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Flip Colors",
+						},
+						PivotB = {
+							LINKS_Name = "PivotB",
+							LINKID_DataType = "Point",
+							INPID_InputControl = "OffsetControl",
+							ICS_ControlPage = "Controls",
+						},
+						Magnify = {
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 40,
+							INP_Default = 10,
+							INP_MinScale = 1,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							ICD_Center = 10,
+							LINKS_Name = "Magnify",
+						},
+						Snap = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							ICS_Label = "Pixel Snap",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "",
+						},
+						SnapLabel = {
+							IC_NoReset = true,
+							INP_External = false,
+							LBLC_DropDownButton = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 0,
+							INP_Passive = true,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "<p align=left><font color=#787878>Magnify</font><font color=#666666> outputs clean intervals</font></p>",
+						},
+						AngleB = {
+							INP_Integer = false,
+							INPID_InputControl = "ScrewControl",
+							INP_MaxScale = 180,
+							INP_MinScale = -180,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0,
+							INP_SplineType = "Default",
+							LINKS_Name = "AngleB",
+						},
+						OffsetB = {
+							INP_DefaultX = 0,
+							INP_DefaultY = 0,
+							LINKID_DataType = "Point",
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "OffsetControl",
+							LINKS_Name = "OffsetB",
+						},
+						TransformA = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							ICS_Label = "Also Transform",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Input A",
+						},
+						Disable = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Disable Transforms",
+						},
+						Overlay = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							ICS_Label = "",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Overlay User Color",
+						},
+						SingleColor = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Single Label Color",
+						},
+						ShowLabels = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "StepIn",
+							INP_External = true,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "ShowLabels",
+						},
+						ShowDivider = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "StepIn",
+							INP_External = true,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Show Divider",
+						},
+						ShowBG = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "StepIn",
+							INP_External = true,
+							LINKID_DataType = "Number",
+							IC_NoReset = true,
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "Show BG",
+						},
+						DivOpacity = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinAllowed = 0,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_MaxAllowed = 1,
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "DivOpacity"
+						},
+						BGOpacity = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinAllowed = 0,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_MaxAllowed = 1,
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Opacity"
+						},
+						LookSharp = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinAllowed = 0,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_MaxAllowed = 2,
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Look Sharp!"
+						},
+						Offset = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinAllowed = 0,
+							INP_MinScale = 0,
+							INP_External = true,
+							LINKID_DataType = "Number",
+							INP_MaxAllowed = 1,
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Split Angle Offset"
+						},
+						SplitAngle = {
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 8,
+							INP_Default = 5,
+							INP_MinScale = 1,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "StepIn",
+							ICD_Center = 5,
+							LINKS_Name = "Split Angle",
+						},
+						SizeSource = {
+							{ MBTNC_AddButton = "Input A" },
+							{ MBTNC_AddButton = "Input B" },
+							{ MBTNC_AddButton = "Custom" },
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "Size Source",
+							ICS_ControlPage = "Controls",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							IC_NoReset = false,
+						},
+						CustomWidth = {
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 4096,
+							INP_Default = 1080,
+							INP_MinScale = 1,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "StepIn",
+							ICD_Center = 1080,
+							LINKS_Name = "Custom Width",
+						},
+						CustomHeight = {
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 4096,
+							INP_Default = 1080,
+							INP_MinScale = 2,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "StepIn",
+							ICD_Center = 1080,
+							LINKS_Name = "Custom Height",
+						},
+						OutputScale = {
+							{ MBTNC_AddButton = "100%" },
+							{ MBTNC_AddButton = "67%" },
+							{ MBTNC_AddButton = "50%" },
+							{ MBTNC_AddButton = "33%" },
+							{ MBTNC_AddButton = "25%" },
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "Output Scale",
+							ICS_ControlPage = "Controls",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							IC_NoReset = false,
+						},
+						FontSize = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 64,
+							INP_Default = 16,
+							ICS_ControlPage = "Controls",
+							INP_MinScale = 7,
+							INP_MinAllowed = 7,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							ICD_Center = 16,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "Font Size (px)"
+						},
+						LabelPadding = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 24,
+							INP_Default = 12,
+							ICS_ControlPage = "Controls",
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							ICD_Center = 12,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "Padding (px)"
+						},
+						LabelBGVertOffset = {
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 24,
+							INP_Default = 0,
+							INP_MinScale = -24,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "Vertical Offset (px)",
+						},
+						LabelVerticalOffset = {
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 24,
+							INP_Default = 0,
+							INP_MinScale = -24,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "Vertical Offset (px)",
+						},
+						Rounding = {
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.25,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0.25,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "Rounding",
+						},
+						AlignV = {
+							{ MBTNC_AddButton = "↑" },
+							{ MBTNC_AddButton = "↓" },
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "AlignV",
+							ICS_ControlPage = "Controls",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = false,
+							IC_NoReset = true,
+						},
+						AlignH = {
+							{ MBTNC_AddButton = "←" },
+							{ MBTNC_AddButton = "—" },
+							{ MBTNC_AddButton = "→" },
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "StepIn",
+							LINKS_Name = "AlignH",
+							ICS_ControlPage = "Controls",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = false,
+							IC_NoReset = false,
+						},
+						XfBNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 12,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#95ce02>Transforms </font> &nbsp;<font color=#787878>(Input B)</font>",
+						},
+						DivNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 8,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "<font color=#91b4d2>Divider</font>",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						DivNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 7,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#91b4d2>Divider</font>",
+						},
+						DashNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "DashNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						BGNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 10,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#a380aa>Background</font>",
+						},
+						ChessNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "ChessNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						UserNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "UserNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						LabelA = {
+							TEC_ReadOnly = false,
+							TEC_Wrap = true,
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+							LINKID_DataType = "Text",
+							INPID_InputControl = "TextEditControl",
+							TEC_Lines = 1,
+							LINKS_Name = "Label A",
+						},
+						LabelB = {
+							TEC_ReadOnly = false,
+							TEC_Wrap = true,
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+							LINKID_DataType = "Text",
+							INPID_InputControl = "TextEditControl",
+							TEC_Lines = 1,
+							LINKS_Name = "Label B",
+						},
+						DivType = {
+							{ MBTNC_AddButton = "Dash" },
+							{ MBTNC_AddButton = "Black" },
+							{ MBTNC_AddButton = "White" },
+							{ MBTNC_AddButton = "User" },
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "StepIn",
+							ICS_ControlPage = "Controls",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Divider Type",
+						},
+						BGType = {
+							{ MBTNC_AddButton = "Chess" },
+							{ MBTNC_AddButton = "Black" },
+							{ MBTNC_AddButton = "White" },
+							{ MBTNC_AddButton = "User" },
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "StepIn",
+							ICS_ControlPage = "Controls",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Background",
+						},
+						FontColor = {
+							{ MBTNC_AddButton = "Inputs" },
+							{ MBTNC_AddButton = "Black" },
+							{ MBTNC_AddButton = "White" },
+							{ MBTNC_AddButton = "User" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							ICS_ControlPage = "Controls",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "Default",
+							INP_MaxScale = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Font Color"
+						},
+						FontBG = {
+							{ MBTNC_AddButton = "Inputs" },
+							{ MBTNC_AddButton = "Black" },
+							{ MBTNC_AddButton = "White" },
+							{ MBTNC_AddButton = "User" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							ICS_ControlPage = "Controls",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "Default",
+							INP_MaxScale = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Font Background"
+						},
+						FontBGOpacity = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Opacity"
+						},
+						FontBGSize = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 2,
+							INP_Default = 0,
+							INP_External = false,
+							INP_MinScale = -2,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0,
+							INP_SplineType = "Default",
+							LINKS_Name = "Background Scale"
+						},
+						FontBGExtend = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 20,
+							INP_Default = 10,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 10,
+							INP_SplineType = "Default",
+							LINKS_Name = "Extend Width"
+						},
+						InvertAlignment = {
+							{ MBTNC_AddButton = "None" },
+							{ MBTNC_AddButton = "Label A" },
+							{ MBTNC_AddButton = "Label B" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "MultiButtonControl",
+							ICS_ControlPage = "Controls",
+							MBTNC_ShowBasicButton = true,
+							INP_SplineType = "StepIn",
+							INP_MaxScale = 1,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Invert Alignment"
+						},
+						RedA = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 2,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							CLRC_ShowWheel = true,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							INP_External = false,
+							ICD_Center = 1,
+							LINKS_Name = "Color",
+						},
+						GreenA = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 2,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						BlueA = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 2,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						RedB = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 222,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							CLRC_ShowWheel = true,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							INP_External = false,
+							ICD_Center = 1,
+							LINKS_Name = "Color",
+						},
+						GreenB = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 222,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						BlueB = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 222,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						RedD = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 714,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							CLRC_ShowWheel = true,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							INP_External = false,
+							ICD_Center = 1,
+							LINKS_Name = "Color",
+						},
+						GreenD = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 714,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						BlueD = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 714,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						RedBG = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 909,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							CLRC_ShowWheel = true,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							INP_External = false,
+							ICD_Center = 1,
+							LINKS_Name = "Color",
+						},
+						GreenBG = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 909,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						BlueBG = {
+							INPID_InputControl = "ColorControl",
+							IC_ControlPage = "Colors",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 909,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							INP_Default = 1,
+							ICD_Center = 0.5,
+						},
+						SettingsNest = { INP_Integer = false, LBLC_DropDownButton = true, INPID_InputControl = "LabelControl", LBLC_NumInputs = 10, IC_Visible = true, LINKID_DataType = "Number", ICS_ControlPage = "Settings", INP_Passive = true, LBLC_NestLevel = 1, LINKS_Name = "SettingsNest", },
+						CommentNest = { INP_Integer = false, LBLC_DropDownButton = true, INPID_InputControl = "LabelControl", LBLC_NumInputs = 1, IC_Visible = true, LINKID_DataType = "Number", ICS_ControlPage = "Settings", INP_Passive = true, LBLC_NestLevel = 1, LINKS_Name = "CommentNest", },
+						UserLabelNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 30,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "UserLabelNestNest",
+						},
+						UserANest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 8,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = true,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#f5d11b>Input A</font><font color=#999999>&nbsp;Label Color</font>",
+						},
+						UserANestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "UserANestNest",
+						},
+						UserAFNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "UserAFNestNest",
+						},
+						UserBNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 8,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = true,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#95ce02>Input B</font><font color=#999999>&nbsp;Label Color</font>",
+						},
+						UserBNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "UserBNestNest",
+						},
+						UserBFNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "UserBFNestNest",
+						},
+						UserDivNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 4,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#91b4d2>Divider Color</font>",
+						},
+						UserDivNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = true,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#91b4d2>Divider Color</font>",
+						},
+						UserBGNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 4,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "UserBGNestNest",
+						},
+						UserBGNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = true,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#a380aa>Background Color</font>",
+						},
+						SingleColorNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 9,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "SingleColorNestNest",
+						},
+						SingleColorNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 8,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = true,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#999999>&nbsp;Label Color</font>",
+						},
+						SingleColorANest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "SingleColorANest",
+						},
+						SingleColorFNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "SingleColorFNest",
+						},
+						DoubleColorNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 20,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "DoubleColorNestNest",
+						},
+						AlignmentInfoNestNestA = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "AlignmentInfoNestNestA",
+						},
+						AlignmentInfoNestNestB = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "AlignmentInfoNestNestB",
+						},
+						SplitNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							IC_Visible = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "SplitNestNest",
+						},
+						LabelsNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 4,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "LabelsNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						BGNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 11,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "BGNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						LabelSettingsNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 23,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "LabelSettingsNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						LabelSettingsNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 22,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "<font color=#999999>Label Settings</font>",
+						},
+						CustomNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 2,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "CustomNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						LookSharpNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "LookSharpNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						ColorInfoNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "ColorInfoNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						},
+						SillyNestNest = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_SplineType = "Default",
+							LINKID_DataType = "Number",
+							LINKS_Name = "SillyNestNest",
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							IC_Visible = false,
+						}
+					}
+				},
+				Sp_SDA = SetDomain {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						LayersNest = Input { Value = 0, },
+						Mode = Input { Value = FuID { "Set" }, },
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -165, 16.5 } },
+					Colors = { TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 }, }
+				},
+				Sp_StackMixanoid = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Sp_Widget",
+							Source = "Mask",
+						},
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 3,
+									1,
+									2,
+									6
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_CropXA",
+							Source = "Output",
+						},
+						["Layer1.Center"] = Input { Expression = ":\n-- Since Resize logic is slaved to Sp_TheVoid, we trust the 1:1 pixel mapping.\n-- Layout 0: Horizontal Stack (Side-by-Side)\n-- Layout 1: Vertical Stack (Top-Bottom)\n\nif Sp_ctrl.Layout == 0 then\n    -- Horizontal: Left (0.25) or Right (0.75)\n    local posX = (Sp_ctrl.Flip == 0) and 0.25 or 0.75\n    return Point(posX, 0.5)\nelse\n    -- Vertical: Top (0.75) or Bottom (0.25)\n    local posY = (Sp_ctrl.Flip == 0) and 0.75 or 0.25\n    return Point(0.5, posY)\nend", },
+						["Layer1.Blend"] = Input { Expression = ":\n-- If ShowInput is \"Hide A\" (2) and Flip is 0, OR \"Hide B\" (1) and Flip is 1...\nhide = (Sp_ctrl.ShowInput == 2 and Sp_ctrl.Flip == 0) or (Sp_ctrl.ShowInput == 1 and Sp_ctrl.Flip == 1)\n\nreturn hide and 0 or 1", },
+						["Layer1.FilterMethod"] = Input { Value = 0, },
+						LayerName1 = Input { Value = "SwtchA Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_CropXB",
+							Source = "Output",
+						},
+						["Layer2.Center"] = Input { Expression = ":\nif Sp_ctrl.Layout == 0 then\n    -- Horizontal: Right (0.75) or Left (0.25)\n    local posX = (Sp_ctrl.Flip == 0) and 0.75 or 0.25\n    return Point(posX, 0.5)\nelseif Sp_ctrl.Layout == 1 then\n    -- Vertical: Bottom (0.25) or Top (0.75)\n    local posY = (Sp_ctrl.Flip == 0) and 0.25 or 0.75\n    return Point(0.5, posY)\nend\n\nreturn Point(0.5, 0.5)", },
+						["Layer2.Blend"] = Input { Expression = ":\n-- If ShowInput is \"Hide A\" (2) and Flip is 0, OR \"Hide B\" (1) and Flip is 1...\nhide = (Sp_ctrl.ShowInput == 2 and Sp_ctrl.Flip == 1) or (Sp_ctrl.ShowInput == 1 and Sp_ctrl.Flip == 0)\n\nreturn hide and 0 or 1", },
+						["Layer2.FilterMethod"] = Input { Value = 0, },
+						LayerName2 = Input { Value = "SwtchB Layer", },
+						["Layer3.Foreground"] = Input {
+							SourceOp = "Sp_HammerTimeBGA",
+							Source = "Output",
+						},
+						["Layer3.Size"] = Input { Value = 16, },
+						["Layer3.Blend"] = Input { Expression = "Sp_ctrl.ShowBG", },
+						["Layer3.Edges"] = Input { Value = 1, },
+						["Layer3.FilterMethod"] = Input { Value = 0, },
+						LayerName3 = Input { Value = "Sp_HammerTimeBGA Layer", },
+						LayerEnabled4 = Input { Value = 0, },
+						LayerEnabled5 = Input { Value = 0, },
+						["Layer6.Foreground"] = Input {
+							SourceOp = "Sp_FreezeSucka",
+							Source = "Output",
+						},
+						LayerName6 = Input { Value = "Sp_FreezeSucka Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 214.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_CropXA = Crop {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						XOffset = Input { Expression = "(0.5 * self.Input.OriginalWidth) - (0.5 * XSize)", },
+						YOffset = Input { Expression = "(0.5 * self.Input.OriginalHeight) - (0.5 * YSize)", },
+						XSize = Input {
+							Value = 360,
+							Expression = "Sp_CropXB.XSize",
+						},
+						YSize = Input {
+							Value = 640,
+							Expression = "Sp_CropXB.YSize",
+						},
+						Input = Input {
+							SourceOp = "Sp_XfA",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 181.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_SplitOffset = Transform {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Quality = Input { Value = 5, },
+						HideInputs = Input { Value = 1, },
+						LayersNest = Input { Value = 0, },
+						Center = Input { Expression = ":\nA = Sp_ctrl.SplitAngle\nO = Sp_ctrl.Offset\n\nreturn\nA == 1 and Point(O, 0.5) or\nA == 2 and Point(O, 1-O) or\nA == 3 and Point(0.5, 1-O) or\nA == 4 and Point(1-O, 1-O) or\nA == 5 and Point(1-O, 0.5) or\nA == 6 and Point(1-O, O) or\nA == 7 and Point(0.5, O) or\nPoint(O, O)", },
+						Edges = Input { Value = 3, },
+						FilterMethod = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "Sp_HoldThatThought",
+							Source = "Output",
+						},
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 280.5 } },
+					Colors = { TileColor = { R = 0.474509803921569, G = 0.658823529411765, B = 0.815686274509804 }, }
+				},
+				Sp_DivStack = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 78, },
+						Width = Input { Value = 1, },
+						Height = Input { Value = 2, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Expression = "Sp_ctrl.DivType==0 and 0 or Sp_ctrl.DivType==1 and 0 or Sp_ctrl.DivType==2 and 1 or Sp_ctrl.RedD", },
+						TopLeftGreen = Input { Expression = "Sp_ctrl.DivType==0 and 0 or Sp_ctrl.DivType==1 and 0 or Sp_ctrl.DivType==2 and 1 or Sp_ctrl.GreenD", },
+						TopLeftBlue = Input { Expression = "Sp_ctrl.DivType==0 and 0 or Sp_ctrl.DivType==1 and 0 or Sp_ctrl.DivType==2 and 1 or Sp_ctrl.BlueD", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 379.5 } },
+					Colors = { TileColor = { R = 0.266666666666667, G = 0.56078431372549, B = 0.396078431372549 }, }
+				},
+				Sp_BGCC = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Contrast = Input {
+							Value = -0.95,
+							Expression = "Saturation-1",
+						},
+						Input = Input {
+							SourceOp = "Sp_CheckMatey",
+							Source = "Output",
+						},
+						Saturation = Input { Value = 0.05, },
+						Brightness = Input { Value = -0.3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -55, 412.5 } },
+					Colors = { TileColor = { R = 0.913725490196078, G = 0.549019607843137, B = 0.709803921568627 }, },
+					UserControls = ordered() {
+						Saturation = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 101,
+							INP_MaxScale = 5,
+							INP_Default = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 1,
+							INP_SplineType = "Default",
+							LINKS_Name = "Saturation"
+						},
+						Brightness = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 201,
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_External = false,
+							INP_MinScale = -1,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0,
+							INP_SplineType = "Default",
+							LINKS_Name = "Brightness"
+						}
+					}
+				},
+				Sp_CheckMatey = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalOut = Input { Value = 78, },
+						Width = Input { Value = 2, },
+						Height = Input { Value = 2, },
+						Depth = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Corner" }, },
+						TopLeftRed = Input { Value = 1, },
+						TopLeftGreen = Input { Value = 1, },
+						TopLeftBlue = Input { Value = 1, },
+						BottomRightRed = Input { Value = 1, },
+						BottomRightGreen = Input { Value = 1, },
+						BottomRightBlue = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 55, 412.5 } },
+					Colors = { TileColor = { R = 0.913725490196078, G = 0.549019607843137, B = 0.709803921568627 }, }
+				},
+				Sp_DivCC = BrightnessContrast {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Contrast = Input { Expression = "Saturation-1", },
+						Input = Input {
+							SourceOp = "Sp_JackTheStriper",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 445.5 } },
+					Colors = { TileColor = { R = 0.913725490196078, G = 0.549019607843137, B = 0.709803921568627 }, },
+					UserControls = ordered() {
+						Saturation = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 101,
+							INP_MaxScale = 5,
+							INP_Default = 1,
+							INP_MinAllowed = 0,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_SplineType = "Default",
+							ICD_Center = 1,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Saturation"
+						},
+						Brightness = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 201,
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = -1,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_SplineType = "Default",
+							ICD_Center = 0,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Brightness"
+						}
+					}
+				},
+				Sp_LayoutSwitch = Switch {
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						Source = Input { Expression = "Sp_ctrl.Layout~=2 and 0 or 1", },
+						Input0 = Input {
+							SourceOp = "Sp_StackSwtchB",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Sp_SplitEminem",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 55, 511.5 } },
+					Colors = { TileColor = { R = 0.572549019607843, G = 0.572549019607843, B = 0.572549019607843 }, }
+				},
+				Sp_DivStackMrg = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 1,
+									2,
+									3
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_StackDivMsk",
+							Source = "Mask",
+						},
+						["Layer1.Blend"] = Input { Expression = "Sp_ctrl.DivOpacity", },
+						["Layer1.FilterMethod"] = Input { Value = 0, },
+						LayerName1 = Input { Value = "Sp_StackDivMsk Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_DivCC",
+							Source = "Output",
+						},
+						["Layer2.Size"] = Input { Value = 16, },
+						["Layer2.Angle"] = Input {
+							Value = 90,
+							Expression = "Sp_ctrl.Layout==0 and 0 or 90",
+						},
+						["Layer2.Operator"] = Input { Value = FuID { "In" }, },
+						["Layer2.Edges"] = Input { Value = 1, },
+						["Layer2.FilterMethod"] = Input { Value = 0, },
+						LayerName2 = Input { Value = "Sp_DivCC Layer", },
+						["Layer3.Foreground"] = Input {
+							SourceOp = "Sp_DivStack",
+							Source = "Output",
+						},
+						["Layer3.Operator"] = Input { Value = FuID { "In" }, },
+						["Layer3.Blend"] = Input {
+							Value = 0,
+							Expression = "min(Sp_ctrl.DivType, 1)",
+						},
+						["Layer3.Edges"] = Input { Value = 1, },
+						["Layer3.FilterMethod"] = Input { Value = 0, },
+						LayerName3 = Input { Value = "Sp_DivStack Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 379.5 } },
+					Colors = { TileColor = { R = 0.266666666666667, G = 0.56078431372549, B = 0.396078431372549 }, }
+				},
+				Sp_SplitMskFix = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = ":\nlocal mode = Sp_ctrl.ShowInput\nlocal hasA = (Sp_SDA.Output ~= nil) and 1 or 0\nlocal hasB = (Sp_SDB.Output ~= nil) and 1 or 0\n\n-- 1. Dual Mode (0): If both are active, we want a solid alpha (1).\nif mode == 0 then\n    return (hasA == 1 and hasB == 1) and 1 or 0\nend\n\n-- 2. Solo A (1): We only want the solid alpha fix if A actually exists.\nif mode == 1 then\n    return (hasA == 1) and 1 or 0\nend\n\n-- 3. Solo B (2): We only want the solid alpha fix if B actually exists.\nif mode == 2 then\n    return (hasB == 1) and 1 or 0\nend\n\nreturn 0", },
+						ProcessRed = Input { Value = 0, },
+						ProcessGreen = Input { Value = 0, },
+						ProcessBlue = Input { Value = 0, },
+						HideInputs = Input { Value = 1, },
+						LayersNest = Input { Value = 0, },
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						ToAlpha = Input { Value = 16, },
+						ToXNormal = Input { Value = 5, },
+						ToYNormal = Input { Value = 6, },
+						ToZNormal = Input { Value = 7, },
+						Background = Input {
+							SourceOp = "Sp_SplitOffset",
+							Source = "Output",
+						},
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 313.5 } },
+					Colors = { TileColor = { R = 0.474509803921569, G = 0.658823529411765, B = 0.815686274509804 }, }
+				},
+				Sp_DivSplitMrg = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 3,
+									1,
+									2
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_DivCC",
+							Source = "Output",
+						},
+						["Layer1.Size"] = Input { Value = 16, },
+						["Layer1.Angle"] = Input { Expression = "Sp_SplitDivMsk.Angle", },
+						["Layer1.Operator"] = Input { Value = FuID { "In" }, },
+						["Layer1.Edges"] = Input { Value = 1, },
+						["Layer1.FilterMethod"] = Input { Value = 0, },
+						LayerName1 = Input { Value = "Sp_DivCC Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_DivStack",
+							Source = "Output",
+						},
+						["Layer2.Operator"] = Input { Value = FuID { "In" }, },
+						["Layer2.Blend"] = Input { Expression = "min(Sp_ctrl.DivType, 1)", },
+						["Layer2.Edges"] = Input { Value = 1, },
+						LayerName2 = Input { Value = "Sp_DivStack Layer", },
+						["Layer3.Foreground"] = Input {
+							SourceOp = "Sp_SplitDivMsk",
+							Source = "Mask",
+						},
+						["Layer3.Center"] = Input { Expression = ":\nv = Sp_TheVoid\na = Sp_ctrl.SplitAngle\nb = Sp_ctrl.SplitAngle\nx = Sp_SplitOffset.Center.X\ny = Sp_SplitOffset.Center.Y\n\n-- Check if the angle is 1 or 5 (Vertical) or 3 or 7 (Horizontal) \n-- (Assuming 1-8 scale where 1 is Vertical)\nisVertical = (a == 1 or a == 5)\nisHorizontal = (a == 3 or a == 7)\n\nsnapX = v.Width%2==0 and 0 or 0.5/v.Width\nsnapY = v.Height%2==0 and 0 or 0.5/v.Height\n\nreturn Point(isVertical and (x + snapX) or x, isHorizontal and (y + snapY) or y)", },
+						["Layer3.Size"] = Input {
+							Value = 0.25,
+							Expression = ":\nlocal c = Sp_ctrl\nlocal scales = {[0]=1, 0.667, 0.5, 0.333, 0.25}\nlocal scale = scales[c.OutputScale] or 1\n\nreturn 1 --scale",
+						},
+						["Layer3.Blend"] = Input { Expression = "(Sp_ctrl.Offset==0 or Sp_ctrl.Offset==1) and 0 or Sp_ctrl.DivOpacity", },
+						["Layer3.FilterMethod"] = Input { Value = 0, },
+						LayerName3 = Input { Value = "Sp_SplitDivMsk Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 379.5 } },
+					Colors = { TileColor = { R = 0.266666666666667, G = 0.56078431372549, B = 0.396078431372549 }, }
+				},
+				Sp_CropXB = Crop {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						XOffset = Input { Expression = "(0.5 * self.Input.OriginalWidth) - (0.5 * XSize)", },
+						YOffset = Input { Expression = "(0.5 * self.Input.OriginalHeight) - (0.5 * YSize)", },
+						XSize = Input {
+							Value = 360,
+							Expression = ":\n-- If Horizontal Stack, width is 50%. Otherwise, it's full width.\nreturn (Sp_ctrl.Layout == 0) and (Sp_TheVoid.Width * 0.5) or Sp_TheVoid.Width",
+						},
+						YSize = Input {
+							Value = 640,
+							Expression = ":\n-- Guard the height only if we are in Vertical Stack\nreturn (Sp_ctrl.Layout == 1) and (Sp_TheVoid.Height * 0.5) or Sp_TheVoid.Height",
+						},
+						Input = Input {
+							SourceOp = "Sp_XfB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 181.5 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Sp_TxtStackMrg = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 1,
+									2
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_TxtStackA",
+							Source = "Output",
+						},
+						["Layer1.Center"] = Input { Expression = "Point(Sp_ctrl.Layout==0 and 0.25 or 0.5, Sp_ctrl.Layout==0 and 0.5 or 0.75)", },
+						["Layer1.Blend"] = Input { Expression = "((Sp_ctrl.ShowLabel==2 and Sp_ctrl.Flip==0) or (Sp_ctrl.ShowLabel==1 and Sp_ctrl.Flip==1) or Sp_ctrl.ShowInput==2) and 0 or 1", },
+						LayerName1 = Input { Value = "Sp_TxtStackA Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_TextStackB",
+							Source = "Output",
+						},
+						["Layer2.Center"] = Input { Expression = "Point(Sp_ctrl.Layout==0 and 0.75 or 0.5, Sp_ctrl.Layout==0 and 0.5 or 0.25)", },
+						["Layer2.Blend"] = Input { Expression = "((Sp_ctrl.ShowLabel==1 and Sp_ctrl.Flip==0) or (Sp_ctrl.ShowInput==1) or (Sp_ctrl.ShowLabel==2 and Sp_ctrl.Flip==1)) and 0 or 1", },
+						LayerName2 = Input { Value = "Sp_TextStackB Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 445.5 } },
+					Colors = { TileColor = { R = 0.6, G = 0.450980392156863, B = 0.627450980392157 }, }
+				},
+				Sp_TxtSplitMrg = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 4,
+									5,
+									1,
+									2,
+									3
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_TxtSplitA",
+							Source = "Output",
+						},
+						["Layer1.Blend"] = Input { Expression = "(Sp_ctrl.ShowLabel==2 or Sp_ctrl.ShowInput>0) and 0 or Sp_ctrl.ShowLabels", },
+						LayerName1 = Input { Value = "Sp_TxtSplitA Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_TxtStackA",
+							Source = "Output",
+						},
+						["Layer2.Blend"] = Input { Expression = "Sp_ctrl.ShowInput==1 and 1 or 0", },
+						LayerName2 = Input { Value = "Sp_TxtStackA Layer", },
+						["Layer3.Foreground"] = Input {
+							SourceOp = "Sp_TextStackB",
+							Source = "Output",
+						},
+						["Layer3.Blend"] = Input { Expression = "Sp_ctrl.ShowInput==2 and 1 or 0", },
+						LayerName3 = Input { Value = "Sp_TextStackB Layer", },
+						["Layer4.Foreground"] = Input {
+							SourceOp = "Sp_HoldThatThought",
+							Source = "Output",
+						},
+						["Layer4.Blend"] = Input { Expression = "min(Sp_ctrl.SplitAngle%4, 1)", },
+						LayerName4 = Input { Value = "Sp_HoldThatThought Layer", },
+						["Layer5.Foreground"] = Input {
+							SourceOp = "Sp_TxtSplitB",
+							Source = "Output",
+						},
+						["Layer5.Operator"] = Input {
+							Value = FuID { "In" },
+							Expression = "Sp_ctrl.SplitAngle%4==0 and \"Held Out\" or \"In\"",
+						},
+						["Layer5.Blend"] = Input { Expression = "((Sp_ctrl.ShowLabel==1 and Sp_ctrl.Flip==0) or (Sp_ctrl.ShowLabel==2 and Sp_ctrl.Flip==1) or (Sp_ctrl.ShowInput>0) ) and 0 or 1", },
+						LayerName5 = Input { Value = "Sp_TxtSplitB Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 445.5 } },
+					Colors = { TileColor = { R = 0.6, G = 0.450980392156863, B = 0.627450980392157 }, }
+				},
+				Sp_ScaleA = Scale {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "Sp_CropA",
+							Source = "Output",
+						},
+						XSize = Input {
+							Value = 0.5,
+							Expression = ":\nx = Sp_ctrl.OutputScale\n\nreturn (x==0 and 1) or (x==1 and 0.667) or (x==2 and 0.5) or (x==3 and 0.333) or 0.25",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 82.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, },
+					UserControls = ordered() {
+						XSize = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 5,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							ICD_Center = 1,
+							LINKS_Name = "X Size"
+						}
+					}
+				},
+				Sp_CropA = Crop {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						XOffset = Input { Expression = ":\nc = (0.5 * self.Input.OriginalWidth) - (0.5 * XSize) --c for Center\n\nreturn Sp_ctrl.Disable==0 and c + XSize * -Sp_ctrl.OffsetB.X * Sp_ctrl.TransformA or c", },
+						YOffset = Input { Expression = ":\nc = (0.5 * self.Input.OriginalHeight) - (0.5 * YSize)\n\nreturn Sp_ctrl.Disable==0 and c + YSize * -Sp_ctrl.OffsetB.Y or c", },
+						XSize = Input {
+							Value = 720,
+							Expression = "Sp_ctrl.SizeSource==0 and Sp_CropA.Input.OriginalWidth or Sp_ctrl.SizeSource==1 and Sp_CropB.Input.OriginalWidth or Sp_ctrl.CustomWidth",
+						},
+						YSize = Input {
+							Value = 1280,
+							Expression = "Sp_ctrl.SizeSource==0 and Sp_CropA.Input.OriginalHeight or Sp_ctrl.SizeSource==1 and Sp_CropB.Input.OriginalHeight or Sp_ctrl.CustomHeight",
+						},
+						Input = Input {
+							SourceOp = "Sp_DX",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 49.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_SharpA = Sharpen {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						MultiplyByMask = Input { Value = 1, },
+						XAmount = Input {
+							Value = 0.5,
+							Expression = "Sp_ctrl.OutputScale==0 and 0 or Sp_ctrl.LookSharp",
+						},
+						Input = Input {
+							SourceOp = "Sp_ScaleA",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 115.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_PreStackA = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Sp_PreStackMsk",
+							Source = "Mask",
+						},
+						Blend = Input { Expression = "Sp_ctrl.ShowInput==0 and 1 or 0", },
+						FitMask = Input { Value = FuID { "Width" }, },
+						MaskChannel = Input { Value = 5, },
+						LayersNest = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "Sp_SharpA",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sp_SharpB",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 1.5, 0.5 },
+							Expression = "Sp_ctrl.Layout == 0 and Point(Sp_ctrl.Flip==0 and 1.5 or -0.5, 0.5) or\nPoint(0.5, Sp_ctrl.Flip==0 and -0.5 or 1.5)",
+						},
+						FilterMethod = Input { Value = 0, },
+						PerformDepthMerge = Input { Value = 0, },
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 148.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_PreStackMsk = RectangleMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1080, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input {
+							Value = { 1.5, 0.5 },
+							Expression = ":\nf = Sp_ctrl.Flip\ni = Sp_ctrl.ShowInput\nL = Sp_ctrl.Layout\ns = Sp_ctrl.SizeSource\n\nif s==0 then\n    return L==0 and Point(f==(Sp_ctrl.SizeSource==0 and 0 or 1) and 1.5 or -0.5, 0.5) or \nPoint(0.5, f==0 and -0.5 or 1.5)\nelse\n    return L==0 and Point(f==(Sp_ctrl.SizeSource==0 and 0 or 1) and 1.5 or -0.5, 0.5) or \nPoint(0.5, f==0 and 1.5 or -0.5)\nend",
+						},
+						Width = Input { Value = 1, },
+						Height = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 148.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_ScaleB = Scale {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "Sp_CropB",
+							Source = "Output",
+						},
+						XSize = Input {
+							Value = 0.5,
+							Expression = ":\nx = Sp_ctrl.OutputScale\n\nreturn (x==0 and 1) or (x==1 and 0.667) or (x==2 and 0.5) or (x==3 and 0.333) or 0.25",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 82.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, },
+					UserControls = ordered() {
+						XSize = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 5,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 1,
+							INP_SplineType = "Default",
+							LINKS_Name = "X Size"
+						}
+					}
+				},
+				Sp_SharpB = Sharpen {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						MultiplyByMask = Input { Value = 1, },
+						XAmount = Input {
+							Value = 0.5,
+							Expression = "Sp_ctrl.OutputScale==0 and 0 or Sp_ctrl.LookSharp",
+						},
+						Input = Input {
+							SourceOp = "Sp_ScaleB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 115.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_CropB = Crop {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						XOffset = Input { Expression = ":\nc = (0.5 * self.Input.OriginalWidth) - (0.5 * XSize) --c for Center\n\nreturn Sp_ctrl.Disable==0 and c + XSize * -Sp_ctrl.OffsetB.X or c", },
+						YOffset = Input { Expression = ":\nc = (0.5 * self.Input.OriginalHeight) - (0.5 * YSize)\n\nreturn Sp_ctrl.Disable==0 and c + YSize * -Sp_ctrl.OffsetB.Y or c", },
+						XSize = Input {
+							Value = 720,
+							Expression = "Sp_ctrl.SizeSource==0 and Sp_CropA.Input.OriginalWidth or Sp_ctrl.SizeSource==1 and Sp_CropB.Input.OriginalWidth or Sp_ctrl.CustomWidth",
+						},
+						YSize = Input {
+							Value = 1280,
+							Expression = "Sp_ctrl.SizeSource==0 and Sp_CropA.Input.OriginalHeight or Sp_ctrl.SizeSource==1 and Sp_CropB.Input.OriginalHeight or Sp_ctrl.CustomHeight",
+						},
+						Input = Input {
+							SourceOp = "Sp_SDB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 49.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_PreStackB = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Sp_PreStackMsk",
+							Source = "Mask",
+						},
+						Blend = Input { Expression = "Sp_ctrl.ShowInput==0 and 1 or 0", },
+						FitMask = Input { Value = FuID { "Width" }, },
+						MaskChannel = Input { Value = 5, },
+						Background = Input {
+							SourceOp = "Sp_SharpB",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sp_SharpA",
+							Source = "Output",
+						},
+						Center = Input {
+							Value = { 0.5, 1.5 },
+							Expression = "Sp_ctrl.Layout == 0 and Point(Sp_ctrl.Flip==(Sp_ctrl.SizeSource==0 and 0 or 1) and 1.5 or -0.5, 0.5) or\nPoint(0.5, Sp_ctrl.Flip==0 and 1.5 or -0.5)",
+						},
+						FilterMethod = Input { Value = 0, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 148.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_StackSwtchA = Switch {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						NumberOfInputs = Input { Value = 3, },
+						Source = Input {
+							Value = 1,
+							Expression = "Sp_ctrl.ShowInput==1 and (Sp_ctrl.Flip==0 and 0 or 1) or\nSp_ctrl.ShowInput==2 and (Sp_ctrl.Flip==0 and 1 or 0) or\nSp_ctrl.SizeSource",
+						},
+						Input0 = Input {
+							SourceOp = "Sp_PreStackA",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Sp_PreStackB",
+							Source = "Output",
+						},
+						Input2 = Input {
+							SourceOp = "Sp_PreStackB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 181.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_StackBasicMM = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 1,
+									2,
+									5
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_HammerTimeBGA",
+							Source = "Output",
+						},
+						["Layer1.Size"] = Input { Value = 16, },
+						["Layer1.Blend"] = Input { Expression = "Sp_ctrl.ShowBG", },
+						["Layer1.Edges"] = Input { Value = 1, },
+						["Layer1.FilterMethod"] = Input { Value = 0, },
+						LayerName1 = Input { Value = "TheVoid - Sp_HammerTimeBGA Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_StackSwtchA",
+							Source = "Output",
+						},
+						["Layer2.Center"] = Input {
+							Value = { 0.25, 0.5 },
+							Expression = ":\ni = Sp_ctrl.ShowInput\nf = Sp_ctrl.Flip\ns = Sp_ctrl.SizeSource\n\nif s == 0 then --Source A\n    return Sp_ctrl.Layout == 0 and Point((i==0 and f==1) and 0.75 or (i==2 and 0.75 or 0.25), 0.5) or Point(0.5, (i==0 and f==1) and 0.25 or (i==2 and 0.25 or 0.75))\nelse --Source B & Custom\n    return Sp_ctrl.Layout == 0 and Point((i==0 and f==1) and 0.25 or (i~=1 and 0.75 or 0.25), 0.5) or Point(0.5, (i==0 and f==1) and 0.75 or (i~=1 and 0.25 or 0.75))\nend",
+						},
+						["Layer2.FilterMethod"] = Input { Value = 0, },
+						LayerName2 = Input { Value = "A and/or B - StackSwtch Layer", },
+						LayerEnabled3 = Input { Value = 0, },
+						LayerEnabled4 = Input { Value = 0, },
+						["Layer5.Foreground"] = Input {
+							SourceOp = "Sp_FreezeSucka",
+							Source = "Output",
+						},
+						LayerName5 = Input { Value = "Overlays - Sp_FreezeSucka Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 181.5 } },
+					Colors = { TileColor = { R = 0.886274509803922, G = 0.662745098039216, B = 0.109803921568627 }, }
+				},
+				Sp_StackSwtchB = Switch {
+					CtrlWShown = false,
+					NameSet = true,
+					CurrentSettings = 2,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						Source = Input { Expression = ":\n-- 1. Master Bypass\nif Sp_SDB.Input == nil then return 0 end -- If Input B is missing, we don't care about transforms\nif Sp_ctrl.Disable == 1 then return 0 end\n\n\n-- 2. Transform Detection\n-- Check if the transform values are at their defaults. \n-- If they ARE at defaults, we use the Basic path (0).\nlocal isTransformActive = (\n    Sp_ctrl.Magnify ~= 1 or\n    Sp_Widget.Angle ~= 0\n)\n\n-- Only use the Transform path (1) if the toggle is ON AND something is moving.\nreturn isTransformActive and 1 or 0", },
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, },
+						Input0 = Input {
+							SourceOp = "Sp_StackBasicMM",
+							Source = "Output",
+						},
+						Input1 = Input {
+							SourceOp = "Sp_StackMixanoid",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 181.5 } },
+					Colors = { TileColor = { R = 0.572549019607843, G = 0.572549019607843, B = 0.572549019607843 }, }
+				},
+				Sp_OverlaysMM = MultiMerge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						LayerOrder = Input { Value = ScriptVal { {
+									[0] = 1,
+									2,
+									3,
+									4
+								} }, },
+						Background = Input {
+							SourceOp = "Sp_VoidHammer",
+							Source = "Output",
+						},
+						["Layer1.Foreground"] = Input {
+							SourceOp = "Sp_DivStackMrg",
+							Source = "Output",
+						},
+						["Layer1.Blend"] = Input { Expression = "Sp_ctrl.Layout~=2 and Sp_ctrl.ShowDivider or 0", },
+						LayerName1 = Input { Value = "Sp_DivStackMrg Layer", },
+						["Layer2.Foreground"] = Input {
+							SourceOp = "Sp_DivSplitMrg",
+							Source = "Output",
+						},
+						["Layer2.Blend"] = Input {
+							Value = 0,
+							Expression = "Sp_ctrl.Layout~=2 and 0 or Sp_ctrl.ShowInput~=0 and 0 or Sp_ctrl.ShowDivider",
+						},
+						LayerName2 = Input { Value = "Sp_DivSplitMrg Layer", },
+						["Layer3.Foreground"] = Input {
+							SourceOp = "Sp_TxtStackMrg",
+							Source = "Output",
+						},
+						["Layer3.Blend"] = Input { Expression = "Sp_ctrl.Layout~=2 and Sp_ctrl.ShowLabels or 0", },
+						LayerName3 = Input { Value = "Sp_TxtStackMrg Layer", },
+						["Layer4.Foreground"] = Input {
+							SourceOp = "Sp_TxtSplitMrg",
+							Source = "Output",
+						},
+						["Layer4.Blend"] = Input {
+							Value = 0,
+							Expression = "Sp_ctrl.Layout==2 and Sp_ctrl.ShowLabels or 0",
+						},
+						LayerName4 = Input { Value = "Sp_FreezeSuckaLabelB Layer", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 55, 346.5 } },
+					Colors = { TileColor = { R = 0.913725490196078, G = 0.549019607843137, B = 0.709803921568627 }, }
+				},
+				Sp_FreezeSucka = TimeStretcher {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SourceTime = Input {
+							Value = 0,
+							Expression = "comp.RenderStart",
+						},
+						InterpolateBetweenFrames = Input { Value = 0, },
+						SampleSpread = Input { Disabled = true, },
+						Input = Input {
+							SourceOp = "Sp_OverlaysMM",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -55, 346.5 } },
+					Colors = { TileColor = { R = 0.913725490196078, G = 0.549019607843137, B = 0.709803921568627 }, }
+				},
+				Sp_VoidHammer = TimeStretcher {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						SourceTime = Input {
+							Value = 0,
+							Expression = "comp.RenderStart",
+						},
+						InterpolateBetweenFrames = Input { Value = 0, },
+						SampleSpread = Input { Disabled = true, },
+						Input = Input {
+							SourceOp = "Sp_TheVoid",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 313.5 } },
+					Colors = { TileColor = { R = 0.584313725490196, G = 0.294117647058824, B = 0.803921568627451 }, }
+				},
+				Sp_CB = ChannelBoolean {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						Operation = Input { Value = 12, },
+						ToXNormal = Input { Value = 5, },
+						ToYNormal = Input { Value = 6, },
+						ToZNormal = Input { Value = 7, },
+						Background = Input {
+							SourceOp = "Sp_SDB",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 82.5 } },
+					Colors = { TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 }, }
+				},
+				Sp_DX = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						ProcessLayers = Input { Value = FuID { ":All" }, },
+						Background = Input {
+							SourceOp = "Sp_CB",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Sp_SDA",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 49.5 } },
+					Colors = { TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 }, }
+				},
+				Sp_TxtSplitA = TextPlus {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "Sp_TxtStackA",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						ImageNest = Input {
+						},
+						Width = Input {
+							Value = 720,
+							Expression = "Sp_TheVoid.Width"
+						},
+						Height = Input {
+							Value = 640,
+							Expression = "Sp_TheVoid.Height"
+						},
+						["Gamut.ColorSpaceNest"] = Input {
+						},
+						["Gamut.GammaSpaceNest"] = Input {
+						},
+						Layout = Input {
+						},
+						Center = Input {
+							Value = { 0.25, 0.5 },
+							Expression = ":\npx = 1/Sp_TheVoid.Height\noffset = Sp_ctrl.LabelVerticalOffset * px\nang = Sp_ctrl.SplitAngle\nali = Sp_ctrl.AlignV==0 and 1 or -1\ninv = Sp_ctrl.AlignV==0 and (Sp_ctrl.InvertAlignment==1 and -1 or 1) or (Sp_ctrl.InvertAlignment==1 and 1 or -1)\n\nreturn ang==1 and Point(0.25, 0.5 + offset * ali) or \nang==2 and Point(0.5, 0.5 + offset) or \nang==3 and Point(0.5, 0.75 + offset * inv) or \nang==4 and Point(0.5, 0.5 + offset) or \nang==5 and Point(0.75, 0.5 + offset * ali) or\nang==6 and Point(0.5, 0.5 + offset * -1) or\nang==7 and Point(0.5, 0.25 + offset * inv) or\nPoint(0.5, 0.5 + offset * -1)"
+						},
+						LayoutWidth = Input {
+							Value = 0.45,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\nw = Sp_TheVoid.Width\nres = 3/w\npx = Sp_ctrl.LabelPadding\n\nreturn (ang==1 or ang==5) and (0.5 - res * px) or (1 - res * px)"
+						},
+						LayoutHeight = Input {
+							Value = 0.9625,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\nh = Sp_TheVoid.Height\nres = 2/h\npx = Sp_ctrl.LabelPadding\n\nreturn (ang==3 or ang==7) and (0.5 - res * px) or (1 - res * px)"
+						},
+						LayoutRotation = Input {
+						},
+						Background = Input {
+							Value = 0,
+						},
+						TransformTransform = Input {
+						},
+						TransformRotation = Input {
+							Value = 1,
+						},
+						TransformPivot = Input {
+						},
+						TransformShear = Input {
+						},
+						TransformSize = Input {
+						},
+						Properties1 = Input {
+						},
+						Red1 = Input {
+							Value = 0.96,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.96 or 0.58) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA))"
+						},
+						Green1 = Input {
+							Value = 0.82,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.82 or 0.81) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA))"
+						},
+						Blue1 = Input {
+							Value = 0.11,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.11 or 0.01) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA))"
+						},
+						Softness1 = Input {
+							Value = 1,
+						},
+						Position1 = Input {
+						},
+						Rotation1 = Input {
+						},
+						PivotNest1 = Input {
+						},
+						Shear1 = Input {
+						},
+						Size1 = Input {
+						},
+						TextText = Input {
+						},
+						StyledText = Input {
+							Expression = "Sp_ctrl.Flip==0 and Sp_ctrl.LabelA or Sp_ctrl.LabelB"
+						},
+						Size = Input {
+							Value = 0.0888888888888889,
+							Expression = ":\nw = Sp_TheVoid.Width\nres = 2/w/(Sp_ctrl.Layout==0 and 1 or 2)\n\nreturn res * Sp_ctrl.FontSize * 2"
+						},
+						VerticalTopCenterBottom = Input {
+							Value = -1,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\ninv = (Sp_ctrl.SplitAngle==3 or Sp_ctrl.SplitAngle==7) and (Sp_ctrl.InvertAlignment~=1 and 1 or -1) or 1\n\nreturn (ang==2 or ang==4) and -1 or (ang==6 or ang==8) and 1 or Sp_ctrl.AlignV==0 and -1*inv or 1*inv"
+						},
+						HorizontalLeftCenterRight = Input {
+							Value = -1,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\ninv = (Sp_ctrl.SplitAngle==1 or Sp_ctrl.SplitAngle==5) and (Sp_ctrl.InvertAlignment~=1 and 1 or -1) or 1\n\nreturn (ang==2 or ang==8) and (Sp_ctrl.AlignH==1 and 0 or -1) or (ang==4 or ang==6) and (Sp_ctrl.AlignH==1 and 0 or 1) or Sp_ctrl.AlignH==0 and -1*inv or Sp_ctrl.AlignH==1 and 0 or 1*inv"
+						},
+						TabSpacing = Input {
+						},
+						AdvancedFontControls = Input {
+							Value = 1,
+						},
+						ClearSelectedKerning = Input {
+						},
+						ClearAllKerning = Input {
+						},
+						ClearSelectedPlacement = Input {
+						},
+						ClearAllPlacement = Input {
+						},
+						Internal = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						},
+						Rounding = Input {
+							Value = 0.12,
+							Expression = "Sp_ctrl.Rounding"
+						},
+						Properties2 = Input {
+						},
+						Opacity2 = Input {
+							Expression = "Sp_ctrl.FontBGOpacity"
+						},
+						ExtendHorizontal2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1) * (Sp_ctrl.FontBGExtend*10 + 1)"
+						},
+						ExtendVertical2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1)"
+						},
+						Round2 = Input {
+							Value = 0.12,
+							Expression = "Rounding"
+						},
+						Red2 = Input {
+							Value = 0,
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.96 or 0.58) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA))"
+						},
+						Green2 = Input {
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.82 or 0.81) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA))"
+						},
+						Blue2 = Input {
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.11 or 0.01) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA))"
+						},
+						Softness2 = Input {
+						},
+						Position2 = Input {
+						},
+						Offset2 = Input {
+							Expression = ":\nh = Sp_TheVoid.Height\nres = (Sp_ctrl.Layout==0 and 1 or 2)/h\npx = Sp_ctrl.LabelBGVertOffset\n\nreturn Point(0.0,  res * px)"
+						},
+						Rotation2 = Input {
+						},
+						PivotNest2 = Input {
+						},
+						Shear2 = Input {
+						},
+						Size2 = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 445.5 } },
+					Colors = { TileColor = { R = 0.6, G = 0.450980392156863, B = 0.627450980392157 }, },
+					UserControls = ordered() {
+						Font = {
+							LINKID_DataType = "Text",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKS_Name = "Font",
+						},
+						Style = {
+							LINKID_DataType = "Text",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKS_Name = "Style",
+						},
+						Round2 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							ICS_ControlPage = "Shading",
+							INP_SplineType = "Default",
+							LINKS_Name = "Round 2"
+						},
+						Rounding = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Rounding",
+						}
+					}
+				},
+				Sp_TextStackB = TextPlus {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "Sp_TxtStackA",
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Sp_StackPadMsk",
+							Source = "Mask",
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						ImageNest = Input {
+						},
+						Width = Input {
+							Value = 360,
+							Expression = "(Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Width or Sp_ctrl.Layout==0 and Sp_TheVoid.Width/2 or Sp_TheVoid.Width"
+						},
+						Height = Input {
+							Value = 640,
+							Expression = "(Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Height or Sp_ctrl.Layout==0 and Sp_TheVoid.Height or Sp_TheVoid.Height/2"
+						},
+						["Gamut.ColorSpaceNest"] = Input {
+						},
+						["Gamut.GammaSpaceNest"] = Input {
+						},
+						Layout = Input {
+						},
+						Center = Input {
+							Expression = ":\npx = 1/Sp_TheVoid.Height\noffset = Sp_ctrl.LabelVerticalOffset * px\nali = Sp_ctrl.AlignV==0 and 1 or -1\ninv = Sp_ctrl.AlignV==0 and (Sp_ctrl.InvertAlignment==1 and -1 or 1) or (Sp_ctrl.InvertAlignment==1 and 1 or -1)\n\nreturn Sp_ctrl.Layout==0 and Point(0.5, 0.5 + offset * ali) or Point(0.5, 0.5 + offset * 2 * inv)"
+						},
+						LayoutWidth = Input {
+							Value = 0.9,
+							Expression = ":\nw = (Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Width or Sp_TheVoid.Width\nres = (Sp_ctrl.Layout==0 and 4 or 2)/w\npad = Sp_ctrl.LabelPadding*1.5\n\nreturn Sp_ctrl.Layout~=1 and (1 - res * pad) or (1 - res * pad)"
+						},
+						LayoutHeight = Input {
+							Value = 0.9625,
+							Expression = ":\nw = (Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Width or Sp_TheVoid.Width\nh = (Sp_ctrl.ShowInput>0 and Sp_ctrl.Layout==2) and Sp_TheVoid.Height or Sp_TheVoid.Height\nr = w/h/(Sp_ctrl.Layout==1 and 1 or 2)\nres = 4/w * r\npad = Sp_ctrl.LabelPadding\n\nreturn Sp_ctrl.Layout~=1 and (1 - res * pad) or (1 - res * pad)"
+						},
+						LayoutRotation = Input {
+						},
+						Background = Input {
+							Value = 0,
+						},
+						TransformTransform = Input {
+						},
+						TransformRotation = Input {
+							Value = 1,
+						},
+						TransformPivot = Input {
+						},
+						TransformShear = Input {
+						},
+						TransformSize = Input {
+						},
+						Properties1 = Input {
+						},
+						Red1 = Input {
+							Value = 0.58,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.58 or 0.96 ) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB))"
+						},
+						Green1 = Input {
+							Value = 0.81,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.81 or 0.82) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB))"
+						},
+						Blue1 = Input {
+							Value = 0.01,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.01 or 0.11) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB))"
+						},
+						Alpha1 = Input {
+						},
+						Softness1 = Input {
+							Value = 1,
+						},
+						Position1 = Input {
+						},
+						Rotation1 = Input {
+						},
+						PivotNest1 = Input {
+						},
+						Shear1 = Input {
+						},
+						Size1 = Input {
+						},
+						TextText = Input {
+						},
+						StyledText = Input {
+							Value = "A",
+							Expression = "Sp_ctrl.Flip==0 and Sp_ctrl.LabelB or Sp_ctrl.LabelA"
+						},
+						Size = Input {
+							Value = 0.0888888888888889,
+							Expression = ":\nw = Sp_TheVoid.Width\nres = 2/w/(Sp_ctrl.Layout==0 and 1 or 2)\n\nreturn res * Sp_ctrl.FontSize * 2"
+						},
+						VerticalTopCenterBottom = Input {
+							Value = -1,
+							Expression = ":\ninv = Sp_ctrl.Layout==0 and 1 or (Sp_ctrl.InvertAlignment~=2 and 1 or -1)\n\nreturn Sp_ctrl.AlignV==0 and -1*inv or 1*inv"
+						},
+						HorizontalLeftCenterRight = Input {
+							Value = -1,
+							Expression = ":\ninv = Sp_ctrl.Layout==1 and 1 or (Sp_ctrl.InvertAlignment~=2 and 1 or -1)\n\nreturn Sp_ctrl.AlignH==0 and -1*inv or Sp_ctrl.AlignH==1 and 0 or 1*inv"
+						},
+						TabSpacing = Input {
+						},
+						AdvancedFontControls = Input {
+						},
+						ClearSelectedKerning = Input {
+						},
+						ClearAllKerning = Input {
+						},
+						ClearSelectedPlacement = Input {
+						},
+						ClearAllPlacement = Input {
+						},
+						Internal = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						},
+						Rounding = Input {
+							Value = 0.12,
+							Expression = "Sp_ctrl.Rounding"
+						},
+						Properties2 = Input {
+						},
+						Opacity2 = Input {
+							Expression = "Sp_ctrl.FontBGOpacity"
+						},
+						ExtendHorizontal2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1) * (Sp_ctrl.FontBGExtend*10 + 1)"
+						},
+						ExtendVertical2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1)"
+						},
+						Round2 = Input {
+							Value = 0.12,
+							Expression = "Rounding"
+						},
+						Red2 = Input {
+							Value = 0,
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.58 or 0.96 ) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB))"
+						},
+						Green2 = Input {
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.81 or 0.82) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB))"
+						},
+						Blue2 = Input {
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.01 or 0.11) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB))"
+						},
+						Alpha2 = Input {
+						},
+						Softness2 = Input {
+						},
+						Position2 = Input {
+						},
+						Offset2 = Input {
+							Expression = ":\nh = Sp_TheVoid.Height\nres = (Sp_ctrl.Layout==0 and 1 or 2)/h\npx = Sp_ctrl.LabelBGVertOffset\n\nreturn Point(0.0,  res * px)"
+						},
+						Rotation2 = Input {
+						},
+						PivotNest2 = Input {
+						},
+						Shear2 = Input {
+						},
+						Size2 = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -220, 478.5 } },
+					Colors = { TileColor = { R = 0.6, G = 0.450980392156863, B = 0.627450980392157 }, },
+					UserControls = ordered() {
+						Font = {
+							LINKID_DataType = "Text",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKS_Name = "Font",
+						},
+						Style = {
+							LINKID_DataType = "Text",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKS_Name = "Style",
+						},
+						Round2 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							ICS_ControlPage = "Shading",
+							INP_SplineType = "Default",
+							LINKS_Name = "Round 2"
+						},
+						Rounding = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Rounding",
+						}
+					}
+				},
+				Sp_TxtSplitB = TextPlus {
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "Sp_TxtSplitA",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						ImageNest = Input {
+						},
+						Width = Input {
+							Value = 720,
+							Expression = "Sp_TheVoid.Width"
+						},
+						Height = Input {
+							Value = 640,
+							Expression = "Sp_TheVoid.Height"
+						},
+						["Gamut.ColorSpaceNest"] = Input {
+						},
+						["Gamut.GammaSpaceNest"] = Input {
+						},
+						Layout = Input {
+						},
+						Center = Input {
+							Value = { 0.75, 0.5 },
+							Expression = ":\npx = 1/Sp_TheVoid.Height\noffset = Sp_ctrl.LabelVerticalOffset * px\nang = Sp_ctrl.SplitAngle\nali = Sp_ctrl.AlignV==0 and 1 or -1\ninv = Sp_ctrl.AlignV==0 and (Sp_ctrl.InvertAlignment==2 and -1 or 1) or (Sp_ctrl.InvertAlignment==2 and 1 or -1)\n\nreturn ang==1 and Point(0.75, 0.5 + offset * ali) or \nang==2 and Point(0.5, 0.5 + offset * -1) or \nang==3 and Point(0.5, 0.25 + offset * inv) or \nang==4 and Point(0.5, 0.5 + offset * -1) or \nang==5 and Point(0.25, 0.5 + offset * ali) or\nang==6 and Point(0.5, 0.5 + offset) or\nang==7 and Point(0.5, 0.75 + offset * inv) or\nPoint(0.5, 0.5 + offset)"
+						},
+						LayoutWidth = Input {
+							Value = 0.45,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\nw = Sp_TheVoid.Width\nres = 3/w\npx = Sp_ctrl.LabelPadding + 0\n\nreturn (ang==1 or ang==5) and (0.5 - res * px) or (1 - res * px)"
+						},
+						LayoutHeight = Input {
+							Value = 0.9625,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\nw = Sp_TheVoid.Height\nres = 2/w\npx = Sp_ctrl.LabelPadding\n\nreturn (ang==3 or ang==7) and (0.5 - res * px) or (1 - res * px)"
+						},
+						LayoutRotation = Input {
+						},
+						Background = Input {
+							Value = 0,
+						},
+						TransformTransform = Input {
+						},
+						TransformRotation = Input {
+							Value = 1,
+						},
+						TransformPivot = Input {
+						},
+						TransformShear = Input {
+						},
+						TransformSize = Input {
+						},
+						Properties1 = Input {
+						},
+						Red1 = Input {
+							Value = 0.58,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.58 or 0.96 ) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB))"
+						},
+						Green1 = Input {
+							Value = 0.81,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.81 or 0.82) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB))"
+						},
+						Blue1 = Input {
+							Value = 0.01,
+							Expression = "Sp_ctrl.FontColor==0 and (Sp_ctrl.Flip==0 and 0.01 or 0.11) or \nSp_ctrl.FontColor==1 and 0 or Sp_ctrl.FontColor==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB))"
+						},
+						Alpha1 = Input {
+						},
+						Softness1 = Input {
+							Value = 1,
+						},
+						Position1 = Input {
+						},
+						Rotation1 = Input {
+						},
+						PivotNest1 = Input {
+						},
+						Shear1 = Input {
+						},
+						Size1 = Input {
+						},
+						TextText = Input {
+						},
+						StyledText = Input {
+							Value = "B",
+							Expression = "Sp_ctrl.Flip==0 and Sp_ctrl.LabelB or Sp_ctrl.LabelA"
+						},
+						Size = Input {
+							Value = 0.0888888888888889,
+							Expression = ":\nw = Sp_TheVoid.Width\nres = 2/w/(Sp_ctrl.Layout==0 and 1 or 2)\n\nreturn res * Sp_ctrl.FontSize * 2"
+						},
+						VerticalTopCenterBottom = Input {
+							Value = -1,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\ninv = (Sp_ctrl.SplitAngle==3 or Sp_ctrl.SplitAngle==7) and (Sp_ctrl.InvertAlignment~=2 and 1 or -1) or 1\n\nreturn (ang==2 or ang==4) and 1 or (ang==6 or ang==8) and -1 or Sp_ctrl.AlignV==0 and -1*inv or 1*inv"
+						},
+						HorizontalLeftCenterRight = Input {
+							Value = -1,
+							Expression = ":\nang = Sp_ctrl.SplitAngle\ninv = (Sp_ctrl.SplitAngle==1 or Sp_ctrl.SplitAngle==5) and (Sp_ctrl.InvertAlignment~=2 and 1 or -1) or 1\n\nreturn (ang==2 or ang==8) and (Sp_ctrl.AlignH==1 and 0 or 1) or (ang==4 or ang==6) and (Sp_ctrl.AlignH==1 and 0 or -1) or Sp_ctrl.AlignH==0 and -1*inv or Sp_ctrl.AlignH==1 and 0 or 1*inv"
+						},
+						TabSpacing = Input {
+						},
+						AdvancedFontControls = Input {
+							Value = 1,
+						},
+						ClearSelectedKerning = Input {
+						},
+						ClearAllKerning = Input {
+						},
+						ClearSelectedPlacement = Input {
+						},
+						ClearAllPlacement = Input {
+						},
+						Internal = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						},
+						Rounding = Input {
+							Value = 0.12,
+							Expression = "Sp_ctrl.Rounding"
+						},
+						Properties2 = Input {
+						},
+						Opacity2 = Input {
+							Expression = "Sp_ctrl.FontBGOpacity"
+						},
+						ExtendHorizontal2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1) * (Sp_ctrl.FontBGExtend*10 + 1)"
+						},
+						ExtendVertical2 = Input {
+							Value = 0.15,
+							Expression = "0.15*(Sp_ctrl.FontBGSize+1)"
+						},
+						Round2 = Input {
+							Value = 0.12,
+							Expression = "Rounding"
+						},
+						Red2 = Input {
+							Value = 0,
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.58 or 0.96 ) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.RedB or Sp_ctrl.RedA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.RedA or Sp_ctrl.RedB))"
+						},
+						Green2 = Input {
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.81 or 0.82) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenB or Sp_ctrl.GreenA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.GreenA or Sp_ctrl.GreenB))"
+						},
+						Blue2 = Input {
+							Expression = "Sp_ctrl.FontBG==0 and (Sp_ctrl.Flip==0 and 0.01 or 0.11) or \nSp_ctrl.FontBG==1 and 0 or Sp_ctrl.FontBG==2 and 1 or \nSp_ctrl.SingleColor==1 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB) or \n(Sp_ctrl.Flip==0 and (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueB or Sp_ctrl.BlueA) or (Sp_ctrl.FlipC==0 and Sp_ctrl.BlueA or Sp_ctrl.BlueB))"
+						},
+						Alpha2 = Input {
+						},
+						Softness2 = Input {
+						},
+						Position2 = Input {
+						},
+						Offset2 = Input {
+							Expression = ":\nh = Sp_TheVoid.Height\nres = (Sp_ctrl.Layout==0 and 1 or 2)/h\npx = Sp_ctrl.LabelBGVertOffset\n\nreturn Point(0.0,  res * px)"
+						},
+						Rotation2 = Input {
+						},
+						PivotNest2 = Input {
+						},
+						Shear2 = Input {
+						},
+						Size2 = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 478.5 } },
+					Colors = { TileColor = { R = 0.6, G = 0.450980392156863, B = 0.627450980392157 }, },
+					UserControls = ordered() {
+						Font = {
+							LINKS_Name = "Font",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKID_DataType = "Text",
+						},
+						Style = {
+							LINKS_Name = "Style",
+							ICS_ControlPage = "Text",
+							INP_External = false,
+							LINKID_DataType = "Text",
+						},
+						Round2 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							INP_SplineType = "Default",
+							ICS_ControlPage = "Shading",
+							LINKS_Name = "Round 2"
+						},
+						Rounding = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Rounding",
+						}
+					}
+				},
+				Sp_DoD = SetDomain {
+					NameSet = true,
+					Inputs = {
+						Mode = Input { Value = FuID { "Set" }, },
+						Input = Input {
+							SourceOp = "Sp_LayoutSwitch",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -55, 511.5 } },
+				},
+				Sp_RenderCacheTimelineVisualFix = Merge {
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Sp_DoD",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 544.5 } },
+				}
+			},
+			Colors = { TileColor = { R = 0.549019607843137, G = 0.352941176470588, B = 0.247058823529412 }, },
+			UserControls = ordered() {
+				Controls = ControlPage { CT_Visible = true, CTID_DIB_ID = "Icons.Tools.Tabs.WhiteBalance", CT_Priority = 0 },
+				Colors = ControlPage { CT_Visible = true, CTID_DIB_ID = "Icons.Tools.Tabs.Color", CT_Priority = 0 },
+				Settings = ControlPage { CT_Visible = true, CTID_DIB_ID = "Icons.Tools.Tabs.Common", CT_Priority = 0 },
+				User = ControlPage { CT_Visible = false },
+				Text = ControlPage { CT_Visible = false },
+				Common = ControlPage { CT_Visible = false }
+			}
+		}
+	},
+	ActiveTool = "SplitIt"
+}

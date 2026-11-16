@@ -1,0 +1,267 @@
+{
+	Tools = ordered() {
+		kim_LightWarp11 = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "FG_in",
+					Source = "Input",
+					Name = "FG_in",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Blur",
+					Source = "Filter",
+					Name = "[Blur] Filter",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Blur",
+					Source = "XBlurSize",
+					Name = "[Blur]  Size",
+					Default = 7,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Blur",
+					Source = "BlendClone",
+					Name = "[Blur] Blend",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Glow",
+					Source = "Filter",
+					Name = "[Glow] Filter",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Glow",
+					Source = "XGlowSize",
+					Name = "[Glow]  Size",
+					Default = 30.7,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Glow",
+					Source = "Glow",
+					Name = "[Glow] intensity",
+					Default = 0.394,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Glow",
+					Source = "BlendClone",
+					Name = "[Glow] Blend",
+					Default = 0.2,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Glow",
+					Source = "ApplyMode",
+					Name = "[Glow] Apply Mode",
+					Default = 2,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "Glow",
+					Source = "Low",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "Glow",
+					Source = "High",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "BG_in",
+					Source = "Input",
+					Name = "BG_in",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "merge_Mode",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				FG_in = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 894, 76.4545 } },
+				},
+				Bitmap_invert = BitmapMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Invert = Input { Value = 1, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "FG_input",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1064.54, 74.4807 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Bitmap_2alfa = BitmapMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "FG_input",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1063.94, 133.403 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				FG_input = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "FG_in",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 893.81, 168.421 } },
+				},
+				Blur = Blur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input { Value = 7, },
+						Input = Input {
+							SourceOp = "Merge_A",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1196.64, 119.981 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Glow = Glow {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Value = 0.2, },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XGlowSize = Input { Value = 30.7, },
+						Glow = Input { Value = 0.394, },
+						ApplyMode = Input { Value = 2, },
+						High = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "Blur",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1198.7, 161.061 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				BG_SIZE = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "Background",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1198.18, 16.2808 } },
+				},
+				Merge_A = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap_invert",
+							Source = "Mask",
+						},
+						Background = Input {
+							SourceOp = "BG_SIZE",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BG_INPUT",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1198.13, 74.4008 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Background = Background {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1201.26, -89.5023 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				merge_Mode = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap_2alfa",
+							Source = "Mask",
+						},
+						Blend = Input { Value = 0.2, },
+						Background = Input {
+							SourceOp = "FG_input",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Glow",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1200.18, 211.78 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				BG_INPUT = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "BG_in",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 950.62, 318.351 } },
+				},
+				BG_in = PipeRouter {
+					CtrlWShown = false,
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 866.59, 317.411 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "kim_LightWarp11"
+}

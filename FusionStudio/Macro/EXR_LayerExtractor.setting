@@ -1,0 +1,161 @@
+--[[-- 
+EXR Layer Extractor (Simple Version)
+Based on SimpleShuffle by Emilio Sapia
+Modified to include input connection
+
+このバージョンはSimpleShuffleの構造をそのまま使用し、
+入力接続を明示的に追加しています
+--]]--
+
+{
+	Tools = ordered() {
+		EXRExtractor = MacroOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				CommentsNest = Input { Value = 0, },
+				Input1 = InstanceInput {
+					SourceOp = "ChannelBooleans1",
+					Source = "Input",
+					Name = "Input",
+					Page = "Controls",
+				},
+				Blank0 = InstanceInput {
+					SourceOp = "ChannelBooleans1",
+					Source = "Blank1",
+					Page = "Controls",
+				},
+				Select = InstanceInput {
+					SourceOp = "ChannelBooleans1",
+					Source = "Input_LayerSelect",
+					Name = "Layer Select",
+					Page = "Controls",
+				},
+				ToRed = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "RedSource",
+					Name = "To Red",
+					Page = "Controls",
+				},
+				ToGreen = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "GreenSource",
+					Name = "To Green",
+					Page = "Controls",
+				},
+				ToBlue = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "BlueSource",
+					Name = "To Blue",
+					Page = "Controls",
+				},
+				ToAlpha = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "AlphaSource",
+					Name = "To Alpha",
+					Page = "Controls",
+				},
+				Blank1 = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Blank2",
+					Page = "Controls",
+				},
+				RenameFromLayer = {
+					INP_MaxAllowed = 1000000,
+					INP_Integer = false,
+					INPID_InputControl = "ButtonControl",
+					BTNCS_Execute = "@scripts:/Comp/LayerToName.lua",
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = -1000000,
+					LINKID_DataType = "Number",
+					ICS_ControlPage = "Controls",
+					INP_SplineType = "Default",
+					ICD_Width = 0.5,
+					LINKS_Name = "Rename from Layer"
+				},
+				ShowSource = {
+					INP_MaxAllowed = 1000000,
+					INP_Integer = false,
+					INPID_InputControl = "ButtonControl",
+					BTNCS_Execute = [[
+						local tool = comp.ActiveTool
+						if tool.Input1 and tool.Input1:GetConnectedOutput() then
+							comp:SetActiveTool(tool.Input1:GetConnectedOutput():GetTool())
+						end
+					]],
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = -1000000,
+					LINKID_DataType = "Number",
+					ICS_ControlPage = "Controls",
+					INP_SplineType = "Default",
+					ICD_Width = 0.5,
+					LINKS_Name = "Show Source"
+				},
+				Version = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Label",
+					Name = "<p style='color:#555555; text-align: center;'>EXR Extractor v1.0</p>",
+					Page = "Controls",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "CopyAux1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 165, 181.5 } },
+			Tools = ordered() {
+				ChannelBooleans1 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = FuID { "None" }, },
+						Background = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 0 } },
+				},
+				CopyAux1 = Dimension.CopyAux {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+						Mode = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 0 } },
+					UserControls = ordered() {
+						Blank2 = {
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							INP_Passive = true,
+							LINKS_Name = " ",
+						},
+						Label = {
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							INP_Passive = true,
+							LINKS_Name = " ",
+						}
+					}
+				}
+			},
+			UserControls = ordered() {
+				Controls = ControlPage {
+					CT_Visible = true,
+					CTID_DIB_ID = "Icons.Tools.Tabs.Channels",
+					CTS_FullName = "Layer Controls"
+				}
+			}
+		}
+	},
+}

@@ -1,0 +1,102 @@
+--[[-- 
+https://emiliosapia.myportfolio.com
+Written by : Emilio Sapia
+Written on : Apr, 2025
+version 1.0
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--]]--
+
+{
+	Tools = ordered() {
+		SimpleShuffle = MacroOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				CommentsNest = Input { Value = 0, },
+				Input1 = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Input",
+					Page = "Controls",
+				},
+				Blank0 = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Blank1",
+					Page = "Controls",
+				},
+				Select = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Input_LayerSelect",
+					Name = "Layer Select",
+					Page = "Controls",
+				},
+				ToAux = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Channel",
+					Name = "Copy To Aux",
+					Page = "Controls",
+				},
+				Version = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Label",
+					Name = "<p style='color:#555555; text-align: center;'>SimpleShuffle v1.0 © Emilio Sapia 2024</p>",
+					Page = "Controls",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "CopyAux1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 165, 181.5 } },
+			Tools = ordered() {
+				CopyAux1 = Dimension.CopyAux {
+					CtrlWShown = false,
+					Inputs = {
+						Mode = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75757 } },
+					UserControls = ordered() {
+						Label = {
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							INP_Passive = true,
+							LINKS_Name = "<p style='color:#555555; text-align: center;'>Macro name β 0.0</p>",
+						}
+					}
+				}
+			},
+			UserControls = ordered() {
+				Controls = ControlPage {
+					CT_Visible = true,
+					CTID_DIB_ID = "Icons.Tools.Tabs.Channels",
+					CTS_FullName = "Tooltip for Page"
+				},
+				RenamefromLayer = {
+					INP_MaxAllowed = 1000000,
+					INP_Integer = false,
+					INPID_InputControl = "ButtonControl",
+					BTNCS_Execute = "@scripts:/Comp/LayerToName.lua",
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = -1000000,
+					LINKID_DataType = "Number",
+					ICS_ControlPage = "Controls",
+					INP_SplineType = "Default",
+					ICD_Width = 1,
+					LINKS_Name = "Set Name from Layer"
+				}
+			}
+		}
+	},
+}

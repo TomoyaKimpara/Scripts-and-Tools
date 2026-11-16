@@ -1,0 +1,61 @@
+{
+	Tools = ordered() {
+		MacroTool1 = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "MatteControl3",
+					Source = "Background",
+					Name = "Input_BG",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "MatteControl3",
+					Source = "Foreground",
+					Name = "Input_Alpha",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "MatteControl3",
+					Source = "MatteCombine",
+					Default = 4,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "MatteControl3",
+					Source = "CombineOp",
+					Default = 6,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "MatteControl3",
+					Source = "InvertMatte",
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "MatteControl3",
+					Source = "PostMultiplyImage",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "MatteControl3",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				MatteControl3 = MatteControl {
+					CtrlWZoom = false,
+					Inputs = {
+						UseObject = Input { Value = 1, },
+						HideInputs = Input { Value = 1, },
+						MatteCombine = Input { Value = 4, },
+						CombineOp = Input { Value = 6, },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						["Solid.MaskNest"] = Input { Value = 1, },
+						PostMultiplyImage = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1202.67, 437.812 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "MacroTool1"
+}

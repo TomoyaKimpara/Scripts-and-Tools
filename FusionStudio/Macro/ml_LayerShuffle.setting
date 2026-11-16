@@ -1,0 +1,638 @@
+--[[-- 
+https://emiliosapia.myportfolio.com
+Written by : Emilio Sapia
+Written on : Apr, 2025
+version 1.02
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--]]--
+
+{
+	Tools = ordered() {
+		ml_LayerShuffle = MacroOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				Background = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Image1",
+					Name = "Background",
+				},
+				Foreground = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Image2",
+					Name = "Foreground",
+				},
+				Blank0 = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Blank1",
+					Page = "Controls",
+				},
+				Select = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Image1_LayerSelect",
+					Name = "BG Layer Select",
+					Page = "Controls",
+				},
+				SelectFG = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Image2_LayerSelect",
+					Name = "FG Layer Select",
+					Page = "Controls",
+				},
+				Info = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Info",
+					Name = "<p style='color:#555555; text-align: center;'>Channel</p>",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				Info2 = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Info",
+					Name = "<p style='color:#555555; text-align: center;'>FG</p>",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				Info3 = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Info",
+					Name = "<p style='color:#555555; text-align: center;'>Inv</p>",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				Info4 = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Info",
+					Name = "<p style='color:#555555; text-align: center;'>Bw</p>",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				BGRed = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "NumberIn1",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				EnableR = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "EnableR",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				InvertR = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "InvertR",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				SolidR = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "SolidR",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				BGGreen = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "NumberIn2",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				EnableG = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "EnableG",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				InvertG = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "InvertG",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				SolidG = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "SolidG",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				BGBlue = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "NumberIn3",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				EnableB = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "EnableB",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				InvertB = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "InvertB",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				SolidB = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "SolidB",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				BGAlpha = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "NumberIn4",
+					Width = 0.5,
+					Page = "Controls",
+				},
+				EnableA = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "EnableA",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				InvertA = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "InvertA",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				SolidA = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "SolidA",
+					Width = 0.166,
+					Page = "Controls",
+				},
+				Blank1 = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Blank1",
+					Page = "Controls",
+				},
+				Channel = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Channel",
+					Page = "Controls",
+					Name = "Copy To Aux",
+				},
+				Version = InstanceInput {
+					SourceOp = "CustomTool1",
+					Source = "Version",
+					Name = "<p style='color:#555555; text-align: center;'>LayerShuffle v1.0 © Emilio Sapia 2024</p>",
+					Page = "Controls",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "CopyAux1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 385, 82.5 },
+				Flags = {
+					AllowPan = false,
+					ForceModes = false,
+					GridSnap = true,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					ShowInstance = false,
+					RemoveRouters = true
+				},
+				Size = { 236, 165.364, 118, 24.2424 },
+				Direction = "Vertical",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { -275, -205.864 }
+			},
+			Tools = ordered() {
+				CustomTool1 = Custom {
+					Inputs = {
+						NumberIn6 = Input { Value = 1, },
+						NumberIn7 = Input { Value = 2, },
+						NumberIn8 = Input { Value = 3, },
+						LUTIn1 = Input {
+							SourceOp = "CustomTool1LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool1LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool1LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool1LUTIn4",
+							Source = "Value",
+						},
+						Intermediate1 = Input {
+							Value = "r1",
+							Expression = "iif(EnableR==0,iif(NumberIn1==0,Text(\"r1\"),iif(NumberIn1==1,Text(\"g1\"),iif(NumberIn1==2,Text(\"b1\"),Text(\"a1\")))),iif(NumberIn1==0,Text(\"r2\"),iif(NumberIn1==1,Text(\"g2\"),iif(NumberIn1==2,Text(\"b2\"),Text(\"a2\")))))",
+						},
+						Intermediate2 = Input {
+							Value = "g1",
+							Expression = "iif(EnableG==0,iif(NumberIn2==0,Text(\"r1\"),iif(NumberIn2==1,Text(\"g1\"),iif(NumberIn2==2,Text(\"b1\"),Text(\"a1\")))),iif(NumberIn2==0,Text(\"r2\"),iif(NumberIn2==1,Text(\"g2\"),iif(NumberIn2==2,Text(\"b2\"),Text(\"a2\")))))",
+						},
+						Intermediate3 = Input {
+							Value = "b1",
+							Expression = "iif(EnableB==0,iif(NumberIn3==0,Text(\"r1\"),iif(NumberIn3==1,Text(\"g1\"),iif(NumberIn3==2,Text(\"b1\"),Text(\"a1\")))),iif(NumberIn3==0,Text(\"r2\"),iif(NumberIn3==1,Text(\"g2\"),iif(NumberIn3==2,Text(\"b2\"),Text(\"a2\")))))",
+						},
+						Intermediate4 = Input {
+							Value = "a1",
+							Expression = "iif(EnableA==0,iif(NumberIn4==0,Text(\"r1\"),iif(NumberIn4==1,Text(\"g1\"),iif(NumberIn4==2,Text(\"b1\"),Text(\"a1\")))),iif(NumberIn4==0,Text(\"r2\"),iif(NumberIn4==1,Text(\"g2\"),iif(NumberIn4==2,Text(\"b2\"),Text(\"a2\")))))",
+						},
+						RedExpression = Input {
+							Value = "i1",
+							Expression = "iif(SolidR==0, iif(InvertR==0,Text(\"i1\"),Text(\"-i1\")),iif(SolidR>0,Text(\"0\"),Text(\"1\")))",
+						},
+						GreenExpression = Input {
+							Value = "i2",
+							Expression = "iif(SolidG==0, iif(InvertG==0,Text(\"i2\"),Text(\"-i2\")),iif(SolidG>0,Text(\"0\"),Text(\"1\")))",
+						},
+						BlueExpression = Input {
+							Value = "i3",
+							Expression = "iif(SolidB==0, iif(InvertB==0,Text(\"i3\"),Text(\"-i3\")),iif(SolidB>0,Text(\"0\"),Text(\"1\")))",
+						},
+						AlphaExpression = Input {
+							Value = "i4",
+							Expression = "iif(SolidA==0, iif(InvertA==0,Text(\"i4\"),Text(\"-i4\")),iif(SolidA>0,Text(\"0\"),Text(\"1\")))",
+						},
+						NumberControls = Input { Value = 1, },
+						NameforNumber1 = Input { Value = "Red to", },
+						NameforNumber2 = Input { Value = "Green to", },
+						NameforNumber3 = Input { Value = "Blue to", },
+						NameforNumber4 = Input { Value = "Alpha to", },
+						ShowNumber5 = Input { Value = 0, },
+						NameforNumber5 = Input {
+							Value = Text {
+							},
+						},
+						ShowNumber6 = Input { Value = 0, },
+						NameforNumber6 = Input {
+							Value = Text {
+							},
+						},
+						ShowNumber7 = Input { Value = 0, },
+						NameforNumber7 = Input {
+							Value = Text {
+							},
+						},
+						ShowNumber8 = Input { Value = 0, },
+						NameforNumber8 = Input {
+							Value = Text {
+							},
+						},
+						PointControls = Input { Value = 1, },
+						ShowPoint1 = Input { Value = 0, },
+						NameforPoint1 = Input {
+							Value = Text {
+							},
+						},
+						ShowPoint2 = Input { Value = 0, },
+						ShowPoint3 = Input { Value = 0, },
+						ShowPoint4 = Input { Value = 0, },
+						NumberIn2 = Input { Value = 1, },
+						NumberIn3 = Input { Value = 2, },
+						NumberIn4 = Input { Value = 3, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, 247.5 } },
+					UserControls = ordered() {
+						Info = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							LINKS_Name = "<p style='color:#555555; text-align: center;'>Macro name β 0.0</p>"
+						},
+						Version = {
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							INP_Passive = true,
+							LINKS_Name = "<p style='color:#555555; text-align: center;'>Macro name β 0.0</p>",
+						},
+						NumberIn1 = {
+							{ CCS_AddString = "Red" },
+							{ CCS_AddString = "Green" },
+							{ CCS_AddString = "Blue" },
+							{ CCS_AddString = "Alpha" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ComboControl",
+							CC_LabelPosition = "Horizontal",
+							INP_MaxScale = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Width = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Red to"
+						},
+						EnableR = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						InvertR = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						SolidR = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICD_Width = 0.166,
+							CBC_TriState = true,
+							INP_External = false,
+							LINKS_Name = ""
+						},
+						NumberIn2 = {
+							{ CCS_AddString = "Red" },
+							{ CCS_AddString = "Green" },
+							{ CCS_AddString = "Blue" },
+							{ CCS_AddString = "Alpha" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ComboControl",
+							CC_LabelPosition = "Horizontal",
+							INP_MaxScale = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Width = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Green to"
+						},
+						EnableG = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						InvertG = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						SolidG = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICD_Width = 0.166,
+							CBC_TriState = true,
+							INP_External = false,
+							LINKS_Name = ""
+						},
+						NumberIn3 = {
+							{ CCS_AddString = "Red" },
+							{ CCS_AddString = "Green" },
+							{ CCS_AddString = "Blue" },
+							{ CCS_AddString = "Alpha" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ComboControl",
+							CC_LabelPosition = "Horizontal",
+							INP_MaxScale = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Width = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Blue to"
+						},
+						EnableB = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						InvertB = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						SolidB = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICD_Width = 0.166,
+							CBC_TriState = true,
+							INP_External = false,
+							LINKS_Name = ""
+						},
+						NumberIn4 = {
+							{ CCS_AddString = "Red" },
+							{ CCS_AddString = "Green" },
+							{ CCS_AddString = "Blue" },
+							{ CCS_AddString = "Alpha" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ComboControl",
+							CC_LabelPosition = "Horizontal",
+							INP_MaxScale = 1,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INP_SplineType = "Default",
+							ICD_Width = 0.5,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Alpha to"
+						},
+						EnableA = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						InvertA = {
+							ICD_Width = 0.166,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_SplineType = "Default",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							CBC_TriState = false,
+							LINKS_Name = "",
+						},
+						SolidA = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICD_Width = 0.166,
+							CBC_TriState = true,
+							INP_External = false,
+							LINKS_Name = ""
+						}
+					}
+				},
+				CopyAux1 = Dimension.CopyAux {
+					Inputs = {
+						Mode = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, 280.5 } },
+				}
+			},
+			UserControls = ordered() {
+				Hide = ControlPage {
+					CT_Visible = false,
+					CTID_DIB_ID = "Icons.Tools.Tabs.Matte",
+					CTS_FullName = "Tooltip for Page1"
+				},
+				Controls = ControlPage {
+					CT_Visible = true,
+					CTID_DIB_ID = "Icons.Tools.Tabs.Channels",
+					CTS_FullName = "Tooltip for Page"
+				},
+				RenamefromLayer = {
+					INP_MaxAllowed = 1000000,
+					ICS_ControlPage = "Controls",
+					IC_Visible = true,
+					INP_Integer = false,
+					INPID_InputControl = "ButtonControl",
+					BTNCS_Execute = "@scripts:/Comp/LayerToName.lua",
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = -1000000,
+					LINKID_DataType = "Number",
+					INP_SplineType = "Default",
+					ICD_Width = 1,
+					LINKS_Name = "Set Name from Layer"
+				}
+			}
+		},
+		CustomTool1LUTIn1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+		},
+		CustomTool1LUTIn2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+		},
+		CustomTool1LUTIn3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+		},
+		CustomTool1LUTIn4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+		}
+	},
+	ActiveTool = "LayerShuffle"
+}

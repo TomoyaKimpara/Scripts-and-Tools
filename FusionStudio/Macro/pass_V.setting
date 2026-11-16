@@ -1,0 +1,55 @@
+{
+	Tools = ordered() {
+		pass_V = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "V_in",
+					Source = "Input",
+					Name = "V_Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "in_",
+					Source = "Input",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "ChannelBooleans3",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				ChannelBooleans3 = ChannelBoolean {
+					CtrlWZoom = false,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						EnableExtraChannels = Input { Value = 1, },
+						ToXVector = Input { Value = 0, },
+						ToYVector = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "in_",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "V_in",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -246.521, 2232.72 } },
+				},
+				V_in = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { -340.45, 2232.72 } },
+				},
+				in_ = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { -269.175, 2176.89 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "pass_V"
+}

@@ -1,0 +1,196 @@
+{
+	Tools = ordered() {
+		KimEXR_Light = MacroOperator {
+			CtrlWZoom = false,
+
+			Inputs = ordered() {
+				ImgIn = InstanceInput {
+					SourceOp = "WA1",
+					Source   = "Input",
+					Name     = "Input",
+					Width    = 0.85,
+					Page     = "Controls",
+				},
+				LayerSelect = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source   = "Input_LayerSelect",
+					Name     = "Layer Select",
+					Page     = "Controls",
+				},
+			},
+
+			Outputs = ordered() {
+				Output = InstanceOutput {
+					SourceOp = "CopyAux1",
+					Source   = "Output",
+					LINKID_DataType = "Image",
+					LINK_Main = 1,
+				},
+			},
+
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+
+			Tools = ordered() {
+
+				----------------------------------------------------------------
+				-- PipeRouter
+				-- Settings > Hide Incoming Connections : デフォルト ON
+				----------------------------------------------------------------
+				WA1 = PipeRouter {
+					CtrlWZoom = false,
+
+					Attrs = {
+						TOOLS_HideIncoming = true,
+					},
+
+					ViewInfo = OperatorInfo { Pos = { -120, 0 } },
+				},
+
+				----------------------------------------------------------------
+				-- CopyAux
+				-- こちらも Incoming 非表示
+				----------------------------------------------------------------
+				CopyAux1 = Dimension.CopyAux {
+					CtrlWShown = false,
+
+					Attrs = {
+						TOOLS_HideIncoming = true,
+					},
+
+					Inputs = {
+						Mode = Input { Value = 2 },
+						Channel = Input { Value = FuID { "Color" } },
+						Input_LayerSelect = Input { },
+						Input = Input {
+							SourceOp = "WA1",
+							Source   = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 0 } },
+				},
+			},
+
+			UserControls = ordered() {
+				Controls = ControlPage {
+					CT_Visible   = true,
+					CTID_DIB_ID  = "Icons.Tools.Tabs.Channels",
+					CTS_FullName = "Controls",
+				},
+
+				ShowSourceBtn = {
+					INPID_InputControl = "ButtonControl",
+					ICS_ControlPage = "Controls",
+					ICD_Width = 1,
+					LINKS_Name = "Show Source",
+					BTNCS_Execute = [[
+						local tool = comp.ActiveTool
+						if not tool then return end
+						local inp = tool.ImgIn
+						if not inp or not inp.GetConnectedOutput then return end
+						local out = inp:GetConnectedOutput()
+						if not out then return end
+						local srcTool = out:GetTool()
+						if srcTool then comp:SetActiveTool(srcTool) end
+					]],
+				},
+
+				StoredSource = {
+					INPID_InputControl = "TextEditControl",
+					ICS_ControlPage = "Controls",
+					ICD_Width = 1,
+					LINKS_Name = "Stored Source",
+					LINKID_DataType = "Text",
+					INP_Default = "",
+				},
+
+				StoreBtn = {
+					INPID_InputControl = "ButtonControl",
+					ICS_ControlPage = "Controls",
+					ICD_Width = 0.5,
+					LINKS_Name = "Store",
+					BTNCS_Execute = [[
+						local tool = comp.ActiveTool
+						if not tool then return end
+
+						local inp = tool.ImgIn
+						if not inp or not inp.GetConnectedOutput then return end
+						local out = inp:GetConnectedOutput()
+						if not out then return end
+
+						local srcTool = out:GetTool()
+						if not srcTool then return end
+
+						local name = srcTool:GetAttrs()["TOOLS_Name"]
+						if not name or name == "" then return end
+						name = tostring(name):gsub("^%s+",""):gsub("%s+$","")
+						if name == "" then return end
+
+						tool:SetData("KimEXR_Light.StoredSource", name)
+						tool.StoredSource = name
+					]],
+				},
+
+				RestoreBtn = {
+					INPID_InputControl = "ButtonControl",
+					ICS_ControlPage = "Controls",
+					ICD_Width = 0.5,
+					LINKS_Name = "Restore",
+					BTNCS_Execute = [[
+						local tool = comp.ActiveTool
+						if not tool then return end
+
+						local s = tool:GetData("KimEXR_Light.StoredSource")
+						if not s or tostring(s) == "" then s = tool.StoredSource end
+						s = tostring(s or ""):gsub("^%s+",""):gsub("%s+$","")
+						if s == "" then return end
+
+						local src = comp:FindTool(s)
+						if not src then return end
+
+						local out = src.Output
+						if not out and src.GetOutputList then
+							for _,v in pairs(src:GetOutputList()) do out = v break end
+						end
+						if not out then return end
+
+						if tool.ImgIn and tool.ImgIn.ConnectTo then
+							tool.ImgIn:ConnectTo(out)
+						else
+							tool.ImgIn = out
+						end
+
+						tool.StoredSource = s
+					]],
+				},
+
+				Sep1 = {
+					INPID_InputControl = "SeparatorControl",
+					ICS_ControlPage = "Controls",
+					ICD_Width = 1,
+				},
+
+				SetNameFromLayer = {
+					INPID_InputControl = "ButtonControl",
+					ICS_ControlPage = "Controls",
+					ICD_Width = 1,
+					LINKS_Name = "Set Name from Layer",
+					BTNCS_Execute = [[
+						local tool = comp.ActiveTool
+						if not tool then return end
+						local t = comp.CurrentTime or 0
+						local v = tool.LayerSelect[t]
+						local name = (type(v)=="table") and v[1] or tostring(v)
+						name = tostring(name or ""):gsub("^%s+",""):gsub("%s+$","")
+						if name ~= "" then tool:SetAttrs({ TOOLS_Name = name }) end
+					]],
+				},
+			},
+
+			Attrs = {
+				TOOLS_RegID = "KimEXR_Light",
+				REG_NoMotionBlur = true,
+			},
+		},
+	},
+	ActiveTool = "KimEXR_Light",
+}

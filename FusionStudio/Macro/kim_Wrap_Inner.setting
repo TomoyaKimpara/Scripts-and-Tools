@@ -1,0 +1,264 @@
+{
+	Tools = ordered() {
+		kim_Wrap_Inner111 = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter8",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Resize2",
+					Source = "Width",
+					Default = 3840,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Resize2",
+					Source = "Height",
+					Default = 2160,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Blur4",
+					Source = "XBlurSize",
+					Default = 22,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "ColorCurves2",
+					Source = "ColorSpace",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "ColorCurves2",
+					Source = "EditAlpha",
+					Name = "Alpha",
+					Width = 0.5,
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "ColorCurves2",
+					Source = "Alpha",
+					ControlGroup = 7,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "ColorCurves2",
+					Source = "Blend",
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "ColorCurves2",
+					Source = "ProcessAlpha",
+					ControlGroup = 9,
+					Default = 1,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "BrightnessContrast2",
+					Source = "Gain",
+					Default = 1,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "BrightnessContrast2",
+					Source = "Lift",
+					Default = 0,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "BrightnessContrast2",
+					Source = "Gamma",
+					Default = 0.84,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "BrightnessContrast2",
+					Source = "Contrast",
+					Default = 0,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "BrightnessContrast2",
+					Source = "Brightness",
+					Default = 0,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "BrightnessContrast2",
+					Source = "Saturation",
+					Default = 1,
+				},
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "ColorCurves2Alpha",
+					Source = "Value",
+				},
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge22",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter8 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { 1440.58, 625.603 } },
+					Colors = { TileColor = { R = 0.92156862745098, G = 0.431372549019608, B = 0 }, }
+				},
+				Resize2 = BetterResize {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 3840, },
+						Height = Input { Value = 2160, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "PipeRouter8",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1607.1, 623.529 } },
+				},
+				Bitmap6 = BitmapMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 3840, },
+						MaskHeight = Input { Value = 2160, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "Resize2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1710.5, 622.988 } },
+				},
+				Blur4 = Blur {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input { Value = 22, },
+						Input = Input {
+							SourceOp = "Bitmap6",
+							Source = "Mask",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1810.6, 622.56 } },
+				},
+				ColorCurves2 = ColorCurves {
+					PickColor = true,
+					CtrlWShown = false,
+					Inputs = {
+						EditRed = Input { Value = 0, },
+						EditGreen = Input { Value = 0, },
+						EditBlue = Input { Value = 0, },
+						Red = Input {
+							SourceOp = "ColorCurves2Red",
+							Source = "Value",
+						},
+						Green = Input {
+							SourceOp = "ColorCurves2Green",
+							Source = "Value",
+						},
+						Blue = Input {
+							SourceOp = "ColorCurves2Blue",
+							Source = "Value",
+						},
+						Alpha = Input {
+							SourceOp = "ColorCurves2Alpha",
+							Source = "Value",
+						},
+						NumberOfSamplesOnMatchCurve = Input { Value = 64, },
+						IgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Blur4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1814.37, 653.417 } },
+					Tools = {
+						ColorCurves2Red = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.755739750445633, -0.0148148148148148 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 1, 0.488888888888896 } }
+								}
+							},
+							SplineColor = { Red = 255, Green = 52, Blue = 52 },
+							CtrlWZoom = false,
+						},
+						ColorCurves2Alpha = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.798520499108734, -0.00740740740740736 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 1, 0.488888888888896 } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWZoom = false,
+							NameSet = true,
+						},
+						ColorCurves2Green = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.755739750445633, -0.0148148148148148 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 1, 0.488888888888896 } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 255, Blue = 0 },
+							CtrlWZoom = false,
+						},
+						ColorCurves2Blue = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.755739750445633, -0.0148148148148148 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 1, 0.488888888888896 } }
+								}
+							},
+							SplineColor = { Red = 68, Green = 68, Blue = 255 },
+							CtrlWZoom = false,
+						}
+					},
+				},
+				BrightnessContrast2 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0, },
+						Blue = Input { Value = 0, },
+						Alpha = Input { Value = 1, },
+						Gamma = Input { Value = 0.84, },
+						Input = Input {
+							SourceOp = "ColorCurves2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1814.37, 686.417 } },
+				},
+				Merge22 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap6",
+							Source = "Mask",
+						},
+						Background = Input {
+							SourceOp = "Background5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BrightnessContrast2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1813.59, 715.989 } },
+				},
+				Background5 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 3840, },
+						Height = Input { Value = 2160, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1957.82, 716.525 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "kim_Wrap_Inner111"
+}

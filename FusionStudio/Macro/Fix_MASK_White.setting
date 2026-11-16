@@ -1,0 +1,94 @@
+{
+	Tools = ordered() {
+		Fix_MASK_White1 = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Fix_MASK_White",
+					Source = "Image1",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Fix_MASK_White",
+					Source = "Blend",
+					Default = 1,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Fix_MASK_White",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Fix_MASK_White = Custom {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "alfa__min1FIX_1_1_1LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "alfa__min1FIX_1_1_1LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "alfa__min1FIX_1_1_1LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "alfa__min1FIX_1_1_1LUTIn4",
+							Source = "Value",
+						},
+						RedExpression = Input { Value = "if(r1<0,0,r1)", },
+						GreenExpression = Input { Value = "if(g1<0,0,g1)", },
+						BlueExpression = Input { Value = "if(b1<0,0,b1)", },
+						AlphaExpression = Input { Value = "if(a1>1,1,a1)", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 2652.99, 925.571 } },
+				},
+				alfa__min1FIX_1_1_1LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				alfa__min1FIX_1_1_1LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				alfa__min1FIX_1_1_1LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+					CtrlWZoom = false,
+				},
+				alfa__min1FIX_1_1_1LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+					CtrlWZoom = false,
+				}
+			},
+		}
+	},
+	ActiveTool = "Fix_MASK_White1"
+}

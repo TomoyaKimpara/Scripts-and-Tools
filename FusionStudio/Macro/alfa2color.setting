@@ -1,0 +1,51 @@
+{
+	Tools = ordered() {
+		alfa2color = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter25",
+					Source = "Input",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge15_1_2_2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter25 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 802.967, -17.8682 } },
+				},
+				Background3_1_3 = Background {
+					CtrlWZoom = false,
+					Inputs = {
+						GlobalIn = Input { Value = 1001, },
+						GlobalOut = Input { Value = 10001, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 943.083, 83.3847 } },
+				},
+				Merge15_1_2_2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Background3_1_3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter25",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 802.967, 83.3847 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "alfa2color"
+}

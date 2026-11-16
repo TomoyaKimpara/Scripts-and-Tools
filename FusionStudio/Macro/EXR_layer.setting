@@ -1,0 +1,107 @@
+{
+	Tools = ordered() {
+		WirelessAnything1 = Fuse.WirelessAnything {
+			Inputs = {
+				DataType = Input { Value = FuID { "Image" }, }
+			},
+			ViewInfo = OperatorInfo { Pos = { 279.01, 650.939 } },
+			Version = 150
+		},
+		SimpleShuffle = MacroOperator {
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:\\Kimpara\\"
+					}
+				},
+				SxSFilename = "C:\\Users\\025kim\\AppData\\Roaming\\Blackmagic Design\\Fusion\\Macros\\Kimpara\\ml_SimpleShuffle.setting",
+			},
+			Inputs = ordered() {
+				CommentsNest = Input { Value = 0, },
+				Input1 = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Input",
+					Page = "Controls",
+				},
+				Blank0 = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Blank1",
+					Page = "Controls",
+				},
+				Select = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Input_LayerSelect",
+					Name = "Layer Select",
+					Page = "Controls",
+				},
+				ToAux = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Channel",
+					Name = "Copy To Aux",
+					Page = "Controls",
+				},
+				Version = InstanceInput {
+					SourceOp = "CopyAux1",
+					Source = "Label",
+					Name = "<p style='color:#555555; text-align: center;'>SimpleShuffle v1.0 © Emilio Sapia 2024</p>",
+					Page = "Controls",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "CopyAux1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 279.01, 683.939 } },
+			Tools = ordered() {
+				CopyAux1 = Dimension.CopyAux {
+					CtrlWShown = false,
+					Inputs = {
+						Mode = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "WirelessAnything1",
+							Source = "ImageOutput",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+					UserControls = ordered() {
+						Label = {
+							INP_External = false,
+							INP_Passive = true,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "<p style='color:#555555; text-align: center;'>Macro name β 0.0</p>",
+						}
+					}
+				}
+			},
+			UserControls = ordered() {
+				Controls = ControlPage {
+					CT_Visible = true,
+					CTID_DIB_ID = "Icons.Tools.Tabs.Channels",
+					CTS_FullName = "Tooltip for Page"
+				},
+				RenamefromLayer = {
+					INP_MaxAllowed = 1000000,
+					INP_Integer = false,
+					INPID_InputControl = "ButtonControl",
+					BTNCS_Execute = "@scripts:/Comp/LayerToName.lua",
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = -1000000,
+					LINKID_DataType = "Number",
+					ICS_ControlPage = "Controls",
+					ICD_Width = 1,
+					INP_SplineType = "Default",
+					LINKS_Name = "Set Name from Layer"
+				}
+			}
+		}
+	},
+	ActiveTool = "SimpleShuffle"
+}

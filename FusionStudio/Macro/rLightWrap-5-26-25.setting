@@ -1,0 +1,1734 @@
+{
+	Tools = ordered() {
+		rLightWrap = MacroOperator {
+			Inputs = ordered() {
+				ForegroundInput = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_FG_DEPTH",
+					Source = "Input",
+					Name = "Foreground Input",
+				},
+				BloomInput = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_BG_DEPTH",
+					Source = "Input",
+					Name = "Bloom Input",
+				},
+				EffectMask = InstanceInput {
+					SourceOp = "rLightWrap_EFFECT_MASK",
+					Source = "EffectMask",
+					Name = "Effect Mask",
+				},
+				BloomMask = InstanceInput {
+					SourceOp = "rLightWrap_BLOOM_PREMATTE",
+					Source = "EffectMask",
+					Name = "Bloom Mask",
+				},
+				ViewMode = InstanceInput {
+					SourceOp = "rLightWrap_VIEWMODE",
+					Source = "Source",
+					Name = "View Mode",
+				},
+				GlowPreMatte = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "PreMatteLabel",
+					Default = 1,
+					Page = "Controls",
+				},
+					MatteLow = InstanceInput {
+						SourceOp = "rLightWrap_BLOOM_PREMATTE",
+						Source = "Low",
+						ControlGroup = 8,
+						Default = 0,
+						Name = "Pre-Matte Low",
+						Page = "Controls",
+					},
+					MatteHigh = InstanceInput {
+						SourceOp = "rLightWrap_BLOOM_PREMATTE",
+						Source = "High",
+						ControlGroup = 8,
+						Default = 1,
+						Name = "Pre-Matte High",
+						Page = "Controls",
+					},
+					MatteBlur = InstanceInput {
+						SourceOp = "rLightWrap_BLOOM_PREMATTE",
+						Source = "SoftEdge",
+						Name = "Pre-Matte Blur",
+						Default = 0,
+						Page = "Controls",
+					},
+				KeyChannel = InstanceInput {
+					SourceOp = "rGlow_PreKey",
+					Source = "Channel",
+					Name = "Key Channel",
+				},
+				LowThresh = InstanceInput {
+					SourceOp = "rGlow_PreKey",
+					Source = "Low",
+					Default = 0,
+					ControlGroup = 9,
+					Name = "Low Threshold",
+				},
+				HighThresh = InstanceInput {
+					SourceOp = "rGlow_PreKey",
+					Source = "High",
+					Default = 1,
+					ControlGroup = 9,
+					Name = "High Threshold",
+				},
+				BloomSize = InstanceInput {
+					SourceOp = "rGlow_Pass1",
+					Source = "XBlurSize",
+					Default = 1,
+					Page = "Controls",
+					Name = "Bloom Size",
+				},
+				BloomFalloff = InstanceInput {
+					SourceOp = "rGlow_Controls",
+					Source = "Falloff",
+					Default = 0.5,
+					Page = "Controls",
+				},
+				BloomSpread = InstanceInput {
+					SourceOp = "rGlow_Controls",
+					Source = "Spread",
+					Default = 1,
+					Page = "Controls",
+				},
+				BloomPasses = InstanceInput {
+					SourceOp = "rGlow_Controls",
+					Source = "Passes",
+					Default = 4,
+					Page = "Controls",
+				},
+				BloomGain = InstanceInput {
+					SourceOp = "rGlow_PostGain",
+					Source = "Gain",
+					Name = "Gain",
+					Default = 1,
+					Page = "Controls",
+				},
+				ColorLabel = InstanceInput {
+					SourceOp = "rGlow_Colorize",
+					Source = "Colors",
+				},
+					Red = InstanceInput {
+						SourceOp = "rGlow_Colorize",
+						Source = "Red",
+						ControlGroup = 15,
+						Default = 1,
+					},
+					Green = InstanceInput {
+						SourceOp = "rGlow_Colorize",
+						Source = "Green",
+						ControlGroup = 15,
+						Default = 1,
+					},
+					Blue = InstanceInput {
+						SourceOp = "rGlow_Colorize",
+						Source = "Blue",
+						ControlGroup = 15,
+						Default = 1,
+					},
+					Blank1 = InstanceInput {
+						SourceOp = "rLightWrap_EFFECT_MERGE",
+						Source = "ApplyBlank1",
+						Page = "Controls",
+					},
+					Saturation = InstanceInput {
+						SourceOp = "rGlow_Colorize",
+						Source = "Saturation",
+						Default = 1,
+					},
+				UseCurve = InstanceInput {
+					SourceOp = "rLightWrap_OpacityCurve",
+					Source = "UseCurve",
+					Page = "Controls",
+				},
+				HideCurve = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "HideCurve",
+					Page = "Controls",
+				},
+					Opacity = InstanceInput {
+						SourceOp = "rLightWrap_OpacityCurve",
+						Source = "Alpha",
+						Name = "Opacity",
+						ControlGroup = 24,
+						Page = "Controls",
+					},
+				Blank2 = InstanceInput {
+                    SourceOp = "rLightWrap_EFFECT_MERGE",
+                    Source = "Blank1",
+                    Page = "Controls",
+                },
+				ApplyMode = InstanceInput {
+					SourceOp = "rLightWrap_EFFECT_MERGE",
+					Source = "ApplyMode",
+					Page = "Controls",
+				},
+				ApplyGain = InstanceInput {
+					SourceOp = "rLightWrap_EFFECT_MERGE",
+					Source = "Gain",
+					Default = 1,
+					Page = "Controls",
+				},
+				Blend = InstanceInput {
+					SourceOp = "rLightWrap_EFFECT_MERGE",
+					Source = "Blend",
+					Name = "Effect Blend",
+					Default = 1,
+					Page = "Controls",
+				},
+				Blank3 = InstanceInput {
+                    SourceOp = "rLightWrap_EFFECT_MERGE",
+                    Source = "ApplyBlank1",
+                    Page = "Controls",
+                },
+				PreDividePostMultiply = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "PreDividePostMultiply",
+					Default = 0,
+					Page = "Controls",
+				},
+				HideGlowFix = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "HideGlowFix",
+					Page = "Controls",
+				},
+					UseGlowFix = InstanceInput {
+						SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+						Source = "UseGlowFix",
+						Default = 0,
+						Page = "Controls",
+					},
+				BloomMaskLabel = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "BloomMaskLabel",
+					Name = "Bloom Mask Settings",
+					Page = "Misc",
+				},
+					BloomMaskLow = InstanceInput {
+						SourceOp = "rLightWrap_BLOOM_PREMATTE",
+						Source = "Low",
+						Default = 0,
+						ControlGroup = 7,
+						Page = "Misc",
+					},
+					BloomMaskHigh = InstanceInput {
+						SourceOp = "rLightWrap_BLOOM_PREMATTE",
+						Source = "High",
+						Default = 1,
+						ControlGroup = 7,
+						Page = "Misc",
+					},
+					InvertBloomMask = InstanceInput {
+						SourceOp = "rLightWrap_BLOOM_PREMATTE",
+						Source = "Invert",
+						Page = "Misc",
+					},
+				Blank4 = InstanceInput {
+                    SourceOp = "rLightWrap_EFFECT_MERGE",
+                    Source = "Blank1",
+                    Page = "Misc",
+                },
+				ProxyScaleLabel = InstanceInput {
+					SourceOp = "rGlow_Controls",
+					Source = "ProxyScaleLabel",
+					Page = "Misc",
+				},
+					MinProxyScale = InstanceInput {
+						SourceOp = "rGlow_Controls",
+						Source = "MinProxyScale",
+						ControlGroup = 8,
+						Default = 0.0625,
+						Page = "Misc",
+					},
+					MaxProxyScale = InstanceInput {
+						SourceOp = "rGlow_Controls",
+						Source = "MaxProxyScale",
+						Default = 0.5,
+						ControlGroup = 8,
+						Page = "Misc",
+					},
+				Depth_Dither = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "Depth_Dither",
+					Page = "Misc",
+				},
+					InputDepth = InstanceInput {
+						SourceOp = "rLightWrap_CHANGE_FG_DEPTH",
+						Source = "Depth",
+						Default = 0,
+						Name = "Input Depth",
+						Page = "Misc",
+					},
+					InputDither = InstanceInput {
+						SourceOp = "rLightWrap_CHANGE_FG_DEPTH",
+						Source = "Dither",
+						Default = 0,
+						Name = "Input Dither",
+						Page = "Misc",
+					},
+					OutputDepth = InstanceInput {
+						SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+						Source = "Depth",
+						Default = 0,
+						Name = "Output Depth",
+						Page = "Misc",
+					},
+					OutputDither = InstanceInput {
+						SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+						Source = "Dither",
+						Default = 0,
+						Name = "Output Dither",
+						Page = "Misc",
+					},
+				Blend = InstanceInput {
+					SourceOp = "rLightWrap_EFFECT_MASK",
+					Source = "Blend",
+					Name = "Blend",
+					Page = "Settings",
+					Default = 1,
+				},
+				Blank5 = InstanceInput {
+                    SourceOp = "rLightWrap_EFFECT_MERGE",
+                    Source = "Blank1",
+                    Page = "Settings",
+                },
+				ApplyMaskInverted = InstanceInput {
+					SourceOp = "rLightWrap_EFFECT_MASK",
+					Source = "ApplyMaskInverted",
+					Page = "Settings",
+				},
+				MultiplyByMask = InstanceInput {
+					SourceOp = "rLightWrap_EFFECT_MASK",
+					Source = "MultiplyByMask",
+					Page = "Settings",
+				},
+				Blank6 = InstanceInput {
+                    SourceOp = "rLightWrap_EFFECT_MERGE",
+                    Source = "Blank1",
+                    Page = "Settings",
+                },
+				ClippingMode = InstanceInput {
+					SourceOp = "rGlow_PreKey",
+					Source = "ClippingMode",
+					Name = "Clipping Mode",
+					Page = "Settings",
+				},
+				PseudoCommentsNest = InstanceInput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "CommentsNest",
+					Page = "Settings",
+				},
+					PseudoComments = InstanceInput {
+						SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+						Source = "Comments",
+						Page = "Settings",
+					},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "rLightWrap_CHANGE_OUTPUT_DEPTH",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				rLightWrap_BLOOM_PREMATTE = BitmapMask {
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						PaintMode = Input { Value = FuID { "Multiply" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "rLightWrap_INVERT_FG_ALPHA",
+							Source = "Mask",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 511.5 } },
+				},
+				rGlow_Pass1 = Blur {
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input { Value = 1, },
+						ClippingMode = Input {
+							Value = FuID { "Domain" },
+							Expression = "rGlow_PreKey.ClippingMode",
+						},
+						Input = Input {
+							SourceOp = "rGlow_PreGain",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 544.5 } },
+				},
+				rLightWrap_PREMATTE_EDGESOFTEN = Blur {
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0, },
+						Blue = Input { Value = 0, },
+						XBlurSize = Input { Value = 0, },
+						ClippingMode = Input {
+							Value = FuID { "Domain" },
+							Expression = "rGlow_PreKey.ClippingMode",
+						},
+						Input = Input {
+							SourceOp = "rLightWrap_BLOOM_PREMATTE",
+							Source = "Mask",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 577.5 } },
+				},
+				rGlow_ShrinkPass2 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=2 and 1 or 0", },
+						Size = Input {
+							Value = 0.5,
+							Expression = "ProxyScale",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						ProxyScale = Input { Expression = "rGlow_Controls.MaxProxyScale", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 577.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_Pass2 = Blur {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=2 and 1 or 0", },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input {
+							Value = 12.8,
+							Expression = "rGlow_Pass1.XBlurSize*rGlow_Controls.Spread*(FactorIndex/(1/rGlow_ShrinkPass2.ProxyScale))",
+						},
+						ClippingMode = Input {
+							Value = FuID { "Domain" },
+							Expression = "rGlow_PreKey.ClippingMode",
+						},
+						Input = Input {
+							SourceOp = "rGlow_ShrinkPass2",
+							Source = "Output",
+						},
+						FactorIndex = Input { Value = 2, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 577.5 } },
+					UserControls = ordered() {
+						FactorIndex = {
+							INPID_InputControl = "SliderControl",
+							INP_Integer = true,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Factor Index",
+						}
+					}
+				},
+				rGlow_UnShrinkPass2 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=2 and 1 or 0", },
+						Size = Input {
+							Value = 0.5,
+							Expression = "ProxyScale",
+						},
+						InvertTransform = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rGlow_Pass2",
+							Source = "Output",
+						},
+						ProxyScale = Input { Expression = "rGlow_ShrinkPass2.ProxyScale", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 577.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_AddP2 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0.707106781186547,
+							Expression = "rGlow_Controls.Passes>=2 and 1/(rGlow_Pass2.FactorIndex^rGlow_Controls.Falloff) or 0",
+						},
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "rGlow_Pass1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rGlow_UnShrinkPass2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 577.5 } },
+				},
+				rGlow_ShrinkPass3 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=3 and 1 or 0", },
+						Size = Input {
+							Value = 0.427083333333333,
+							Expression = "ProxyScale",
+						},
+						XSize = Input { Value = 0.4270833333333, },
+						YSize = Input { Value = 0.4270833333333, },
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.427083333333333,
+							Expression = "rGlow_Controls.MaxProxyScale*(5/6)+rGlow_Controls.MinProxyScale*(1/6)",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 610.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.25,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rLightWrap_CORRECT_DOMAIN = SetDomain {
+					NameSet = true,
+					Inputs = {
+						Combine = Input { Expression = "iif(rGlow_PreKey.ClippingMode.Value==\"None\",\"Union\",\"Copy\")", },
+						Input = Input {
+							SourceOp = "rLightWrap_INPUT_CROP",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rLightWrap_BLOOM_PREMATTE",
+							Source = "Mask",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 610.5 } },
+				},
+				rGlow_PreKey = LumaKeyer {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						ClippingMode = Input { Value = FuID { "Domain" }, },
+						["Garbage.Matte"] = Input {
+							SourceOp = "rLightWrap_PREMATTE_EDGESOFTEN",
+							Source = "Output",
+						},
+						["Garbage.MaskNest"] = Input { Value = 1, },
+						["Garbage.MaskInverted"] = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rLightWrap_CORRECT_DOMAIN",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 610.5 } },
+				},
+				rLightWrap_INPUT_CROP = Crop {
+					NameSet = true,
+					Inputs = {
+						XOffset = Input { Expression = "ceil((rLightWrap_INPUT_CROP.Input.Width-rLightWrap_CHANGE_FG_DEPTH.Input.Width)/2)", },
+						YOffset = Input { Expression = "ceil((rLightWrap_INPUT_CROP.Input.Height-rLightWrap_CHANGE_FG_DEPTH.Input.Height)/2)", },
+						XSize = Input {
+							Value = 1920,
+							Expression = "rLightWrap_CHANGE_FG_DEPTH.Input.Width",
+						},
+						YSize = Input {
+							Value = 1080,
+							Expression = "rLightWrap_CHANGE_FG_DEPTH.Input.Height",
+						},
+						Input = Input {
+							SourceOp = "rLightWrap_CHANGE_BG_DEPTH",
+							Source = "Output",
+						},
+						ClippingMode = Input { Value = FuID { "None" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, 610.5 } },
+				},
+				rGlow_PreGain = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Gain = Input {
+							Value = 0.5,
+							Expression = "1/(rGlow_Controls.Passes^.5)",
+						},
+						Input = Input {
+							SourceOp = "rGlow_PreKey",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 610.5 } },
+				},
+				rGlow_UnShrinkPass3 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=3 and 1 or 0", },
+						Size = Input {
+							Value = 0.427083333333333,
+							Expression = "ProxyScale",
+						},
+						XSize = Input { Value = 0.4270833333333, },
+						YSize = Input { Value = 0.4270833333333, },
+						InvertTransform = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rGlow_Pass3",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.427083333333333,
+							Expression = "rGlow_ShrinkPass3.ProxyScale",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 610.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.25,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_Pass3 = Blur {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=3 and 1 or 0", },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input {
+							Value = 21.8666666666667,
+							Expression = "rGlow_Pass1.XBlurSize*rGlow_Controls.Spread*(FactorIndex/(1/rGlow_ShrinkPass3.ProxyScale))",
+						},
+						ClippingMode = Input {
+							Value = FuID { "Domain" },
+							Expression = "rGlow_PreKey.ClippingMode",
+						},
+						Input = Input {
+							SourceOp = "rGlow_ShrinkPass3",
+							Source = "Output",
+						},
+						FactorIndex = Input { Value = 4, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 610.5 } },
+					UserControls = ordered() {
+						FactorIndex = {
+							INPID_InputControl = "SliderControl",
+							INP_Integer = true,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Factor Index",
+						}
+					}
+				},
+				rLightWrap_CHANGE_BG_DEPTH = ChangeDepth {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Depth = Input { Expression = "rLightWrap_CHANGE_FG_DEPTH.Depth", },
+						Dither = Input { Expression = "rLightWrap_CHANGE_FG_DEPTH.Dither", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 610.5 } },
+				},
+				rGlow_AddP3 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0.5,
+							Expression = "rGlow_Controls.Passes>=3 and 1/(rGlow_Pass3.FactorIndex^rGlow_Controls.Falloff) or 0\n",
+						},
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "rGlow_AddP2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rGlow_UnShrinkPass3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 610.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "rGlow_PreGain",
+							Source = "Output",
+						}
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 880, 610.5 } },
+				},
+				rLightWrap_INVERT_FG_ALPHA = BitmapMask {
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Invert = Input { Value = 1, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "rLightWrap_PRE_DIVIDE",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1815, 478.5 } },
+				},
+				rGlow_AddP4 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0.353553390593274,
+							Expression = "rGlow_Controls.Passes>=4 and 1/(rGlow_Pass4.FactorIndex^rGlow_Controls.Falloff) or 0\n",
+						},
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "rGlow_AddP3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rGlow_UnShrinkPass4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 643.5 } },
+				},
+				rGlow_UnShrinkPass4 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=4 and 1 or 0", },
+						Size = Input {
+							Value = 0.354166666666667,
+							Expression = "ProxyScale",
+						},
+						XSize = Input { Value = 0.3541666666667, },
+						YSize = Input { Value = 0.3541666666667, },
+						InvertTransform = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rGlow_Pass4",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.354166666666667,
+							Expression = "rGlow_ShrinkPass4.ProxyScale",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 643.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.125,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_Pass4 = Blur {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=4 and 1 or 0", },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input {
+							Value = 36.2666666666667,
+							Expression = "rGlow_Pass1.XBlurSize*rGlow_Controls.Spread*(FactorIndex/(1/rGlow_ShrinkPass4.ProxyScale))",
+						},
+						ClippingMode = Input {
+							Value = FuID { "Domain" },
+							Expression = "rGlow_PreKey.ClippingMode",
+						},
+						Input = Input {
+							SourceOp = "rGlow_ShrinkPass4",
+							Source = "Output",
+						},
+						FactorIndex = Input { Value = 8, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 643.5 } },
+					UserControls = ordered() {
+						FactorIndex = {
+							INPID_InputControl = "SliderControl",
+							INP_Integer = true,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Factor Index",
+						}
+					}
+				},
+				rGlow_ShrinkPass4 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=4 and 1 or 0", },
+						Size = Input {
+							Value = 0.354166666666667,
+							Expression = "ProxyScale",
+						},
+						XSize = Input { Value = 0.3541666666667, },
+						YSize = Input { Value = 0.3541666666667, },
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.354166666666667,
+							Expression = "rGlow_Controls.MaxProxyScale*(4/6)+rGlow_Controls.MinProxyScale*(2/6)",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 643.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.125,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_AddP5 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "rGlow_Controls.Passes>=5 and 1/(rGlow_Pass5.FactorIndex^rGlow_Controls.Falloff) or 0\n",
+						},
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "rGlow_AddP4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rGlow_UnShrinkPass5",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 676.5 } },
+				},
+				rGlow_ShrinkPass5 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=5 and 1 or 0", },
+						Size = Input {
+							Value = 0.28125,
+							Expression = "ProxyScale",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.28125,
+							Expression = "rGlow_Controls.MaxProxyScale*(3/6)+rGlow_Controls.MinProxyScale*(3/6)",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 676.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.0625,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_UnShrinkPass5 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=5 and 1 or 0", },
+						Size = Input {
+							Value = 0.28125,
+							Expression = "ProxyScale",
+						},
+						XSize = Input { Value = 0.0625, },
+						YSize = Input { Value = 0.0625, },
+						InvertTransform = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rGlow_Pass5",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.28125,
+							Expression = "rGlow_ShrinkPass5.ProxyScale",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 676.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.0625,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_Pass5 = Blur {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=5 and 1 or 0", },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input {
+							Value = 4.5,
+							Expression = "rGlow_Pass1.XBlurSize*rGlow_Controls.Spread*(FactorIndex/(1/rGlow_ShrinkPass5.ProxyScale))",
+						},
+						ClippingMode = Input { Expression = "rGlow_PreKey.ClippingMode", },
+						Input = Input {
+							SourceOp = "rGlow_ShrinkPass5",
+							Source = "Output",
+						},
+						FactorIndex = Input { Value = 16, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 676.5 } },
+					UserControls = ordered() {
+						FactorIndex = {
+							INPID_InputControl = "SliderControl",
+							INP_Integer = true,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Factor Index",
+						}
+					}
+				},
+				rGlow_ShrinkPass6 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=6 and 1 or 0", },
+						Size = Input {
+							Value = 0.208333333333333,
+							Expression = "ProxyScale",
+						},
+						XSize = Input { Value = 0.2083333333333, },
+						YSize = Input { Value = 0.2083333333333, },
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.208333333333333,
+							Expression = "rGlow_Controls.MaxProxyScale*(2/6)+rGlow_Controls.MinProxyScale*(4/6)",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 709.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.0625,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_Pass6 = Blur {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "rGlow_Controls.Passes>=6 and 1 or 0",
+						},
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						XBlurSize = Input {
+							Value = 85.3333333333333,
+							Expression = "rGlow_Pass1.XBlurSize*rGlow_Controls.Spread*(FactorIndex/(1/rGlow_ShrinkPass6.ProxyScale))",
+						},
+						ClippingMode = Input {
+							Value = FuID { "None" },
+							Expression = "rGlow_PreKey.ClippingMode",
+						},
+						Input = Input {
+							SourceOp = "rGlow_ShrinkPass6",
+							Source = "Output",
+						},
+						FactorIndex = Input { Value = 32, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1320, 709.5 } },
+					UserControls = ordered() {
+						FactorIndex = {
+							INPID_InputControl = "SliderControl",
+							INP_Integer = true,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Factor Index",
+						}
+					}
+				},
+				rGlow_UnShrinkPass6 = Transform {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rGlow_Controls.Passes>=6 and 1 or 0", },
+						Size = Input {
+							Value = 0.208333333333333,
+							Expression = "ProxyScale",
+						},
+						XSize = Input { Value = 0.0625, },
+						YSize = Input { Value = 0.0625, },
+						InvertTransform = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rGlow_Pass6",
+							Source = "Output",
+						},
+						ProxyScale = Input {
+							Value = 0.208333333333333,
+							Expression = "rGlow_ShrinkPass6.ProxyScale",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1430, 709.5 } },
+					UserControls = ordered() {
+						ProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.0625,
+							INP_MinScale = 0.015625,
+							INP_MinAllowed = 0.015625,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ProxyScale",
+						}
+					}
+				},
+				rGlow_AddP6 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "rGlow_Controls.Passes>=6 and 1/(rGlow_Pass6.FactorIndex^rGlow_Controls.Falloff) or 0\n",
+						},
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "rGlow_AddP5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rGlow_UnShrinkPass6",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 709.5 } },
+				},
+				rLightWrap_OpacityCurve = ColorCurves {
+					PickColor = true,
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "UseCurve",
+						},
+						EditRed = Input { Value = 0, },
+						EditGreen = Input { Value = 0, },
+						EditBlue = Input { Value = 0, },
+						Red = Input {
+							SourceOp = "rLightWrap_OpacityCurveRed",
+							Source = "Value",
+						},
+						Green = Input {
+							SourceOp = "rLightWrap_OpacityCurveGreen",
+							Source = "Value",
+						},
+						Blue = Input {
+							SourceOp = "rLightWrap_OpacityCurveBlue",
+							Source = "Value",
+						},
+						Alpha = Input {
+							SourceOp = "rLightWrap_OpacityCurveAlpha",
+							Source = "Value",
+						},
+						NumberOfSamplesOnMatchCurve = Input { Value = 64, },
+						IgnoreTransparent = Input { Value = 1, },
+						PreDividePostMultiply = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rGlow_Colorize",
+							Source = "Output",
+						},
+						Comments = Input { Value = "With Pre-divide/Post-multiply enabled, this can be used to change how opaque the effect will be at the edges!", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 2200, 742.5 } },
+					Tools = {
+						rLightWrap_OpacityCurveBlue = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 68, Green = 68, Blue = 255 },
+							CtrlWZoom = false,
+						},
+						rLightWrap_OpacityCurveAlpha = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWZoom = false,
+						},
+						rLightWrap_OpacityCurveRed = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 255, Green = 52, Blue = 52 },
+							CtrlWZoom = false,
+						},
+						rLightWrap_OpacityCurveGreen = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 255, Blue = 0 },
+							CtrlWZoom = false,
+						}
+					},
+					UserControls = ordered() {
+						UseCurve = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							LINKS_Name = "Use Opacity Curve?",
+						}
+					}
+				},
+				rGlow_Colorize = ColorGain {
+					NameSet = true,
+					Inputs = {
+						ClippingMode = Input { Expression = "rGlow_PreKey.ClippingMode", },
+						GainRed = Input { Expression = "Red", },
+						GainGreen = Input { Expression = "Green", },
+						GainBlue = Input { Expression = "Blue", },
+						SaturationRed = Input { Expression = "Saturation", },
+						SaturationGreen = Input { Expression = "Saturation", },
+						SaturationBlue = Input { Expression = "Saturation", },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.125, 0.75 },
+											{ 0.375, 0.25 },
+											{ 0.5, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0.5, 0 },
+											{ 0.625, 0.25 },
+											{ 0.875, 0.75 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						Input = Input {
+							SourceOp = "rGlow_Controls",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 2035, 742.5 } },
+					UserControls = ordered() {
+						Red = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							CLRC_ShowWheel = false,
+							IC_ControlGroup = 1,
+							LINKS_Name = "Color",
+						},
+						Green = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							CLRC_ShowWheel = false,
+							IC_ControlGroup = 1,
+							LINKS_Name = "Color",
+						},
+						Blue = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							CLRC_ShowWheel = false,
+							IC_ControlGroup = 1,
+							LINKS_Name = "Color",
+						},
+						Colors = {
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 5,
+							INP_External = false,
+							INPID_InputControl = "LabelControl",
+							LINKS_Name = "Colors",
+						},
+						Saturation = {
+							LINKS_Name = "Saturation",
+							INP_Integer = false,
+							INP_MinAllowed = 0,
+							INPID_InputControl = "SliderControl",
+							INP_MinScale = 0,
+							LINKID_DataType = "Number",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+						}
+					}
+				},
+				rGlow_PostGain = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rGlow_AddP6",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1815, 742.5 } },
+				},
+				rGlow_Controls = Scale {
+					NameSet = true,
+					Inputs = {
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						FilterMethod = Input { Value = 4, },
+						Input = Input {
+							SourceOp = "rGlow_PostGain",
+							Source = "Output",
+						},
+						Channel = Input { Value = 7, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 742.5 } },
+					Colors = { TileColor = { R = 0.584313725490196, G = 0.294117647058824, B = 0.803921568627451 }, },
+					UserControls = ordered() {
+						Falloff = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 3,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Falloff",
+						},
+						Spread = {
+							INP_MaxAllowed = 10,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 2,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Spread",
+						},
+						Passes = {
+							INP_MaxAllowed = 6,
+							INP_Integer = true,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 6,
+							INP_Default = 4,
+							INP_MinScale = 1,
+							INP_MinAllowed = 1,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Passes",
+						},
+						GlowOnly = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							LINKS_Name = "Glow Only",
+						},
+						EffectBlend = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Effect Blend",
+						},
+						MaxProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "RangeControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0.25,
+							INP_MinAllowed = 0.0625,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							IC_ControlGroup = 1,
+							LINKS_Name = "Max Proxy Scale",
+						},
+						MinProxyScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "RangeControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.0625,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							IC_ControlGroup = 1,
+							LINKS_Name = "Min Proxy Scale",
+						},
+						Channel = {
+							{ CCS_AddString = "Blue" },
+							{ CCS_AddString = "Green" },
+							{ CCS_AddString = "Red" },
+							{ CCS_AddString = "Alpha" },
+							{ CCS_AddString = "Luminance" },
+							{ CCS_AddString = "Saturation" },
+							{ CCS_AddString = "Hue" },
+							{ CCS_AddString = "RGB Average" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ComboControl",
+							CC_LabelPosition = "Horizontal",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Channel",
+						}
+					}
+				},
+				rLightWrap_PRE_DIVIDE = AlphaDivide {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rLightWrap_CHANGE_OUTPUT_DEPTH.PreDividePostMultiply", },
+						Input = Input {
+							SourceOp = "rLightWrap_CHANGE_FG_DEPTH",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 2310, 478.5 } },
+				},
+				rLightWrap_SETMATTE_NO_PRE_DIV = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "rLightWrap_PRE_DIVIDE",
+							Source = "Output",
+						},
+						Blend = Input {
+							Value = 0,
+							Expression = "1-rLightWrap_CHANGE_OUTPUT_DEPTH.PreDividePostMultiply",
+						},
+						MultiplyByMask = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rLightWrap_OpacityCurve",
+							Source = "Output",
+						},
+						Comments = Input { Value = "This node is only processed if \"Pre-Divide / Post-Multiply\" is unchecked.", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 2310, 742.5 } },
+				},
+				rLightWrap_CHANGE_FG_DEPTH = ChangeDepth {
+					NameSet = true,
+					ViewInfo = OperatorInfo { Pos = { 2310, 445.5 } },
+				},
+				rLightWrap_POST_MULTIPLY = AlphaMultiply {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rLightWrap_CHANGE_OUTPUT_DEPTH.PreDividePostMultiply", },
+						Input = Input {
+							SourceOp = "rLightWrap_EFFECT_MERGE",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 2420, 709.5 } },
+				},
+				rLightWrap_EFFECT_MERGE = Merge {
+					NameSet = true,
+					CustomData = {
+						Settings = {
+						}
+					},
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "rLightWrap_PRE_DIVIDE",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rLightWrap_SETMATTE_NO_PRE_DIV",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Lighten" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 2420, 676.5 } },
+				},
+				rLightWrap_GF_ADD = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rLightWrap_CHANGE_OUTPUT_DEPTH.UseGlowFix*rLightWrap_CHANGE_OUTPUT_DEPTH.PreDividePostMultiply", },
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "rLightWrap_POST_MULTIPLY",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rLightWrap_GF_Sub",
+							Source = "Output",
+						},
+						Comments = Input { Value = "Adds back information from areas where Alpha = 0.", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 2420, 742.5 } },
+				},
+				rLightWrap_EFFECT_MASK = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "rLightWrap_CHANGE_FG_DEPTH",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rLightWrap_GF_ADD",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 2420, 808.5 } },
+				},
+				rLightWrap_GF_Sub = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rLightWrap_CHANGE_OUTPUT_DEPTH.UseGlowFix*rLightWrap_CHANGE_OUTPUT_DEPTH.PreDividePostMultiply", },
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "rLightWrap_CHANGE_FG_DEPTH",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "rLightWrap_GF_Mult",
+							Source = "Output",
+						},
+						Comments = Input { Value = "Subtracts alpha-multiplied from original, providing only the difference between the two. Alpha multiplication causes information loss where alpha = 0. This feature seeks to restore this detail.", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 2475, 478.5 } },
+				},
+				rLightWrap_GF_Mult = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "rLightWrap_CHANGE_OUTPUT_DEPTH.UseGlowFix*rLightWrap_CHANGE_OUTPUT_DEPTH.PreDividePostMultiply", },
+						PreDividePostMultiply = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "rLightWrap_CHANGE_FG_DEPTH",
+							Source = "Output",
+						},
+						Comments = Input { Value = "Pre-Divide / Post-Mult to enable the Glow Fix feature. Alpha multiplication causes information loss where alpha = 0. This feature seeks to restore this detail.", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 2475, 445.5 } },
+				},
+				rLightWrap_VIEWMODE = Switch {
+					NameSet = true,
+					Inputs = {
+						NumberOfInputs = Input { Value = 3, },
+						Name0 = Input { Value = "Final", },
+						Input0 = Input {
+							SourceOp = "rLightWrap_EFFECT_MASK",
+							Source = "Output",
+						},
+						Name1 = Input { Value = "Glow", },
+						Input1 = Input {
+							SourceOp = "rLightWrap_SETMATTE_NO_PRE_DIV",
+							Source = "Output",
+						},
+						Name2 = Input { Value = "Pre-Matte", },
+						Input2 = Input {
+							SourceOp = "rGlow_PreKey",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 2420, 841.5 } },
+					Colors = { TileColor = { R = 0.584313725490196, G = 0.294117647058824, B = 0.803921568627451 }, }
+				},
+				rLightWrap_CHANGE_OUTPUT_DEPTH = ChangeDepth {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "rLightWrap_VIEWMODE",
+							Source = "Output",
+						},
+						Comments = Input { Value = "rLightWrap rev. 1.1.0", },
+						ColorScale = Input { Value = 0, },
+						EffectMerge = Input { Value = 1, },
+						UseGlowFix = Input { Value = 1, },
+						HideCurve = Input {
+							Expression = "rLightWrap_OpacityCurve.UseCurve",
+						},
+						HideGlowFix = Input {
+							Expression = "rLightWrap_CHANGE_OUTPUT_DEPTH.PreDividePostMultiply",
+						},
+						PreMatteLabel = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 2420, 874.5 } },
+					Colors = { TileColor = { R = 0.584313725490196, G = 0.294117647058824, B = 0.803921568627451 }, },
+					UserControls = ordered() {
+						PreDividePostMultiply = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							LINKS_Name = "Pre-Divide / Post-Multiply",
+						},
+						HideCurve = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_Passive = false,
+							INP_External = true,
+							IC_Visible = false,
+							LINKS_Name = "Opacity Curve",
+						},
+						ColorScale = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 0,
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LBLC_NestLevel = 0,
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Color Scale",
+						},
+						Depth_Dither = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 4,
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Depth/Dither",
+						},
+						Blank1 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Blank1",
+						},
+						EffectMerge = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 0,
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LBLC_NestLevel = 0,
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Effect Merge",
+						},
+						PreMatteLabel = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LBLC_NestLevel = 0,
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Glow Pre-Matte",
+						},
+						Misc = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 0,
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Misc",
+						},
+						UseGlowFix = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							CBC_TriState = false,
+							LINKS_Name = "Use Glow Fix? (May Cause Artifacts)",
+						},
+						HideGlowFix = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = true,
+							LBLC_DropDownButton = true,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 1,
+							INP_MaxScale = 1,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_Passive = false,
+							INP_External = true,
+							IC_Visible = false,
+							LINKS_Name = "HideGlowFix",
+						},
+						BloomMaskLabel= {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							LBLC_NumInputs = 3,
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Bloom Mask",
+						}
+					}
+				}
+			},
+			UserControls = ordered() {
+				Controls = ControlPage { CT_Visible = true, CTID_DIB_ID = "Icons.Tools.Tabs.Display", CT_Priority = 0 },
+				Misc = ControlPage { CT_Visible = true, CTID_DIB_ID = "Icons.Tools.Tabs.Common", CT_Priority = 0 },
+				Settings = ControlPage { CT_Visible = true, CTID_DIB_ID = "Icons.Tools.Tabs.Common", CT_Priority = 0 },
+				Common = ControlPage { CT_Visible = false, CTID_DIB_ID = "Icons.Tools.Tabs.Solve", CT_Priority = 0 },
+			}
+		}
+	},
+	ActiveTool = "rLightWrap"
+}

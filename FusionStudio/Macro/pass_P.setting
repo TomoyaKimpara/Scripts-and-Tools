@@ -1,0 +1,42 @@
+{
+	Tools = ordered() {
+		pass_P = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter4",
+					Source = "Input",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "ChannelBooleans2",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter4 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 1682.88, 409.554 } },
+				},
+				ChannelBooleans2 = ChannelBoolean {
+					CtrlWZoom = false,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						EnableExtraChannels = Input { Value = 1, },
+						ToXPosition = Input { Value = 5, },
+						ToYPosition = Input { Value = 6, },
+						ToZPosition = Input { Value = 7, },
+						Background = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1662.99, 460.683 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "pass_P"
+}

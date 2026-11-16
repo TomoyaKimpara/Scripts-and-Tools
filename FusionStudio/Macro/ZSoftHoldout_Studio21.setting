@@ -1,0 +1,3793 @@
+{
+	Tools = ordered() {
+		ZSoftHoldout_Studio21 = MacroOperator {
+			CtrlWZoom = false,
+			Inputs = ordered() {
+				Comments = Input { Value = "Fusion Studio 21. Connect two DeepImage streams. Target = affected image; Holdout = occluder. 65 midpoint Z samples. Soften = half-width in input Z units. Output = RGBA, not DeepImage. Occluded samples enabled for antialiasing.", },
+				MainInput1 = InstanceInput {
+					SourceOp = "TargetDeep_1",
+					Source = "Image",
+					Name = "Target Deep (to hold out)",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "HoldoutDeep_1",
+					Source = "Image",
+					Name = "Holdout Deep (occluder)",
+				},
+				Soften = InstanceInput {
+					SourceOp = "HoldoutDeep_1",
+					Source = "Soften",
+					Page = "Controls",
+					Default = 100,
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Avg64_1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				TargetDeep_1 = dTransform {
+					CtrlWShown = false,
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				HoldoutDeep_1 = dTransform {
+					CtrlWShown = false,
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+					UserControls = ordered() { Soften = { ICS_ControlPage = "Controls", INP_MinScale = 0, INP_MinAllowed = 0, INPID_InputControl = "SliderControl", LINKS_Name = "Soften", LINKID_DataType = "Number", INP_MaxScale = 1000, INP_Default = 100, } }
+				},
+				Shift00_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -98.4615384615385,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.984615384615385",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold00_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift00_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat00_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold00_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift01_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -95.3846153846154,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.953846153846154",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold01_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift01_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat01_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold01_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg01_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.5, },
+						Background = Input {
+							SourceOp = "Flat00_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat01_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift02_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -92.3076923076923,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.923076923076923",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold02_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift02_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat02_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold02_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg02_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.333333333333333, },
+						Background = Input {
+							SourceOp = "Avg01_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat02_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift03_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -89.2307692307692,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.892307692307692",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold03_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift03_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat03_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold03_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg03_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.25, },
+						Background = Input {
+							SourceOp = "Avg02_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat03_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift04_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -86.1538461538462,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.861538461538462",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold04_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift04_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat04_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold04_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg04_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.2, },
+						Background = Input {
+							SourceOp = "Avg03_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat04_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift05_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -83.0769230769231,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.830769230769231",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold05_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift05_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat05_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold05_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg05_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.166666666666667, },
+						Background = Input {
+							SourceOp = "Avg04_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat05_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift06_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -80,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.8",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold06_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift06_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat06_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold06_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg06_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.142857142857143, },
+						Background = Input {
+							SourceOp = "Avg05_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat06_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift07_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -76.9230769230769,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.769230769230769",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold07_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift07_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat07_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold07_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg07_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.125, },
+						Background = Input {
+							SourceOp = "Avg06_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat07_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift08_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -73.8461538461539,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.738461538461539",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold08_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift08_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat08_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold08_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg08_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.111111111111111, },
+						Background = Input {
+							SourceOp = "Avg07_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat08_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift09_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -70.7692307692308,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.707692307692308",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold09_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift09_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat09_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold09_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg09_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.1, },
+						Background = Input {
+							SourceOp = "Avg08_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat09_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift10_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -67.6923076923077,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.676923076923077",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold10_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift10_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat10_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold10_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg10_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0909090909090909, },
+						Background = Input {
+							SourceOp = "Avg09_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat10_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift11_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -64.6153846153846,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.646153846153846",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold11_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift11_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat11_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold11_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg11_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0833333333333333, },
+						Background = Input {
+							SourceOp = "Avg10_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat11_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift12_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -61.5384615384615,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.615384615384615",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold12_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift12_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat12_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold12_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg12_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0769230769230769, },
+						Background = Input {
+							SourceOp = "Avg11_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat12_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift13_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -58.4615384615385,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.584615384615385",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold13_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift13_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat13_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold13_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg13_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0714285714285714, },
+						Background = Input {
+							SourceOp = "Avg12_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat13_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift14_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -55.3846153846154,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.553846153846154",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold14_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift14_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat14_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold14_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg14_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0666666666666667, },
+						Background = Input {
+							SourceOp = "Avg13_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat14_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift15_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -52.3076923076923,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.523076923076923",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold15_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift15_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat15_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold15_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg15_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0625, },
+						Background = Input {
+							SourceOp = "Avg14_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat15_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift16_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -49.2307692307692,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.492307692307692",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold16_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift16_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat16_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold16_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg16_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0588235294117647, },
+						Background = Input {
+							SourceOp = "Avg15_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat16_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift17_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -46.1538461538462,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.461538461538462",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold17_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift17_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat17_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold17_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg17_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0555555555555556, },
+						Background = Input {
+							SourceOp = "Avg16_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat17_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift18_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -43.0769230769231,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.430769230769231",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold18_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift18_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat18_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold18_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg18_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0526315789473684, },
+						Background = Input {
+							SourceOp = "Avg17_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat18_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift19_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -40,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.4",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold19_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift19_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat19_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold19_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg19_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.05, },
+						Background = Input {
+							SourceOp = "Avg18_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat19_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift20_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -36.9230769230769,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.369230769230769",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold20_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift20_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat20_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold20_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg20_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0476190476190476, },
+						Background = Input {
+							SourceOp = "Avg19_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat20_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift21_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -33.8461538461538,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.338461538461538",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold21_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift21_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat21_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold21_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg21_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0454545454545455, },
+						Background = Input {
+							SourceOp = "Avg20_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat21_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift22_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -30.7692307692308,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.307692307692308",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold22_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift22_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat22_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold22_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg22_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0434782608695652, },
+						Background = Input {
+							SourceOp = "Avg21_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat22_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift23_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -27.6923076923077,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.276923076923077",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold23_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift23_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat23_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold23_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg23_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0416666666666667, },
+						Background = Input {
+							SourceOp = "Avg22_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat23_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift24_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -24.6153846153846,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.246153846153846",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold24_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift24_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat24_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold24_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg24_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.04, },
+						Background = Input {
+							SourceOp = "Avg23_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat24_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift25_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -21.5384615384615,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.215384615384615",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold25_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift25_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat25_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold25_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg25_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0384615384615385, },
+						Background = Input {
+							SourceOp = "Avg24_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat25_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift26_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -18.4615384615385,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.184615384615385",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold26_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift26_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat26_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold26_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg26_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.037037037037037, },
+						Background = Input {
+							SourceOp = "Avg25_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat26_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift27_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -15.3846153846154,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.153846153846154",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold27_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift27_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat27_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold27_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg27_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0357142857142857, },
+						Background = Input {
+							SourceOp = "Avg26_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat27_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift28_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -12.3076923076923,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.123076923076923",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold28_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift28_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat28_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold28_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg28_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0344827586206897, },
+						Background = Input {
+							SourceOp = "Avg27_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat28_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift29_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -9.23076923076923,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.0923076923076923",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold29_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift29_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat29_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold29_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg29_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0333333333333333, },
+						Background = Input {
+							SourceOp = "Avg28_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat29_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift30_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -6.15384615384615,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.0615384615384615",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold30_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift30_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat30_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold30_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg30_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.032258064516129, },
+						Background = Input {
+							SourceOp = "Avg29_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat30_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift31_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = -3.07692307692308,
+							Expression = "max(HoldoutDeep_1.Soften,0)*-0.0307692307692308",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold31_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift31_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat31_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold31_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg31_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.03125, },
+						Background = Input {
+							SourceOp = "Avg30_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat31_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift32_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input { Expression = "max(HoldoutDeep_1.Soften,0)*0", }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold32_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift32_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat32_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold32_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg32_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0303030303030303, },
+						Background = Input {
+							SourceOp = "Avg31_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat32_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift33_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 3.07692307692307,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.0307692307692307",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold33_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift33_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat33_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold33_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg33_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0294117647058824, },
+						Background = Input {
+							SourceOp = "Avg32_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat33_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift34_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 6.15384615384615,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.0615384615384615",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold34_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift34_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat34_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold34_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg34_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0285714285714286, },
+						Background = Input {
+							SourceOp = "Avg33_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat34_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift35_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 9.23076923076922,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.0923076923076922",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold35_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift35_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat35_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold35_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg35_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0277777777777778, },
+						Background = Input {
+							SourceOp = "Avg34_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat35_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift36_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 12.3076923076923,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.123076923076923",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold36_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift36_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat36_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold36_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg36_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.027027027027027, },
+						Background = Input {
+							SourceOp = "Avg35_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat36_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift37_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 15.3846153846154,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.153846153846154",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold37_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift37_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat37_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold37_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg37_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0263157894736842, },
+						Background = Input {
+							SourceOp = "Avg36_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat37_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift38_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 18.4615384615385,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.184615384615385",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold38_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift38_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat38_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold38_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg38_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0256410256410256, },
+						Background = Input {
+							SourceOp = "Avg37_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat38_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift39_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 21.5384615384615,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.215384615384615",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold39_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift39_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat39_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold39_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg39_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.025, },
+						Background = Input {
+							SourceOp = "Avg38_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat39_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift40_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 24.6153846153846,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.246153846153846",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold40_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift40_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat40_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold40_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg40_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.024390243902439, },
+						Background = Input {
+							SourceOp = "Avg39_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat40_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift41_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 27.6923076923077,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.276923076923077",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold41_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift41_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat41_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold41_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg41_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0238095238095238, },
+						Background = Input {
+							SourceOp = "Avg40_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat41_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift42_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 30.7692307692308,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.307692307692308",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold42_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift42_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat42_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold42_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg42_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0232558139534884, },
+						Background = Input {
+							SourceOp = "Avg41_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat42_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift43_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 33.8461538461538,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.338461538461538",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold43_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift43_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat43_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold43_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg43_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0227272727272727, },
+						Background = Input {
+							SourceOp = "Avg42_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat43_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift44_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 36.9230769230769,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.369230769230769",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold44_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift44_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat44_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold44_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg44_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0222222222222222, },
+						Background = Input {
+							SourceOp = "Avg43_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat44_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift45_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 40,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.4",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold45_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift45_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat45_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold45_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg45_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0217391304347826, },
+						Background = Input {
+							SourceOp = "Avg44_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat45_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift46_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 43.0769230769231,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.430769230769231",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold46_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift46_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat46_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold46_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg46_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0212765957446809, },
+						Background = Input {
+							SourceOp = "Avg45_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat46_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift47_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 46.1538461538461,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.461538461538461",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold47_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift47_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat47_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold47_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg47_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0208333333333333, },
+						Background = Input {
+							SourceOp = "Avg46_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat47_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift48_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 49.2307692307692,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.492307692307692",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold48_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift48_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat48_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold48_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg48_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0204081632653061, },
+						Background = Input {
+							SourceOp = "Avg47_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat48_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift49_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 52.3076923076923,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.523076923076923",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold49_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift49_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat49_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold49_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg49_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.02, },
+						Background = Input {
+							SourceOp = "Avg48_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat49_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift50_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 55.3846153846154,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.553846153846154",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold50_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift50_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat50_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold50_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg50_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0196078431372549, },
+						Background = Input {
+							SourceOp = "Avg49_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat50_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift51_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 58.4615384615385,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.584615384615385",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold51_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift51_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat51_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold51_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg51_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0192307692307692, },
+						Background = Input {
+							SourceOp = "Avg50_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat51_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift52_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 61.5384615384615,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.615384615384615",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold52_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift52_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat52_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold52_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg52_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0188679245283019, },
+						Background = Input {
+							SourceOp = "Avg51_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat52_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift53_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 64.6153846153846,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.646153846153846",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold53_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift53_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat53_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold53_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg53_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0185185185185185, },
+						Background = Input {
+							SourceOp = "Avg52_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat53_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift54_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 67.6923076923077,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.676923076923077",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold54_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift54_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat54_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold54_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg54_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0181818181818182, },
+						Background = Input {
+							SourceOp = "Avg53_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat54_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift55_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 70.7692307692308,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.707692307692308",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold55_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift55_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat55_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold55_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg55_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0178571428571429, },
+						Background = Input {
+							SourceOp = "Avg54_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat55_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift56_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 73.8461538461539,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.738461538461539",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold56_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift56_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat56_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold56_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg56_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0175438596491228, },
+						Background = Input {
+							SourceOp = "Avg55_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat56_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift57_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 76.9230769230769,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.769230769230769",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold57_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift57_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat57_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold57_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg57_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0172413793103448, },
+						Background = Input {
+							SourceOp = "Avg56_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat57_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift58_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 80,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.8",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold58_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift58_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat58_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold58_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg58_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0169491525423729, },
+						Background = Input {
+							SourceOp = "Avg57_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat58_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift59_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 83.0769230769231,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.830769230769231",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold59_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift59_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat59_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold59_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg59_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0166666666666667, },
+						Background = Input {
+							SourceOp = "Avg58_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat59_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift60_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 86.1538461538462,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.861538461538462",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold60_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift60_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat60_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold60_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg60_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0163934426229508, },
+						Background = Input {
+							SourceOp = "Avg59_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat60_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift61_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 89.2307692307692,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.892307692307692",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold61_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift61_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat61_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold61_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg61_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0161290322580645, },
+						Background = Input {
+							SourceOp = "Avg60_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat61_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift62_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 92.3076923076923,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.923076923076923",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold62_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift62_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat62_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold62_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg62_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0158730158730159, },
+						Background = Input {
+							SourceOp = "Avg61_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat62_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift63_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 95.3846153846154,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.953846153846154",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold63_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift63_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat63_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold63_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg63_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.015625, },
+						Background = Input {
+							SourceOp = "Avg62_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat63_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Shift64_1 = dTransform {
+					CtrlWShown = false,
+					Inputs = {
+						Image = Input {
+							SourceOp = "HoldoutDeep_1",
+							Source = "Output",
+						},
+						Translate = Input {
+							Value = 98.4615384615385,
+							Expression = "max(HoldoutDeep_1.Soften,0)*0.984615384615385",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Hold64_1 = dHoldout {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "TargetDeep_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Shift64_1",
+							Source = "Output",
+						},
+						ComputeOccludedSample = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Flat64_1 = DeepToImage {
+					CtrlWShown = false,
+					Inputs = {
+						Depth = Input { Value = 4, },
+						Image = Input {
+							SourceOp = "Hold64_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				},
+				Avg64_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						Mix = Input { Value = 0.0153846153846154, },
+						Background = Input {
+							SourceOp = "Avg63_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Flat64_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 8.75758 } },
+				}
+			},
+		}
+	}
+}

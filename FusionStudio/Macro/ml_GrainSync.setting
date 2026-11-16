@@ -1,0 +1,2503 @@
+--[[-- 
+https://emiliosapia.myportfolio.com
+Written by : Emilio Sapia 
+Written on : Apr, 2025
+version 1.02
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--]]--
+
+{
+	Tools = ordered() {
+		ml_GrainSync = MacroOperator {
+			CtrlWZoom = false,
+			CustomData = {
+				SxSFilename = "/Users/emiliosapia/Library/Application Support/Blackmagic Design/Fusion/Macros/ml_GrainSync.setting",
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+			Inputs = ordered() {
+				CommentsNest = Input { Value = 0, },
+				Comments = Input { Value = "Macro by Emilio Sapia - Millolab\nhttps://emiliosapia.myportfolio.com", },
+				Spacer = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "Spacer",
+				},
+				Background = InstanceInput {
+					SourceOp = "ChangeDepth1",
+					Source = "Input",
+					Name = "Comp Input",
+				},
+				OriginalIn = InstanceInput {
+					SourceOp = "PipeRouter3",
+					Source = "Input",
+					Name = "Original Input",
+				},
+				DenoisedIn = InstanceInput {
+					SourceOp = "Instance_BrightnessContrast4",
+					Source = "Input",
+					Name = "Denoised Input",
+				},
+				GrainResponseNest = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "GrainResponse",
+					Page = "Controls",
+				},
+				RSwitch = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "EditRed",
+					Name = "B",
+					Width = 0.33,
+					Page = "Controls",
+				},
+				GSwitch = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "EditGreen",
+					Name = "G",
+					Width = 0.33,
+					Page = "Controls",
+				},
+				BSwitch = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "EditBlue",
+					Name = "B",
+					Width = 0.33,
+					Page = "Controls",
+				},
+				RCurve = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "Red",
+					ControlGroup = 4,
+					Page = "Controls",
+				},
+				GCurve = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "Green",
+					ControlGroup = 4,
+					Page = "Controls",
+				},
+				BCurve = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "Blue",
+					ControlGroup = 4,
+					Page = "Controls",
+				},
+				Info = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "Info",
+					Name = "<p style='color:#555555; text-align: center;'>use match to generate response curve </p>",
+					Page = "Controls",
+				},
+				MatchReference = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "MatchReference",
+					Width = 1,
+					Page = "Controls",
+				},
+				Samples = InstanceInput {
+					SourceOp = "ColorCurves",
+					Source = "NumberOfSamplesOnMatchCurve",
+					Page = "Controls",
+					Default = 64,
+				},
+				GrainSampleNest = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "GrainSample",
+					Name = "Grain Sample",
+					Page = "Controls",
+				},
+				Center = InstanceInput {
+					SourceOp = "Sample",
+					Source = "Center",
+				},
+				Width = InstanceInput {
+					SourceOp = "Sample",
+					Source = "Width",
+					Default = 0.08,
+				},
+				Height = InstanceInput {
+					SourceOp = "Sample",
+					Source = "Height",
+					Default = 0.08,
+				},
+				SharpenNest = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "Sharpen",
+					Name = "Grain Enhance",
+					Page = "Controls",
+				},
+				SharpSize = InstanceInput {
+					SourceOp = "UnsharpMask1",
+					Source = "XSize",
+					Name = "Sharpen Size",
+					Page = "Controls",
+					Default = 0.2,
+				},
+				SharpGain = InstanceInput {
+					SourceOp = "UnsharpMask1",
+					Source = "Gain",
+					Name = "Sharpen Gain",
+					Page = "Controls",
+					Default = 0.75,
+				},
+				MaskEdge = InstanceInput {
+					SourceOp = "ErodeDilate2",
+					Source = "XAmount",
+					Name = "Mask Edge Correct",
+					MinScale = 0,
+					Page = "Controls",
+					Default = 0,
+				},
+				Offset = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "Brightness",
+					Name = "Black Offset",
+					Page = "Controls",
+					Default = 0.012,
+				},
+				Scatter = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "Scatter",
+					Page = "Controls",
+				},
+				Frequency = InstanceInput {
+					SourceOp = "Voronoi1",
+					Source = "Frequency",
+					MaxScale = 150,
+					Page = "Controls",
+					Default = 50,
+				},
+				Ratio = InstanceInput {
+					SourceOp = "Voronoi1",
+					Source = "AspectRatio",
+					Page = "Controls",
+					Default = 1,
+				},
+				Randomness = InstanceInput {
+					SourceOp = "Voronoi1",
+					Source = "Randomness",
+					Page = "Controls",
+					Default = 0.5,
+				},
+				CellSize = InstanceInput {
+					SourceOp = "CustomTool3_1",
+					Source = "NumberIn7",
+					Name = "Cell Size",
+					Page = "Controls",
+					Default = 0.5,
+				},
+				ScatterSwitch = InstanceInput {
+					SourceOp = "Switch1",
+					Source = "Source",
+					Name = "Scatter",
+					Page = "Controls",
+					Default = 1,
+				},
+				Version = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "Version",
+					Name = "<p style='color:#555555; text-align: center;'>GrainSync v1.0 © Emilio Sapia 2025</p>",
+					Page = "Controls",
+				},
+				MoreInfo = InstanceInput {
+					SourceOp = "BrightnessContrast4",
+					Source = "Info2",
+					Name = "<p style='color:#555555; text-align: center;'>Adjust if Voronoi pattern appears in Grain.</p>",
+					Page = "Advanced",
+				},
+				OverlayPattern = InstanceInput {
+					SourceOp = "Merge3_1",
+					Source = "Blend",
+					Name = "Overlay Pattern",
+					Page = "Advanced",
+					Default = 0,
+				},
+				Blank0 = InstanceInput {
+					SourceOp = "Merge4",
+					Source = "Blank1",
+					Page = "Advanced",
+				},
+				EdgeFilter = InstanceInput {
+					SourceOp = "ErodeDilate1_1",
+					Source = "Filter",
+					Page = "Advanced",
+					Default = 0,
+				},
+				EdgeBlendSize = InstanceInput {
+					SourceOp = "ErodeDilate1_1",
+					Source = "XAmount",
+					MinScale = -0.001,
+					MaxScale = 0.001,
+					Page = "Advanced",
+					Default = 0,
+				},
+				SoftEdge = InstanceInput {
+					SourceOp = "Bitmap2",
+					Source = "SoftEdge",
+					Page = "Advanced",
+					Default = 0,
+				},
+				Displace = InstanceInput {
+					SourceOp = "Displace1",
+					Source = "Distort",
+					Name = "Edge Displace",
+					Page = "Advanced",
+					Default = 0,
+				},
+				Mix = InstanceInput {
+					SourceOp = "Dissolve1",
+					Source = "Mix",
+					Name = "Mix",
+					Page = "Advanced",
+					Default = 0,
+				},
+				Blank = InstanceInput {
+					SourceOp = "Merge4",
+					Source = "Blank1",
+					Page = "Advanced",
+				},
+				Metadata = InstanceInput {
+					SourceOp = "Switch3",
+					Source = "Source",
+					Name = "Metadata From",
+					Page = "Advanced",
+					Default = 0,
+				},
+				Blank1 = InstanceInput {
+					SourceOp = "Merge4",
+					Source = "Blank1",
+					Page = "Common",
+				},
+				ApplyMaskInverted = InstanceInput {
+					SourceOp = "Merge4",
+					Source = "ApplyMaskInverted",
+					Page = "Common",
+					Default = 0,
+				},
+				MultiplyByMask = InstanceInput {
+					SourceOp = "Merge4",
+					Source = "MultiplyByMask",
+					Default = 0,
+				},
+				Blank2 = InstanceInput {
+					SourceOp = "Merge4",
+					Source = "Blank1",
+					Page = "Common",
+				},
+				FitMask = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "FitInput",
+				},
+				FitCenter = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "Center",
+				},
+				MaskChannel = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "Channel",
+					Default = 3,
+				},
+				MaskLow = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "Low",
+					ControlGroup = 15,
+					Default = 0,
+				},
+				MaskHigh = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "High",
+					ControlGroup = 15,
+					Default = 1,
+				},
+				MaskClipBlack = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "ClipBlack",
+					Name = "Black",
+					Width = 0.5,
+					Default = 1,
+				},
+				MaskClipWhite = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "ClipWhite",
+					Name = "White",
+					Width = 0.5,
+					Default = 1,
+				},
+				Blank3 = InstanceInput {
+					SourceOp = "Merge4",
+					Source = "Blank1",
+					Page = "Common",
+				},
+				EffectMask = InstanceInput {
+					SourceOp = "Bitmap3",
+					Source = "Image",
+					Name = "EffectMask",
+				}
+			},
+			Outputs = {
+				Output1 = InstanceOutput {
+					SourceOp = "CopyMetadata1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Pos = { 0, 1633.5 },
+				Flags = {
+					AllowPan = false,
+					ForceModes = false,
+					GridSnap = true,
+					ConnectedSnap = true,
+					AutoSnap = true,
+					ShowInstance = false,
+					RemoveRouters = true
+				},
+				Size = { 1528, 2134.57, 764, 24.2424 },
+				Direction = "Vertical",
+				PipeStyle = "Direct",
+				Scale = 1,
+				Offset = { 0, 0 }
+			},
+			Tools = ordered() {
+				PipeRouter3 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { -398.074, 7.2251 } },
+					Colors = { TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 }, }
+				},
+				ColorCurves = ColorCurves {
+					PickColor = true,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EditAlpha = Input { Value = 0, },
+						Red = Input {
+							SourceOp = "ColorCurvesRed",
+							Source = "Value",
+						},
+						Green = Input {
+							SourceOp = "ColorCurvesGreen",
+							Source = "Value",
+						},
+						Blue = Input {
+							SourceOp = "ColorCurvesBlue",
+							Source = "Value",
+						},
+						Alpha = Input {
+							SourceOp = "ColorCurvesAlpha",
+							Source = "Value",
+						},
+						ReferenceNest = Input { Value = 1, },
+						NumberOfSamplesOnMatchCurve = Input { Value = 64, },
+						IgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Resize1_4",
+							Source = "Output",
+						},
+						ReferenceImage = Input {
+							SourceOp = "Merge1_3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 531.394 } },
+					Tools = {
+						ColorCurvesRed = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 255, Green = 52, Blue = 52 },
+							CtrlWZoom = false,
+						},
+						ColorCurvesBlue = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 68, Green = 68, Blue = 255 },
+							CtrlWZoom = false,
+						},
+						ColorCurvesAlpha = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWZoom = false,
+						},
+						ColorCurvesGreen = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 255, Blue = 0 },
+							CtrlWZoom = false,
+						}
+					},
+					UserControls = ordered() {
+						EditRed = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							ICD_Width = 0.330000013113022,
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							INP_Passive = true,
+							INP_SplineType = "Default",
+							LINKS_Name = "Edit Red",
+						},
+						EditGreen = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							ICD_Width = 0.330000013113022,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_Default = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							INP_Passive = true,
+							INP_MaxScale = 1,
+							LINKS_Name = "Edit Green"
+						},
+						EditBlue = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							ICD_Width = 0.330000013113022,
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							INP_Default = 1,
+							INP_External = false,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							INP_Passive = true,
+							INP_MaxScale = 1,
+							LINKS_Name = "Edit Blue"
+						}
+					}
+				},
+				Resize1_1 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "BrightnessContrast4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -399, 181.297 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Resize1_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Resize1_4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -124, 300.395 } },
+				},
+				CustomTool2 = Custom {
+					CtrlWShown = false,
+					Inputs = {
+						NumberIn1 = Input { Value = 0.01, },
+						LUTIn1 = Input {
+							SourceOp = "CustomTool2LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool2LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool2LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool2LUTIn4",
+							Source = "Value",
+						},
+						RedExpression = Input { Value = "(n1/r2)*r1", },
+						GreenExpression = Input { Value = "(n1/g2)*g1", },
+						BlueExpression = Input { Value = "(n1/b2)*b1", },
+						Image1 = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+						Image2 = Input {
+							SourceOp = "ColorCurves",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -124, 531.394 } },
+				},
+				Sample = RectangleMask {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input {
+							Value = 1920,
+							Expression = "TimeStretcher1_1.Input.OriginalWidth",
+						},
+						MaskHeight = Input {
+							Value = 1080,
+							Expression = "TimeStretcher1_1.Input.OriginalHeight",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Width = Input { Value = 0.08, },
+						Height = Input { Value = 0.08, },
+						CornerRadius = Input { Expression = "0.0", },
+						Angle = Input { Expression = "0.0", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, 1006.29 } },
+				},
+				Blur1_1 = Blur {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Input = Input {
+							SourceOp = "ErodeDilate1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 41, 432.395 } },
+				},
+				Merge1_3 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge1_4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur1_1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Color" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 206, 465.395 } },
+				},
+				Texture1 = Texture {
+					CtrlWShown = false,
+					Inputs = {
+						UOffset = Input { Value = 0.104, },
+						Input = Input {
+							SourceOp = "CustomTool3_1",
+							Source = "Output",
+						},
+						Texture = Input {
+							SourceOp = "TimeStretcher1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -399, 1105.5 } },
+				},
+				Bitmap1 = BitmapMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "CustomTool3",
+							Source = "Output",
+						},
+						Channel = Input { Value = FuID { "Luminance" }, },
+						High = Input { Value = 0.001, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -646, 1204.5 } },
+				},
+				Merge1_4 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Resize1_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur1_1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Luminosity" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 206, 399.395 } },
+				},
+				Resize1_2 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "Instance_BrightnessContrast4_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 509, 1257.39 } },
+				},
+				Merge2 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input { Expression = "1.0", },
+						Background = Input {
+							SourceOp = "Instance_BrightnessContrast4_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BrightnessContrast2",
+							Source = "Output",
+						},
+						Gain = Input { Value = 0, },
+						PerformDepthMerge = Input { Value = 0, },
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 701, 1488.39 } },
+				},
+				Resize1_3 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input {
+							Value = { 1, 1 },
+							Expression = "Point(BrightnessContrast4.Input.XScale, BrightnessContrast4.Input.YScale)",
+						},
+						Input = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 454, 1488.39 } },
+				},
+				Resize1_4 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "Instance_BrightnessContrast4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 371, 313.297 } },
+				},
+				Switch1 = Switch {
+					CtrlWShown = false,
+					Inputs = {
+						Source = Input { Value = 1, },
+						Name0 = Input { Value = "On", },
+						Input0 = Input {
+							SourceOp = "UnsharpMask1",
+							Source = "Output",
+						},
+						Name1 = Input { Value = "Off", },
+						Input1 = Input {
+							SourceOp = "CustomTool2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 1488.39 } },
+					Colors = { TileColor = { R = 0.572549019607843, G = 0.572549019607843, B = 0.572549019607843 }, }
+				},
+				ErodeDilate1 = ErodeDilate {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = 3, },
+						XAmount = Input { Value = 0.0017, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 41, 379.297 } },
+				},
+				BrightnessContrast3 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						Gain = Input { Value = 50, },
+						Input = Input {
+							SourceOp = "ChannelBooleans2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 605, 1832.05 } },
+				},
+				Bitmap2 = BitmapMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "ErodeDilate1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -646, 1269.88 } },
+					UserControls = ordered() {
+						SoftEdge = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.0020000000949949,
+							INP_Default = 0.000669999979436398,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							LINKS_Name = "Soft Edge"
+						}
+					}
+				},
+				ErodeDilate1_1 = ErodeDilate {
+					CtrlWShown = false,
+					Inputs = {
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0, },
+						Blue = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "Bitmap1",
+							Source = "Mask",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -646, 1237.5 } },
+					UserControls = ordered() {
+						XAmount = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.00999999977648258,
+							INP_Default = 0.000500000023748726,
+							INP_MinScale = -0.00999999977648258,
+							INP_MinAllowed = -1,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0,
+							INP_SplineType = "Default",
+							LINKS_Name = "Amount"
+						}
+					}
+				},
+				Displace1 = Displace {
+					CtrlWShown = false,
+					Inputs = {
+						Type = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Bitmap2",
+							Source = "Mask",
+						},
+						Foreground = Input {
+							SourceOp = "SetDomain1",
+							Source = "Output",
+						},
+						XRefraction = Input { Expression = "-Distort", }
+					},
+					ViewInfo = OperatorInfo { Pos = { -646, 1336.29 } },
+					UserControls = ordered() {
+						XRefraction = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.00999999977648258,
+							INP_Default = -0.0270000007003546,
+							INP_MinScale = -0.00999999977648258,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							LINKS_Name = "X Refraction"
+						},
+						Distort = {
+							INP_MaxAllowed = 0.5,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.100000001490116,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							LINKS_Name = "Distort"
+						}
+					}
+				},
+				BrightnessContrast4 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						PreDividePostMultiply = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+						GrainSample = Input { Value = 1, },
+						Settings = Input { Value = 1, },
+						GrainResponse = Input { Value = 1, },
+						Brightness = Input { Value = 0.012, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -399, 102.395 } },
+					UserControls = ordered() {
+						GrainSample = {
+							LINKID_DataType = "Number",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							ICS_ControlPage = "Controls",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "GrainSample",
+						},
+						Scatter = {
+							LINKID_DataType = "Number",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							ICS_ControlPage = "Controls",
+							LBLC_NumInputs = 4,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Scatter",
+						},
+						Settings = {
+							LINKID_DataType = "Number",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							ICS_ControlPage = "Controls",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Settings",
+						},
+						Info = {
+							INP_External = false,
+							INP_Passive = true,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "<p style='color:#555555; text-align: left;'>Macro name β 0.0</p>",
+						},
+						Info2 = {
+							INP_External = false,
+							INP_Passive = true,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "<p style='color:#555555; text-align: left;'>Macro name β 0.0</p>",
+						},
+						Version = {
+							INP_External = false,
+							IC_ControlPage = 0,
+							LBLC_DropDownButton = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							INP_Passive = true,
+							INPID_InputControl = "NestControl",
+							LINKS_Name = "<p style='color:#555555; text-align: center;'>Macro name β 0.0</p>",
+						},
+						Spacer = {
+							ICS_ControlPage = "Controls",
+							INPID_InputControl = "SpacerControl",
+						},
+						Sharpen = {
+							LINKID_DataType = "Number",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							ICS_ControlPage = "Controls",
+							LBLC_NumInputs = 4,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Grain Enphasis",
+						},
+						GrainResponse = {
+							LINKID_DataType = "Number",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							ICS_ControlPage = "Controls",
+							LBLC_NumInputs = 9,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Grain Response",
+						},
+						Brightness = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 201,
+							INP_MaxScale = 1,
+							INP_Default = 0.0120000001043081,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0,
+							INP_SplineType = "Default",
+							LINKS_Name = "Brightness"
+						}
+					}
+				},
+				Instance_BrightnessContrast4 = BrightnessContrast {
+					CtrlWShown = false,
+					SourceOp = "BrightnessContrast4",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						Input = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 371, 69.3952 } },
+				},
+				Instance_BrightnessContrast4_1 = BrightnessContrast {
+					CtrlWShown = false,
+					SourceOp = "BrightnessContrast4",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						Input = Input {
+							SourceOp = "ChangeDepth1",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 701, 1236.88 } },
+				},
+				Instance_BrightnessContrast4_2 = BrightnessContrast {
+					CtrlWShown = false,
+					SourceOp = "BrightnessContrast4",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						Direction = Input {
+							Value = 1,
+						},
+						Input = Input {
+							SourceOp = "BrightnessContrast5_2",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 701, 1666.5 } },
+				},
+				TimeStretcher1_1 = TimeStretcher {
+					CtrlWShown = false,
+					Inputs = {
+						SourceTime = Input {
+							Value = 1003,
+							Expression = "ml_GrainSync.SourceTime",
+						},
+						InterpolateBetweenFrames = Input { Value = 0, },
+						SampleSpread = Input { Disabled = true, },
+						Input = Input {
+							SourceOp = "CustomTool2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, 1105.5 } },
+					UserControls = ordered() {
+						Spacer = {
+							IC_Visible = true,
+							INPID_InputControl = "SeparatorControl",
+							INP_External = false,
+							ICS_ControlPage = "Controls",
+						},
+						SetSourceTime = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ButtonControl",
+							BTNCS_Execute = "tool:SetInput('SourceTime', comp.CurrentTime, fu.TIME_UNDEFINED)",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							ICD_Width = 1,
+							LINKS_Name = "Set To Current Time"
+						}
+					}
+				},
+				Instance_ColorCurves = ColorCurves {
+					PickColor = true,
+					CtrlWShown = false,
+					NameSet = true,
+					SourceOp = "ColorCurves",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						ReferenceNest = Input {
+						},
+						MatchReference = Input {
+						},
+						SampleReference = Input {
+						},
+						Input = Input {
+							SourceOp = "Resize1_2",
+							Source = "Output",
+						},
+						ReferenceImage = Input {
+						},
+						MatchMask = Input {
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 316, 1257.39 } },
+					UserControls = ordered() {
+						EditRed = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							ICD_Width = 0.330000013113022,
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_SplineType = "Default",
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							INP_Passive = true,
+							INP_External = false,
+							LINKS_Name = "Edit Red",
+						},
+						EditGreen = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							ICD_Width = 0.330000013113022,
+							INP_MaxScale = 1,
+							INP_SplineType = "Default",
+							INP_Default = 1,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Edit Green"
+						},
+						EditBlue = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							ICD_Width = 0.330000013113022,
+							INP_MaxScale = 1,
+							INP_SplineType = "Default",
+							INP_Default = 1,
+							INP_MinAllowed = -1000000,
+							INP_MinScale = 0,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							CBC_TriState = false,
+							INP_Passive = true,
+							ICS_ControlPage = "Controls",
+							LINKS_Name = "Edit Blue"
+						}
+					}
+				},
+				CustomTool1 = Custom {
+					CtrlWShown = false,
+					Inputs = {
+						NumberIn1 = Input { Value = 0.01, },
+						LUTIn1 = Input {
+							SourceOp = "CustomTool1LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool1LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool1LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool1LUTIn4",
+							Source = "Value",
+						},
+						Intermediate1 = Input { Value = "1/n1", },
+						RedExpression = Input { Value = "r1*r2*i1", },
+						GreenExpression = Input { Value = "g1*g2*i1", },
+						BlueExpression = Input { Value = "b1*b2*i1", },
+						Image1 = Input {
+							SourceOp = "Switch1",
+							Source = "Output",
+						},
+						Image2 = Input {
+							SourceOp = "Instance_ColorCurves",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 316, 1488.39 } },
+				},
+				ChannelBooleans2 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 605, 1764.88 } },
+				},
+				Blur2 = Blur {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Input = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 605, 1699.29 } },
+				},
+				Switch2 = Switch {
+					CtrlWShown = false,
+					Inputs = {
+						NumberOfInputs = Input { Value = 4, },
+						Source = Input {
+							Value = 3,
+							Expression = "ml_GrainSync.Display",
+						},
+						Name0 = Input { Value = "Output", },
+						Input0 = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						},
+						Name1 = Input { Value = "Original Grain ", },
+						Input1 = Input {
+							SourceOp = "Resize1_5",
+							Source = "Output",
+						},
+						Name2 = Input { Value = "Adapted Grain", },
+						Input2 = Input {
+							SourceOp = "Resize1_8",
+							Source = "Output",
+						},
+						Name3 = Input { Value = "QC", },
+						Input3 = Input {
+							SourceOp = "BrightnessContrast3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 481, 1832.05 } },
+					Colors = { TileColor = { R = 0.572549019607843, G = 0.572549019607843, B = 0.572549019607843 }, }
+				},
+				Resize1_5 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input {
+							Value = { 1, 1 },
+							Expression = "Point(BrightnessContrast4.Input.XScale, BrightnessContrast4.Input.YScale)",
+						},
+						Input = Input {
+							SourceOp = "Instance_BrightnessContrast4_3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 1832.05 } },
+				},
+				Merge4 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "ChangeDepth1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Instance_BrightnessContrast4_2",
+							Source = "Output",
+						},
+						Operator = Input { Expression = ":if ml_GrainSync.EffectMask and MultiplyByMask then return \"In\" else return \"Conjoint\" end", },
+						PerformDepthMerge = Input { Value = 0, },
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 481, 1666.5 } },
+				},
+				Merge3_1 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap3",
+							Source = "Mask",
+						},
+						ApplyMaskInverted = Input {
+							Value = 1,
+							Expression = ":if ml_GrainSync.EffectMask then return 0 else return 1 end",
+						},
+						Background = Input {
+							SourceOp = "Switch2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Resize1_6",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Overlay" }, },
+						PerformDepthMerge = Input { Value = 0, },
+						Blend = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 481, 1930.29 } },
+					UserControls = ordered() {
+						Blend = {
+							{ MBTNC_AddButton = "Disable" },
+							{ MBTNC_AddButton = "Enable" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "MultiButtonControl",
+							MBTNC_ShowBasicButton = true,
+							INP_MaxScale = 1,
+							INP_Default = 1,
+							INP_SplineType = "Default",
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							MBTNC_ShowName = true,
+							MBTNC_StretchToFit = true,
+							MBTNC_ShowToolTip = true,
+							LINKS_Name = "Blend",
+						}
+					}
+				},
+				UnsharpMask1 = UnsharpMask {
+					CtrlWShown = false,
+					Inputs = {
+						XSize = Input { Value = 0.2, },
+						Gain = Input { Value = 0.75, },
+						Input = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -399, 1488.39 } },
+				},
+				SetDomain1 = SetDomain {
+					CtrlWShown = false,
+					Inputs = {
+						Mode = Input { Value = FuID { "Set" }, },
+						Input = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -536, 1269.88 } },
+				},
+				Resize1_6 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input {
+							Value = { 1, 1 },
+							Expression = "Point(BrightnessContrast4.Input.XScale, BrightnessContrast4.Input.YScale)",
+						},
+						Input = Input {
+							SourceOp = "Displace1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -646, 1897.29 } },
+				},
+				CustomTool3 = Custom {
+					CtrlWShown = false,
+					Inputs = {
+						NumberIn1 = Input { Value = 0.0007, },
+						NumberIn2 = Input { Value = 10, },
+						LUTIn1 = Input {
+							SourceOp = "CustomTool3LUTIn1_1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool3LUTIn2_1",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool3LUTIn3_1",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool3LUTIn4_1",
+							Source = "Value",
+						},
+						Intermediate1 = Input { Value = "r1+g1", },
+						RedExpression = Input { Value = "if(i1>n1,i1*n2,0)", },
+						GreenExpression = Input { Value = "if(i1>n1,i1*n2,0)", },
+						Image1 = Input {
+							SourceOp = "Merge6",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -646, 1105.29 } },
+				},
+				Voronoi1 = Fuse.Voronoi {
+					CtrlWShown = false,
+					Inputs = {
+						GlobalIn = Input { Value = 1001, },
+						GlobalOut = Input { Value = 1080, },
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						Depth = Input {
+							Value = 4,
+							Expression = "4.0",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Seed = Input {
+							Value = 2006,
+							Expression = "time*2",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -701, 708.88 } },
+					Version = 10
+				},
+				Background1_1 = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalIn = Input { Value = 1001, },
+						GlobalOut = Input { Value = 1080, },
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						Depth = Input { Value = 4, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Type = Input { Value = FuID { "Corner" }, },
+						TopLeftGreen = Input { Value = 1, },
+						TopRightRed = Input { Value = 1, },
+						TopRightGreen = Input { Value = 1, },
+						BottomRightRed = Input { Value = 1, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -536, 643.297 } },
+				},
+				ChannelBooleans3 = ChannelBoolean {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						ToAlpha = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Background1_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Voronoi1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -536, 708.88 } },
+				},
+				CustomTool3_1 = Custom {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						PointIn1 = Input {
+							Value = { 0.854098360655738, 0.64868804664723 },
+							Expression = "Sample.Center",
+						},
+						NumberIn1 = Input {
+							Value = 0.0241530054644809,
+							Expression = "Sample.Width*NumberIn7",
+						},
+						NumberIn2 = Input {
+							Value = 0.0390281827016521,
+							Expression = "Sample.Height*NumberIn7",
+						},
+						NumberIn3 = Input { Value = 0.1, },
+						LUTIn1 = Input {
+							SourceOp = "CustomTool3LUTIn1_2",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool3LUTIn2_2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool3LUTIn3_2",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool3LUTIn4_2",
+							Source = "Value",
+						},
+						Setup1 = Input { Value = "n1/2", },
+						Setup2 = Input { Value = "n2/2", },
+						Setup3 = Input { Value = "(p1x-s1+n3)", },
+						Setup4 = Input { Value = "(p1x+s1+n3)", },
+						Setup5 = Input { Value = "(p1y-s2)", },
+						Setup6 = Input { Value = "(p1y+s2)", },
+						Intermediate1 = Input { Value = "rands(s3,s4,r1*1000000)", },
+						Intermediate2 = Input { Value = "rands(s5,s6,g1*1000000)", },
+						Intermediate3 = Input { Value = "i1+r2", },
+						Intermediate4 = Input { Value = "i2+g2", },
+						Intermediate5 = Input { Value = "(i3+(s4-s3)-s3) % (s4-s3)+s3\n", },
+						Intermediate6 = Input { Value = "(i4+(s6-s5)-s5) % (s6-s5)+s5", },
+						RedExpression = Input { Value = "i3", },
+						GreenExpression = Input { Value = "i4", },
+						BlueExpression = Input { Value = "0\n", },
+						NumberControls = Input { Value = 1, },
+						NameforNumber3 = Input { Value = "maxx", },
+						NameforNumber4 = Input { Value = "minx", },
+						NameforNumber5 = Input { Value = "maxy", },
+						NameforNumber6 = Input { Value = "miny", },
+						Image1 = Input {
+							SourceOp = "Voronoi1",
+							Source = "Output",
+						},
+						Image2 = Input {
+							SourceOp = "ChannelBooleans3",
+							Source = "Output",
+						},
+						NumberIn7 = Input { Value = 0.5, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -536, 775.297 } },
+					UserControls = ordered() {
+						NumberIn7 = {
+							INP_MaxAllowed = 3,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1.5,
+							INP_Default = 0.5,
+							INP_MinScale = 0.100000001490116,
+							INP_MinAllowed = 0.100000001490116,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							ICD_Center = 0.5,
+							INP_SplineType = "Default",
+							LINKS_Name = "Number In 7"
+						}
+					}
+				},
+				Bitmap3 = BitmapMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 495, 1336.5 } },
+				},
+				BrightnessContrast2 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "ErodeDilate2",
+							Source = "Output",
+						},
+						ApplyMaskInverted = Input { Expression = "Merge4.ApplyMaskInverted", },
+						MultiplyByMask = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Resize1_3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 605, 1488.39 } },
+				},
+				Resize1_7 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input {
+							Value = { 1, 1 },
+							Expression = "Point(BrightnessContrast4.Input.XScale, BrightnessContrast4.Input.YScale)",
+						},
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 344, 1566.88 } },
+				},
+				ChangeDepth1 = ChangeDepth {
+					CtrlWShown = false,
+					ViewInfo = OperatorInfo { Pos = { 701, 1104.88 } },
+				},
+				BrightnessContrast5_2 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap3",
+							Source = "Mask",
+						},
+						ApplyMaskInverted = Input { Expression = "Merge4.ApplyMaskInverted", },
+						MultiplyByMask = Input { Expression = "Merge4.MultiplyByMask", },
+						Input = Input {
+							SourceOp = "Merge2_1",
+							Source = "Output",
+						},
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 701, 1600.5 } },
+				},
+				Blur3 = Blur {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Input = Input {
+							SourceOp = "CustomTool3_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, 874.297 } },
+				},
+				Merge6 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Background = Input {
+							SourceOp = "CustomTool3_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur3",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Difference" }, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, 940.297 } },
+				},
+				Transform1 = Transform {
+					CtrlWShown = false,
+					Inputs = {
+						Center = Input { Value = { 0.45, 0.45 }, },
+						Edges = Input { Value = 3, },
+						FilterMethod = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "CustomTool2",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -536, 1105.29 } },
+				},
+				BrightnessContrast2_1 = BrightnessContrast {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "ErodeDilate3",
+							Source = "Output",
+						},
+						ApplyMaskInverted = Input {
+							Value = 1,
+							Expression = "1-Merge4.ApplyMaskInverted",
+						},
+						MultiplyByMask = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "Resize1_7",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 495, 1566.88 } },
+				},
+				Merge2_1 = Merge {
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = ":if ml_GrainSync.EffectMask then return 1 else return 0 end",
+						},
+						Background = Input {
+							SourceOp = "Merge2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BrightnessContrast2_1",
+							Source = "Output",
+						},
+						Gain = Input { Value = 0, },
+						PerformDepthMerge = Input { Value = 0, }
+					},
+					ViewInfo = OperatorInfo { Pos = { 701, 1567.5 } },
+				},
+				Instance_BrightnessContrast4_3 = BrightnessContrast {
+					CtrlWShown = false,
+					SourceOp = "BrightnessContrast4",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						Direction = Input {
+							Value = 1,
+						},
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 1699.29 } },
+					UserControls = ordered() {
+						GrainSample = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "GrainSample",
+						},
+						Scatter = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 4,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Scatter",
+						},
+						Settings = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Settings",
+						},
+						Info = {
+							LBLC_DropDownButton = false,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							INPID_InputControl = "NestControl",
+							LBLC_NumInputs = 1,
+							INP_Passive = true,
+							IC_ControlPage = 0,
+							LINKS_Name = "<p style='color:#555555; text-align: left;'>Macro name β 0.0</p>",
+						},
+						Info2 = {
+							LBLC_DropDownButton = false,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							INPID_InputControl = "NestControl",
+							LBLC_NumInputs = 1,
+							INP_Passive = true,
+							IC_ControlPage = 0,
+							LINKS_Name = "<p style='color:#555555; text-align: left;'>Macro name β 0.0</p>",
+						},
+						Version = {
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							INP_Passive = true,
+							LINKS_Name = "<p style='color:#555555; text-align: center;'>Macro name β 0.0</p>",
+						},
+						Spacer = {
+							INPID_InputControl = "SpacerControl",
+							ICS_ControlPage = "Controls",
+						},
+						Sharpen = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Grain Enphasis",
+						},
+						GrainResponse = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 9,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Grain Response",
+						},
+						Brightness = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 201,
+							INP_MaxScale = 1,
+							INP_Default = 0.0120000001043081,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							ICD_Center = 0,
+							LINKS_Name = "Brightness"
+						}
+					}
+				},
+				Instance_BrightnessContrast4_4 = BrightnessContrast {
+					CtrlWShown = false,
+					SourceOp = "BrightnessContrast4",
+					Inputs = {
+						EffectMask = Input {
+						},
+						SettingsNest = Input {
+						},
+						LayersNest = Input {
+						},
+						Direction = Input {
+							Value = 1,
+						},
+						Input = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						},
+						CommentsNest = Input {
+						},
+						FrameRenderScriptNest = Input {
+						},
+						StartRenderScripts = Input {
+						},
+						EndRenderScripts = Input {
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, 1699.29 } },
+					UserControls = ordered() {
+						GrainSample = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "GrainSample",
+						},
+						Scatter = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 4,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Scatter",
+						},
+						Settings = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Settings",
+						},
+						Info = {
+							LBLC_DropDownButton = false,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							INPID_InputControl = "NestControl",
+							LBLC_NumInputs = 1,
+							INP_Passive = true,
+							IC_ControlPage = 0,
+							LINKS_Name = "<p style='color:#555555; text-align: left;'>Macro name β 0.0</p>",
+						},
+						Info2 = {
+							LBLC_DropDownButton = false,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							INPID_InputControl = "NestControl",
+							LBLC_NumInputs = 1,
+							INP_Passive = true,
+							IC_ControlPage = 0,
+							LINKS_Name = "<p style='color:#555555; text-align: left;'>Macro name β 0.0</p>",
+						},
+						Version = {
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "NestControl",
+							INP_External = false,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 1,
+							IC_ControlPage = 0,
+							INP_Passive = true,
+							LINKS_Name = "<p style='color:#555555; text-align: center;'>Macro name β 0.0</p>",
+						},
+						Spacer = {
+							INPID_InputControl = "SpacerControl",
+							ICS_ControlPage = "Controls",
+						},
+						Sharpen = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 3,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Grain Enphasis",
+						},
+						GrainResponse = {
+							ICS_ControlPage = "Controls",
+							INP_Integer = false,
+							LBLC_DropDownButton = true,
+							LINKID_DataType = "Number",
+							LBLC_NumInputs = 9,
+							INPID_InputControl = "LabelControl",
+							INP_SplineType = "Default",
+							LINKS_Name = "Grain Response",
+						},
+						Brightness = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 201,
+							INP_MaxScale = 1,
+							INP_Default = 0.0120000001043081,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICS_ControlPage = "Controls",
+							INP_SplineType = "Default",
+							ICD_Center = 0,
+							LINKS_Name = "Brightness"
+						}
+					}
+				},
+				Resize1_8 = BetterResize {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input {
+							Value = 3840,
+							Expression = "BrightnessContrast4.Input.OriginalWidth",
+						},
+						Height = Input {
+							Value = 2160,
+							Expression = "BrightnessContrast4.Input.OriginalHeight",
+						},
+						HiQOnly = Input { Value = 0, },
+						ChangePixelAspect = Input { Value = 1, },
+						PixelAspect = Input {
+							Value = { 1, 1 },
+							Expression = "Point(BrightnessContrast4.Input.XScale, BrightnessContrast4.Input.YScale)",
+						},
+						Input = Input {
+							SourceOp = "Instance_BrightnessContrast4_4",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, 1765.29 } },
+				},
+				ErodeDilate2 = ErodeDilate {
+					CtrlWShown = false,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "iif(XAmount>0,1,0)",
+						},
+						Filter = Input { Value = 3, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Input = Input {
+							SourceOp = "Bitmap3",
+							Source = "Mask",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 605, 1369.5 } },
+				},
+				Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Displace1",
+							Source = "Output",
+						},
+						Mix = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "Texture1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SetDomain1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -399, 1369.29 } },
+				},
+				ErodeDilate3 = ErodeDilate {
+					CtrlWShown = false,
+					Inputs = {
+						XAmount = Input { Expression = "-ErodeDilate2.XAmount", },
+						Input = Input {
+							SourceOp = "Bitmap3",
+							Source = "Mask",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 1402.5 } },
+				},
+				CopyMetadata1 = Fuse.FLS_CopyMetadata {
+					CtrlWShown = false,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "Merge3_1",
+							Source = "Output",
+						},
+						Metadata = Input {
+							SourceOp = "Switch3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 481, 2029.5 } },
+				},
+				Switch3 = Switch {
+					Inputs = {
+						HideInputs = Input { Value = 1, },
+						Name0 = Input { Value = "Comp", },
+						Input0 = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						},
+						Name1 = Input { Value = "Original ", },
+						Input1 = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 605, 2029.5 } },
+					Colors = { TileColor = { R = 0.725490196078431, G = 0.690196078431373, B = 0.592156862745098 }, }
+				}
+			},
+			UserControls = ordered() {
+				Controls = ControlPage {
+					CT_Visible = true,
+					CTID_DIB_ID = "Icons.Tools.Tabs.Degrain",
+					CTS_FullName = "Tooltip for Page1"
+				},
+				Advanced = ControlPage {
+					CT_Visible = true,
+					CTID_DIB_ID = "Icons.Tools.Tabs.Primatte",
+					CTS_FullName = "Tooltip for Page1"
+				},
+				Icon = {
+					INP_Integer = false,
+					INPID_InputControl = "LabelControl",
+					IC_ControlPage = -1,
+					LBLC_MultiLine = true,
+					INP_External = false,
+					LINKID_DataType = "Number",
+					IC_NoReset = true,
+					INP_Passive = true,
+					IC_NoLabel = true,
+					LINKS_Name = "<center> <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQoAAAAcCAYAAACZM/H7AAAACXBIWXMAAAsTAAALEwEAmpwYAAAGAElEQVR4nO2c7XHqOhCGX87cBpwSSAmkBCiBlAAlwMz+3hlSApQAJYQSQgmhhFAC94d28drYGPAKnHP0zDADmOhjJa32Q0rveDwikUgkLvHn2Q1IJBLdJymKRCLRSFIUiUSikaQoEolEI/95F9jr9aq+HgAYApgA6JeerQDsAXw4VP9dUb7lA8AOwMahrjITAEt5PwKwjVT2K4K82pQBAG8IsriEynMFYHpHnSeYWefAovToA8CWiG6SFzNnAD4R5hYAjJrKYOaZqX9KRKsb6zyTIRFdlCEzn2RIRK1kWCp3JuVOSo82AHZEdFpPHgmL2BZFBmAN4AthgKoW8USeHXHeaW9m0p51pLKV2P3wYNn8Ex9kUuscKDMD8MnMN40JER0AvJuvLvaHmfum/s2tSqKGh8lQYeYxM/8g9KVqno0BLJj5KIrNhZiKYoAwOcbyeYuwK/XM6w1FS6LK4riHVakerUstiTGKC7stQxTbPYZPP2IygK8MKmHmMfIFukXY+XtE1EPR8jrIYr4aItoDmMvHviikOnRRH8zftGXQUKcrzLxA2OQy+WoO4NXI8wXFvi29lEUsRaGWhA78FGFSlLX4DtJZeTbCfWb1NewQdiCdmJ4DXKfZu4qay3VWnicqmz0RFdwDItoS0QjBDZjKwr8JMbG1P7MqZSPKaigfP+6pp4KTDG9VcPcgCknn7A7ACxEV+kJEB5HHq/zm3cly8o9RCHYCznGuIMrs0dIHvoEtwqTJENrYdtL0kSuFOXKraAafuEsM5sh3piWCgo6FxhBq40IOk3mKYL1mCHPv5JJILONk0VjfvSUPk2HJbdojWGWHut+L8njzbEMMi8IGWLbo7mLxwloTG+RKMUN3YxU2eKxB5thE23UloKgm95iZh+axdWc9N6OCDD3jARVY63d6SUnEIoaisCa3i9njjLbvgPbWhFUGWynP9rmrigKQbIO8j+mCaB1jcQGiIJaCjucSONuJ504uR7nOkwwjuiAqt92t2SEvYlkUylM6VcMQxXSah6UzRh5YUgVxMO81JdhVdIe15rk3Vs5rZv6KGABUl0MDmxrA3Dm6HGWiylCUj86xp62n2Irikol0rHl57MKTinI/YQJa8FEU2tYDij64fd/loKbNGowRoa3iFoyQz4UB8vTdl6fJLnXpuC6Qj3e0+Fcp8xLDarp2PUXlXzqZqWmxEXzSY0PUWyfqhgBBmWToLtZkXyBCWyW78YKwYK1rNkBI4X05mu22P0BwOZoOlrWi5PYsJID6VxFDUdhBuiQwe8bh1bkN9hyFKoUMIWXkZb6Vg5hVbaj6bRfRHdf69O4Q0UrSoD2pUxfwAE6H4CTQtzKfHxVMjyXDa9dTVGIrii7452dBLgdsStRaD5bfpChsdmqCB4ybKA17CG4gx7x/JRJkPMmwlHlpU+4eucvxtPUUQ1HY3bUrC+R0eg8+B62sHzpEdazlx/ymj27HKoA4CvXaepVfqyiEWDK0yvQpyiKWRaG76RAPOCZ8BRsUT2S28Ycz3NenrijNOuzR5qguSEMbfi3i9tgj5V4ytMr0qjK9U7WxgplzFANkXdhNbayizQDalOgc53dKyi9VUDb42VU2yHevGRx8YrnE9HUhwGfnRtSg4yMgIncZljIrA2b+vBQwlWdrZv72skBiKQq92afKYo2QnqzaVe3V35jskFs6bVKBNiV6zYGy8qW3rjNHvrO3muRylmENuSBoU6HM3GfmJXLrbOV9IOqJuMlQkaCstdS/mXlmFQYzZyLzbwSZ9+G0OcVMj+5QvLE5RPDbyr68tTj2iLurfCAfwHuUUzkleo2pbIOd1hrpKl7/G0Qnt5bVR0iFHpn5iDCZT6daPf9Xw7MRheeebREZTRHmnVrGP0amev08k9+8e2V9Yp+jUMviDUV3xKLn9EfIb73Fwg5gH7cHnJpSonVonV2+/2GxR5NbQUR6O9jussoKYTLHvJT2FErHuz3LXcmZlLrLlluEsyMv4ga50Ev/rj+RSDTxL53MTCQSd5IURSKRaCQpikQi0UhSFIlEopH/AZbqMYCe862IAAAAAElFTkSuQmCC, >",
+				},
+				Spacer = {
+					ICS_ControlPage = "Controls",
+					INPID_InputControl = "SpacerControl",
+				},
+				Display = {
+					{ MBTNC_AddButton = "Final Output" },
+					{ MBTNC_AddButton = "Original Grain" },
+					{ MBTNC_AddButton = "Adapted Grain" },
+					{ MBTNC_AddButton = "QC" },
+					INP_MaxAllowed = 1000000,
+					INPID_InputControl = "MultiButtonControl",
+					INP_MaxScale = 1,
+					MBTNC_ButtonWidth = 1,
+					INP_MinAllowed = -1000000,
+					INP_Integer = false,
+					ICS_ControlPage = "Controls",
+					MBTNC_ShowBasicButton = true,
+					INP_SplineType = "StepIn",
+					MBTNC_ButtonHeight = 1,
+					INP_MinScale = 0,
+					INP_External = false,
+					LINKID_DataType = "Number",
+					MBTNC_ShowName = true,
+					MBTNC_StretchToFit = true,
+					MBTNC_ShowToolTip = true,
+					LINKS_Name = "Display"
+				},
+				Spacer2 = {
+					ICS_ControlPage = "Controls",
+					INPID_InputControl = "SpacerControl",
+				},
+				sep1 = {
+					ICS_ControlPage = "Controls",
+					INPID_InputControl = "SeparatorControl",
+				},
+				SourceTime = {
+					INP_MaxAllowed = 1000000,
+					INP_Integer = true,
+					INPID_InputControl = "ScrewControl",
+					INP_MaxScale = 10,
+					INP_Default = 1001,
+					INP_MinScale = 0,
+					INP_MinAllowed = -1000000,
+					LINKID_DataType = "Number",
+					ICS_ControlPage = "Controls",
+					INP_SplineType = "Default",
+					LINKS_Name = "Source Time"
+				},
+				Set_Frame = {
+					INP_MaxAllowed = 1000000,
+					INP_Integer = false,
+					INPID_InputControl = "ButtonControl",
+					BTNCS_Execute = "tool:SetInput('SourceTime', comp.CurrentTime, fu.TIME_UNDEFINED)",
+					INP_MaxScale = 1,
+					INP_MinScale = 0,
+					INP_MinAllowed = -1000000,
+					LINKID_DataType = "Number",
+					ICS_ControlPage = "Controls",
+					INP_SplineType = "Default",
+					ICD_Width = 1,
+					LINKS_Name = "Set To Current Time"
+				}
+			}
+		},
+		CustomTool2LUTIn1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool2LUTIn2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool2LUTIn3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool2LUTIn4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool1LUTIn1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool1LUTIn2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool1LUTIn3 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool1LUTIn4 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn1_1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn2_1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn3_1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn4_1 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn1_2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn2_2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn3_2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		},
+		CustomTool3LUTIn4_2 = LUTBezier {
+			KeyColorSplines = {
+				[0] = {
+					[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+					[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+				}
+			},
+			SplineColor = { Red = 0, Green = 0, Blue = 0 },
+			CtrlWZoom = false,
+			CustomData = {
+				Path = {
+					Map = {
+						["Setting:"] = "Macros:/"
+					}
+				},
+			},
+		}
+	},
+}

@@ -1,0 +1,116 @@
+{
+	Tools = ordered() {
+		DepthRemap = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "CustomTool4_1_1",
+					Source = "NumberIn1",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "CustomTool4_1_1",
+					Source = "NumberIn2",
+					Default = 10,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "custom_in",
+					Source = "Input",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "custom_out",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				CustomTool4_1_1 = Custom {
+					CtrlWZoom = false,
+					Inputs = {
+						NumberIn2 = Input { Value = 10, },
+						LUTIn1 = Input {
+							SourceOp = "CustomTool4LUTIn1_1_1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool4LUTIn2_1_1",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool4LUTIn3_1_1",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool4LUTIn4_1_1",
+							Source = "Value",
+						},
+						RedExpression = Input { Value = "(b1-n1)/(n2-n1)", },
+						GreenExpression = Input { Value = "(b1-n1)/(n2-n1)", },
+						BlueExpression = Input { Value = "(b1-n1)/(n2-n1)", },
+						AlphaExpression = Input { Value = "1", },
+						Image1 = Input {
+							SourceOp = "custom_in",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 3415.5 } },
+				},
+				CustomTool4LUTIn1_1_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				CustomTool4LUTIn2_1_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				CustomTool4LUTIn3_1_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				CustomTool4LUTIn4_1_1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 0 },
+					CtrlWZoom = false,
+				},
+				custom_in = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1485, 3415.5 } },
+				},
+				custom_out = PipeRouter {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "CustomTool4_1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 3415.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "tt_DepthRemap"
+}
