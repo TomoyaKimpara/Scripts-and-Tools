@@ -1,0 +1,27 @@
+-- FileCache cache-only gate. See the bundled Fusion Fuse SDK, Input attributes.
+FuRegisterClass('FileCacheGate', CT_Tool, {
+ REGS_Name='FileCache Gate', REGS_Category='Flow', REGS_OpIconString='FC',
+ REG_OpNoMask=true, REG_NoCommonCtrls=true,
+ REG_NoPreCalcProcess=true, REG_SupportsDoD=true, REG_Version=100,
+})
+
+function Create()
+ Live=self:AddInput('Live','Live',{
+  LINKID_DataType='Image', LINK_Main=1,
+  INP_Required=false, INP_SendRequest=false,
+ })
+ Cache=self:AddInput('Cache','Cache',{
+  LINKID_DataType='Image', LINK_Main=2,
+  INP_Required=false, INP_SendRequest=false,
+ })
+ Out=self:AddOutput('Output','Output',{LINKID_DataType='Image',LINK_Main=1})
+end
+
+function Process(req)
+ -- The live input is reserved for native pass-through; never request it here.
+ local image=Cache:GetSource(req.Time,req:GetFlags())
+ if image then
+  if req:IsPreCalc() then image=Image({IMG_Like=image,IMG_NoData=true}) end
+  Out:Set(req,image)
+ end
+end

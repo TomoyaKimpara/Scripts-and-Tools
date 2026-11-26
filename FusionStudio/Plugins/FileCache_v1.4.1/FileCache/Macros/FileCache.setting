@@ -1,0 +1,72 @@
+{
+	Tools = ordered() {
+		FileCache = GroupOperator {
+			UserControls = ordered() {
+				PR_UseCompRange = { LINKS_Name = "Use Composition Range", INP_Default = 1, CBC_TriState = false, ICS_ControlPage = "FileCache", INPID_InputControl = "CheckboxControl", LINKID_DataType = "Number" },
+				PR_FirstFrame = { LINKS_Name = "Start Frame", INP_Default = 0, INP_Integer = true, ICS_ControlPage = "FileCache", INPID_InputControl = "ScrewControl", LINKID_DataType = "Number" },
+				PR_LastFrame = { LINKS_Name = "End Frame", INP_Default = 240, INP_Integer = true, ICS_ControlPage = "FileCache", INPID_InputControl = "ScrewControl", LINKID_DataType = "Number" },
+				PR_Render = {
+					LINKS_Name = "Render Range / Update Proxy...",
+					ICS_ControlPage = "FileCache",
+					BTNCS_Execute = "local f=assert(loadfile(comp:MapPath('Scripts:Support/FileCache_v13.lua'))); f()('render', tool, comp)",
+					INPID_InputControl = "ButtonControl",
+					LINKID_DataType = "Number"
+				},
+				PR_Current = {
+					LINKS_Name = "Render Current Frame",
+					ICS_ControlPage = "FileCache",
+					BTNCS_Execute = "local f=assert(loadfile(comp:MapPath('Scripts:Support/FileCache_v13.lua'))); f()('current', tool, comp)",
+					INPID_InputControl = "ButtonControl",
+					LINKID_DataType = "Number"
+				},
+				PR_OpenFolder = {
+					LINKS_Name = "Open Containing Folder",
+					ICS_ControlPage = "FileCache",
+					BTNCS_Execute = "local f=assert(loadfile(comp:MapPath('Scripts:Support/FileCache_v13.lua'))); f()('openfolder', tool, comp)",
+					INPID_InputControl = "ButtonControl",
+					LINKID_DataType = "Number"
+				}
+			},
+			Colors = { TileColor = { G = 0.294117647058824, B = 0.803921568627451, R = 0.584313725490196 } },
+			Outputs = { MainOutput1 = InstanceOutput { SourceOp = "PR_Switch", Name = "Output", Source = "Output" } },
+			Inputs = ordered() {
+				MainInput1 = InstanceInput { SourceOp = "PR_Input", Name = "Input", Source = "Input" },
+				Filename = InstanceInput { SourceOp = "PR_Saver", Page = "FileCache", Name = "Filename", Source = "Clip" },
+				OutputFormat = InstanceInput { SourceOp = "PR_Saver", Page = "FileCache", Name = "Output Format", Source = "OutputFormat" }
+			},
+			Tools = ordered() {
+				PR_Input = PipeRouter {
+				},
+				PR_Saver = Saver { PassThrough = true, Inputs = {
+						OutputFormat = Input { Value = FuID { "OpenEXRFormat" } },
+						Clip = Input { Value = Clip { Filename = "Temp:/FileCache_SetFilename.exr", FormatID = "OpenEXRFormat", Saving = true } }
+					} },
+				PR_Loader = Loader {
+					Clips = {
+						Clip {
+							ExtendFirst = 0,
+							Loop = 1,
+							TrimIn = 0,
+							ExtendLast = 0,
+							StartFrame = -1,
+							Length = 1,
+							Filename = "Scripts:Support/FileCache_placeholder.png",
+							FormatID = "PNGFormat",
+							GlobalStart = 0,
+							GlobalEnd = 0,
+							TrimOut = 0,
+							ID = "Clip1",
+							LengthSetManually = true
+						}
+					}
+				},
+				PR_Switch = Fuse.FileCacheGate {
+					Inputs = {
+						Live = Input { SourceOp = "PR_Input", Source = "Output" },
+						Cache = Input { SourceOp = "PR_Loader", Source = "Output" }
+					}
+				}
+			}
+		}
+	}
+}

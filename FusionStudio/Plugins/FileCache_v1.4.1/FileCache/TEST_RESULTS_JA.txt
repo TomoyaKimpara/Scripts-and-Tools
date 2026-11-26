@@ -1,0 +1,37 @@
+FileCache 1.4.1 検証記録 — 2026-11-26 / Windows Resolve Studio 21.1.0.17
+
+新方式の実機確認
+・再起動後、Fuse.FileCacheGateが正しいユーザーフォルダーから登録されたことを確認。
+・新規ノードのUse Composition Range=1、Start Frame=0、End Frame=240を確認。
+・32×32の独立した入力からEXR 0～2を出力し、Loaderのパス・範囲・トリムを検査。
+・元入力を赤0.25から0.8へ変更後、通常出力PNGはR=64、標準バイパスはR=204。
+  保存済み画像と元入力が切り替わることを実際の出力画素で確認。
+・検証用入力へ故意に不正な式を設定。通常のキャッシュ出力は成功し、
+  標準バイパスでの出力は失敗。キャッシュ出力PNGのR=64を確認。
+  試験後、不正な式を除去し、元入力を復元。
+・現在フレーム1だけを再更新。SHA256比較で000001のみ変化し、0と2は不変。
+  キャッシュ範囲は0～2を保持。
+・複数の接尾辞を持つ内部ノードでも再更新できるよう識別方法を修正。
+・FileCache completedダイアログの表示と、OK後の正常終了をユーザーが確認。
+
+実際のユーザー素材
+・既存のFileCache、FileCache_1、FileCache_2を専用Gate方式へ置換。
+  設定の読み込みだけでは旧内部クラスが残るため、Groupを複製して接続を引き継ぐ方法を使用。
+・3ノードすべての内部登録IDがFuse.FileCacheGate、Use Composition Range=1を確認。
+・入力はDEFlickerHighSpeed1 → FileCache → FileCache_1 → FileCache_2の順に保持。
+・FileCacheの既存ネットワークEXR連番0～119と保存先を保持。再書き出しはしていない。
+・実際のFileCacheから下流Saverへフレーム0をPNG出力し、1920×1080画像を確認。
+  この出力の前後でDEFlickerHighSpeed1の最終計算時間は11.03125秒のまま変化なし。
+  緑点滅そのものの画面観察は未実施。
+
+その他
+・Open Folderはbmd.openfileexternal('Open', path)へ修正。
+  前の試験で空白を含むフォルダーがExplorerで開いたことをWindows Shellで確認。
+・戻り値falseでも開くため、falseをエラー扱いする検査を除去。
+・Start Frame→End Frameの順序。すべての指定欄と操作ボタンをFileCacheタブへ配置。
+・旧版でEXR/PNG出力、範囲短縮、付随manifestを作らないことを確認済み。
+
+未検証
+Resolve 20.x、無料版、EXR/PNG以外の全形式、長時間素材の全条件、
+日本語パスの全条件、保存再読込、途中キャンセルの復元、色管理の全画素往復比較。
+別ビューアや別分岐から上流を要求した場合、その経路では計算される。
