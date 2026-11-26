@@ -1,0 +1,38 @@
+PreRender 1.3.2 検証記録 — 2026-11-26 / Windows Resolve Studio 21.1.0.17
+
+1.3.2追加確認
+・Filename、OutputFormat、範囲欄、全ボタンのINPS_ICS_ControlPageがPreRenderであることを確認。
+・Use Composition Rangeをオフ、Start=4、End=6として、範囲引数を渡さず更新処理を実行。
+  範囲ダイアログで待機せず、4～6の出力とLoader範囲検査に成功。
+
+1.3.1追加確認
+・Auto Clip Browse=trueを維持したまま、comp:Lockを使わずMacroをPaste。
+  確認画面で待機せず、作成完了マーカーを取得。
+・内部Loaderに同梱の1×1透明PNG、Saverに明示的な仮ファイル名を初期設定。
+・作成後にFilenameを指定し、0～2のEXR出力・Loader更新が成功。
+・Select Toolの画面操作そのものは未実施。登録ファイルを直接通常モードで読み込む試験。
+
+・FilenameとOutputFormatをSaverのInstanceInputとして公開し、Group上で取得・設定を確認。
+・EXRが初期形式であることを確認。
+・Filename=custom_beauty.exrから0～2を出力。
+  custom_beauty.000000.exr～000002.exrの3ファイルを確認。
+・上流の赤色成分を変更後、現在位置1のRender Current Frameを実行。
+  SHA256比較で000001だけが変化し、000000と000002は不変。
+  Group内部キャッシュとLoader範囲は0～2を維持。
+・Filename=custom_png.png、OutputFormat=PNGFormatで10～12を出力。
+  3個のPNGを確認し、パス・形式・範囲を内部データでも確認。
+・同じPNGを10～10へ短縮。Global範囲・トリム属性検査を含め正常終了。
+・テスト出力先にmanifest.txt等の付随ファイルがないことを確認。
+・レンダー後に内部SaverがPassThrough=true、入力接続なしへ戻ることを確認。
+・Open Containing Folderと同じ処理を実行。bmd.openfileexternalが正常終了。
+  エクスプローラー画面そのものの目視確認は未実施。
+・検証ノードは独立した32×32 Backgroundに接続。既存映像処理には挿入していない。
+
+v1.2で確認済みの画像構成を継続
+・標準バイパスによる上流への復帰と、下流Saverへの実出力。
+・空のLoaderを上流にしても、キャッシュ側から下流出力に成功。
+・同じGroupで0～1 → 10～14 → 0～2の連続更新。
+
+未検証：20.x、無料版、EXR/PNG以外の全形式、UI操作全体、保存再読込、
+長時間素材、日本語・ネットワークパス、途中キャンセル復元、全画素・色管理往復比較。
+今回追加した機能の試験はボタンと同じ処理を呼び出す方法で行った。
